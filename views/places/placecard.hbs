@@ -1,0 +1,41 @@
+<div class="card">
+  <img src="{{place.image}}" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><a href="/places/{{place._id}}" class="text-dark">{{place.name}}</a></h5>
+
+    {{#if showDescription}}
+      <p class="card-text">
+        {{place.description}}
+      </p>
+    {{/if}}
+    
+    <p class="card-text">
+      {{#if place.owner.name}}
+        owner: <a href="/users/{{place.owner.id}}">{{place.owner.name}}</a>
+      {{/if}}
+
+      {{#if place.staff.name}}
+        <small class="text-muted d-block">Staff: <a href="/users/{{place.staff.id}}">{{place.staff.name}}</a></small>
+      {{/if}}
+    </p>
+
+    <a href="{{place.github}}" class="btn btn-dark btn-sm" target="_blank">
+      <i class="fa fa-github mr-1"></i>
+    </a>
+
+    <a href="{{place.url}}" class="btn btn-primary btn-sm" target="_blank">
+      <i class="fa fa-globe mr-1"></i>
+    </a>
+
+    <button type="button" class="btn-sm btn btn-outline-danger" data-like-place="{{place.id}}">
+      <i class="fa fa-heart mr-1"></i>
+      <span class="likes-count">{{place.likes}}</span>
+      Likes
+    </button>
+  </div>
+
+  <div class="card-footer">
+    <small class="text-muted">{{date place.createdAt}}</small>
+  </div>
+</div>

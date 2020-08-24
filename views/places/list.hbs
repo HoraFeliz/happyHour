@@ -1,0 +1,12 @@
+<div class="row">
+  {{#each places as |place|}}
+    <div class="col-xl-4 col-lg-6 col-sm-12 mb-4">
+      {{>places/placecard place=place }}
+    </div>
+  {{else}}
+    <p>
+      No places matching search: <i>{{search}}</i>.<br/>
+      <a href="/places">All places</a>
+    </p>
+  {{/each}}
+</div>
