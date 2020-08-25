@@ -73,7 +73,7 @@ module.exports.new = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
-  const place = new place({
+  const place = new Place({
     ...req.body,
     image: req.file ? req.file.path : undefined,
     owner: req.currentUser._id,
