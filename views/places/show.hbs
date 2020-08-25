@@ -3,19 +3,19 @@
     {{>places/placecard place=place showDescription=true}}
   </div>
 
-  {{#ifEquals place.author.email currentUser.email}}
-    <div class="mb-3">
-      <a href="/places/{{place._id}}/edit" class="btn btn-secondary">
-        <i class="fa fa-cog"></i>
-        Edit
-      </a>
+  {{#ifEquals place.owner.email currentUser.email}}
+  <div class="mb-3">
+    <a href="/places/{{place._id}}/edit" class="btn btn-secondary">
+      <i class="fa fa-cog"></i>
+      Edit
+    </a>
 
-      
-        <a href="/places/{{place._id}}/delete" class="btn btn-danger">
-          <i class="fa fa-trash"></i>
-          Delete
-        </a>
-    </div>
+
+    <a href="/places/{{place._id}}/delete" class="btn btn-danger">
+      <i class="fa fa-trash"></i>
+      Delete
+    </a>
+  </div>
   {{/ifEquals}}
 
   <div id="comments">
@@ -24,27 +24,27 @@
     {{>places/newcomment}}
 
     {{#each place.comments as |comment|}}
-      <div class="border-bottom mb-3 py-3">
-        <p>{{comment.text}}</p>
+    <div class="border-bottom mb-3 py-3">
+      <p>{{comment.text}}</p>
 
-        <small>
-          Author:
-          <a href="/users/{{comment.user._id}}">
-            <img src="{{comment.user.avatar}}" class="rounded-circle" width="20"/>
-            {{comment.user.name}}
-          </a>
-        </small>
+      <small>
+        Author:
+        <a href="/users/{{comment.user._id}}">
+          <img src="{{comment.user.avatar}}" class="rounded-circle" width="20" />
+          {{comment.user.name}}
+        </a>
+      </small>
 
-        <small class="d-block">Date: {{date comment.createdAt}}</small>
+      <small class="d-block">Date: {{date comment.createdAt}}</small>
 
-        {{#ifEquals comment.user.email ../currentUser.email}}
-          <form action="/comments/{{comment._id}}/delete" method="POST">
-            <button type="submit" class="mt-1 btn btn-sm btn-danger">
-              <i class="fa fa-trash"></i>
-            </button>
-          </form>
-        {{/ifEquals}}
-      </div>
+      {{#ifEquals comment.user.email ../currentUser.email}}
+      <form action="/comments/{{comment._id}}/delete" method="POST">
+        <button type="submit" class="mt-1 btn btn-sm btn-danger">
+          <i class="fa fa-trash"></i>
+        </button>
+      </form>
+      {{/ifEquals}}
+    </div>
     {{/each}}
   </div>
 </article>
