@@ -18,11 +18,11 @@ const google = new GoogleStrategy(
         } else {
           const newUser = new User({
             name: profile.displayName,
-            email: profile.user.email,
-            avatar: profile.user.image_1024,
+            email: profile.emails[0].value,
+            avatar: profile.photos[0].value,
             password: profile.provider + randomPassword(),
             social: {
-              slack: profile.id,
+              googleID: profile.id,
             },
             activation: {
               active: true,
@@ -32,12 +32,17 @@ const google = new GoogleStrategy(
           newUser
             .save()
             .then((user) => {
+              console.log("user", user);
               next(null, user);
             })
-            .catch((err) => next(err));
+            .catch((err) => {
+              next(err);
+            });
         }
       })
-      .catch((err) => next(err));
+      .catch((err) => {
+        next(err);
+      });
   }
 );
 
@@ -78,6 +83,13 @@ const slack = new SlackStrategy(
   }
 );
 
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
 passport.use(slack);
 passport.use(google);
 
