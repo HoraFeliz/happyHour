@@ -6,12 +6,31 @@ const placesController = require("../controllers/places.controller");
 const usersController = require("../controllers/users.controller");
 const commentsController = require("../controllers/comments.controller");
 const upload = require("../config/multer.config");
+const passport = require("passport");
 
 router.get(
   "/auth/slack",
   session.isNotAuthenticated,
   usersController.doSocialLogin
 );
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "https://www.google.com",
+    failureRedirect: "/", // here you would redirect to the login page using traditional login approach
+  })
+);
+
 router.get("/login", session.isNotAuthenticated, usersController.login);
 router.post("/login", session.isNotAuthenticated, usersController.doLogin);
 router.post("/logout", session.isAuthenticated, usersController.logout);

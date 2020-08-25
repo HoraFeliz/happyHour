@@ -58,6 +58,7 @@ const userSchema = new mongoose.Schema(
     },
     social: {
       slack: String,
+      googleID: String,
     },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
