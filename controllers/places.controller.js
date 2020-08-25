@@ -3,6 +3,11 @@ const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
 
+const capitalize = (s) => {
+  if (typeof s !== "string") return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
 // GET /places/:id
 module.exports.show = (req, res, next) => {
   Place.findById(req.params.id)
@@ -19,6 +24,15 @@ module.exports.show = (req, res, next) => {
     })
     .then((place) => {
       res.render("places/show", { place });
+    })
+    .catch(next);
+};
+
+module.exports.getPlaceByTag = (req, res, next) => {
+  const tag = capitalize(req.params.tag);
+  Place.find({ tags: tag })
+    .then((places) => {
+      res.json({ places });
     })
     .catch(next);
 };

@@ -53,6 +53,11 @@ router.get(
 );
 
 router.get("/places", session.isAuthenticated, placesController.list);
+
+//TODO: Add session.isAuthenticated middlewarex
+router.get("/tags", placesController.getPlaceByTag);
+router.get("/tags/:tag", placesController.getPlaceByTag);
+
 router.post(
   "/places",
   session.isAuthenticated,

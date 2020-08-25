@@ -33,6 +33,7 @@ function createPlace(user) {
     github: faker.internet.url(),
     image: faker.image.image(),
     owner: user._id,
+    tags: createTags(),
   });
 
   return place.save();
@@ -55,6 +56,20 @@ function createLike(place) {
   });
 
   return like.save();
+}
+
+function createTags() {
+  const keywords = ["Party", "Bar", "Coffe", "Dinner", "Fast Food", "Fancy"];
+  const randomMax = Math.floor(Math.random() * keywords.length);
+  const tags = [];
+  for (let i = 0; i <= randomMax; i++) {
+    const randomIndex = Math.floor(Math.random() * keywords.length);
+    const newTag = keywords[randomIndex];
+    if (tags.indexOf(newTag) === -1) {
+      tags.push(newTag);
+    }
+  }
+  return tags;
 }
 
 function restoreDatabase() {
