@@ -10,8 +10,19 @@ const upload = require("../config/multer.config");
 router.get(
   "/auth/slack",
   session.isNotAuthenticated,
-  usersController.doSocialLogin
+  usersController.doSlackLogin
 );
+router.get(
+  "/auth/google",
+  session.isNotAuthenticated,
+  usersController.doGoogleLogin
+);
+router.get(
+  "/auth/google/callback",
+  session.isNotAuthenticated,
+  usersController.googleCallback
+);
+
 router.get("/login", session.isNotAuthenticated, usersController.login);
 router.post("/login", session.isNotAuthenticated, usersController.doLogin);
 router.post("/logout", session.isAuthenticated, usersController.logout);
