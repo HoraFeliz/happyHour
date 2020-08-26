@@ -59,7 +59,7 @@ function createLike(place) {
 }
 
 function createTags() {
-  const keywords = ["Party", "Bar", "Coffee", "Dinner", "Fast Food", "Fancy"];
+  const keywords = ["party", "bar", "coffee", "dinner", "fast food", "fancy"];
   const randomMax = Math.floor(Math.random() * keywords.length);
   const tags = [];
   for (let i = 0; i <= randomMax; i++) {

@@ -29,7 +29,8 @@ module.exports.show = (req, res, next) => {
 };
 
 module.exports.getPlaceByTag = (req, res, next) => {
-  const tag = capitalize(req.params.tag);
+  const tag = req.params.tag.toLowerCase();
+  console.log("tag", tag);
   Place.find({ tags: tag })
     .then((places) => {
       res.json({ places });
