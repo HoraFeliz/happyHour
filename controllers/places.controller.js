@@ -30,7 +30,7 @@ module.exports.show = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.getPlaceByName = async (req, res, next) => {
+module.exports.searchPlace = async (req, res, next) => {
   const key = process.env.GOOGLE_API_KEY;
   const placeName = req.body.name;
 
