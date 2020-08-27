@@ -30,73 +30,60 @@ module.exports.show = (req, res, next) => {
     .catch(next);
 };
 
-/**
- * function createPlace(user) {
-  const place = new Place({
-    name: faker.company.companyName(),
-    description: faker.lorem.paragraph(),
-    url: faker.internet.url(),
-    github: faker.internet.url(),
-    image: faker.image.image(),
-    owner: user._id,
-    tags: createTags(),
-  });
-
-  return place.save();
-}
- */
-
 module.exports.getPlaceByName = async (req, res, next) => {
   const key = process.env.GOOGLE_API_KEY;
-  try {
-    const placeName = req.body.name;
-    const { data } = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=photos,place_id,types,formatted_address,name,rating,opening_hours,geometry&key=${key}`
+  const placeName = req.body.name;
+
+  const mapsApiUrl = "https://maps.googleapis.com/maps/api/place";
+  const inputTypeSearch =
+    "textquery&fields=photos,place_id,types,formatted_address,name,rating,opening_hours,geometry";
+  const fields = "formatted_phone_number,reviews,website";
+
+  const getPlaceDetails = async (dataByName) => {
+    const response = axios.get(
+      `${mapsApiUrl}/details/json?place_id=${dataByName.data.candidates[0].place_id}&fields=${fields}&key=${key}`
     );
-
-    const placeId = data.candidates[0].placeId;
-    try {
-      const { detail } = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,place_rating,formatted_phone_number&key=${key}`
-      );
-      console.log(detail);
-    } catch (error) {
-      console.log(error);
+    if (response) {
+      const data = await response;
+      return data;
+    } else {
+      throw new Error("Unable to get place details");
     }
+  };
 
-    //maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,place_rating,formatted_phone_number&key=YOUR_API_KEY
-    // res.json(data);
+  const getPlacesInfo = async () => {
+    try {
+      const dataByName = await axios.get(
+        `${mapsApiUrl}/findplacefromtext/json?input=${placeName}&inputtype=${inputTypeSearch}&key=${key}`
+      );
 
-    const place = new Place({
-      name: data.candidates[0].name,
-      description: data.candidates[0].name,
-      url: faker.internet.url(),
-      image: faker.image.image(),
-      owner: req.currentUser._id,
-    });
-    place
-      .save()
-      .then((place) => {
-        res.json(place);
-      })
-      .catch((error) => {
-        if (error instanceof mongoose.Error.ValidationError) {
-          User.find({ staff: true })
-            .then((staffUsers) => {
-              res.render("places/new", {
-                error: error.errors,
-                place,
-                staffUsers,
-              });
-            })
-            .catch(next);
-        } else {
-          next(error);
-        }
-      });
-  } catch (err) {
-    next(err);
-  }
+      const imgSrc = {
+        imgSrc: `${mapsApiUrl}/photo?maxwidth=400&photoreference=${dataByName.data.candidates[0].photos[0].photo_reference}&key=${key}`,
+      };
+
+      getPlaceDetails(dataByName)
+        .then((response) => {
+          const dataById = response.data.result;
+          const dataObject = {
+            ...dataById,
+            ...dataByName.data.candidates[0],
+            ...imgSrc,
+          };
+          res.json({
+            ...dataById,
+            ...dataByName.data.candidates[0],
+            ...imgSrc,
+          });
+        })
+        .catch((err) => {
+          console.log(`Error: ${err}`);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getPlacesInfo();
 };
 
 module.exports.getPlaceByTag = (req, res, next) => {
