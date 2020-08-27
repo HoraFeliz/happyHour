@@ -72,7 +72,7 @@ router.get(
   placesMiddleware.placeOwner,
   placesController.edit
 );
-router.post(
+router.get(
   "/places/:id/delete",
   session.isAuthenticated,
   placesMiddleware.placeOwner,
@@ -95,5 +95,9 @@ router.post(
 );
 
 router.get("/", (req, res) => res.redirect("/places"));
+
+router.get('/tours', (req, res, next) => {
+  res.render('tours/form')
+})
 
 module.exports = router;

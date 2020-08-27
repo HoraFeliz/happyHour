@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Iron Summer Place</title>
+  <title>Happy Hour Places</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -12,11 +13,11 @@
 
 <body>
   {{#if currentUser}}
-    {{>misc/navbar}}
+  {{>misc/navbar}}
   {{/if}}
 
-  <main class="p-5">
-    {{{body}}}  
+  <main class="p-3">
+    {{{body}}}
   </main>
 </body>
 
@@ -28,4 +29,5 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/index.js"></script>
+
 </html>

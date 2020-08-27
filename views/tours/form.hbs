@@ -1,0 +1,68 @@
+{{>misc/navbar}}
+
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Create Your Tour</label>
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white">Beer</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white" disabled>Wine</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="tour-name" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Tour Name">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <select id="inputState" class="form-control">
+            <option selected>Select City</option>
+            <option>Madrid</option>
+            <option>Barcelona</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-purple text-white pl-3" type="button" data-toggle="modal"
+                data-target="#exampleModal"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-purple text-white btn-block">Save Tour</button>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Places to Include</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="input-group mb-3 mt-3 pl-2 pr-2">
+                <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="modal-body modal-map">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-block btn-purple text-white">Include on Tour</button>
+            </div>
+        </div>
+    </div>
+</div>

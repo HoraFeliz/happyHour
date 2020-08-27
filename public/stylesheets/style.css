@@ -1,6 +1,10 @@
 body {
   font-family: 'Roboto';
   font-weight: 200;
+  background: rgb(255, 234, 173);
+  background: linear-gradient(180deg, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
+  min-height: 100vh;
+  padding-top: 60px;
 }
 
 strong {
@@ -9,4 +13,22 @@ strong {
 
 label {
   font-weight: 400;
+}
+
+/* Navbar */
+
+.bg-purple {
+  background-color: #6122ED;
+}
+
+/* Tours */
+
+/* Forms */
+.btn-purple {
+  background-color: #6122ED;
+}
+
+.modal-map {
+  height: 60vh;
+  background-color: #6122ED;
 }
