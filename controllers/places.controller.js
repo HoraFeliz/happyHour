@@ -3,6 +3,7 @@ const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const faker = require("faker");
 
 const capitalize = (s) => {
   if (typeof s !== "string") return "";
@@ -29,14 +30,70 @@ module.exports.show = (req, res, next) => {
     .catch(next);
 };
 
+/**
+ * function createPlace(user) {
+  const place = new Place({
+    name: faker.company.companyName(),
+    description: faker.lorem.paragraph(),
+    url: faker.internet.url(),
+    github: faker.internet.url(),
+    image: faker.image.image(),
+    owner: user._id,
+    tags: createTags(),
+  });
+
+  return place.save();
+}
+ */
+
 module.exports.getPlaceByName = async (req, res, next) => {
   const key = process.env.GOOGLE_API_KEY;
   try {
     const placeName = req.body.name;
     const { data } = await axios.get(
-      `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${key}`
+      `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${placeName}&inputtype=textquery&fields=photos,place_id,types,formatted_address,name,rating,opening_hours,geometry&key=${key}`
     );
-    res.json(data);
+
+    const placeId = data.candidates[0].placeId;
+    try {
+      const { detail } = await axios.get(
+        `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,place_rating,formatted_phone_number&key=${key}`
+      );
+      console.log(detail);
+    } catch (error) {
+      console.log(error);
+    }
+
+    //maps.googleapis.com/maps/api/place/details/json?place_id=ChIJN1t_tDeuEmsRUsoyG83frY4&fields=name,place_rating,formatted_phone_number&key=YOUR_API_KEY
+    // res.json(data);
+
+    const place = new Place({
+      name: data.candidates[0].name,
+      description: data.candidates[0].name,
+      url: faker.internet.url(),
+      image: faker.image.image(),
+      owner: req.currentUser._id,
+    });
+    place
+      .save()
+      .then((place) => {
+        res.json(place);
+      })
+      .catch((error) => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          User.find({ staff: true })
+            .then((staffUsers) => {
+              res.render("places/new", {
+                error: error.errors,
+                place,
+                staffUsers,
+              });
+            })
+            .catch(next);
+        } else {
+          next(error);
+        }
+      });
   } catch (err) {
     next(err);
   }
@@ -52,6 +109,9 @@ module.exports.getPlaceByTag = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.goToSearch = (req, res, next) => {
+  res.render("places/search");
+};
 module.exports.edit = (req, res, next) => {
   User.find({ staff: true })
     .then((staffUsers) => {
