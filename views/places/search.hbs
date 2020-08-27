@@ -1,0 +1,17 @@
+
+  <form action="/search-place" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input value="{{place.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}" id="name">
+    {{#if error.name}}
+      <div class="invalid-feedback">
+        {{error.name.message}}
+      </div>
+    {{/if}}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+

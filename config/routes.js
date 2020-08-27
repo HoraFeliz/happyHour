@@ -7,6 +7,12 @@ const usersController = require("../controllers/users.controller");
 const commentsController = require("../controllers/comments.controller");
 const upload = require("../config/multer.config");
 
+router.get("/search", (req, res, next) => {
+  res.render("places/search");
+});
+
+router.post("/search-place", placesController.getPlaceByName);
+
 router.get(
   "/auth/slack",
   session.isNotAuthenticated,
@@ -51,6 +57,10 @@ router.get(
   session.isNotAuthenticated,
   usersController.activateUser
 );
+
+router.post("/search", (req, res, next) => {
+  //res.render("places/search");
+});
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
