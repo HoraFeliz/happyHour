@@ -28,6 +28,7 @@ const placeSchema = new mongoose.Schema(
       required: true,
     },
     tags: [String],
+    reviews: Array,
   },
   { timestamps: true }
 );

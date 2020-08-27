@@ -69,11 +69,29 @@ module.exports.getPlaceByName = async (req, res, next) => {
             ...dataByName.data.candidates[0],
             ...imgSrc,
           };
-          res.json({
-            ...dataById,
-            ...dataByName.data.candidates[0],
-            ...imgSrc,
+
+          const place = new Place({
+            name: dataObject.name,
+            description: dataObject.types.join(","),
+            tags: dataObject.types,
+            url: dataObject.website,
+            image: dataObject.imgSrc,
+            owner: req.currentUser._id,
+            reviews: dataObject.reviews,
           });
+
+          place
+            .save()
+            .then((place) => {
+              res.json(place);
+            })
+            .catch((error) => {
+              if (error instanceof mongoose.Error.ValidationError) {
+                console.log("Validation error saving place to db", error);
+              } else {
+                next(error);
+              }
+            });
         })
         .catch((err) => {
           console.log(`Error: ${err}`);
