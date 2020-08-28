@@ -26,3 +26,25 @@ document.querySelectorAll("[data-like-place]").forEach((el) => {
     });
   });
 });
+
+// //maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API-KEY
+
+// // const getPlaceInfo = (placeName) => {
+// const getPlaceInfo = () => {
+//   axios
+//     .get(
+//       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArt&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API_KEY`
+//     )
+//     .then((response) => {
+//       console.log("Response from API is: ", response);
+//       // const countryDetail = response.data[0];
+//       // console.log("a single country details: ", countryDetail);
+//     })
+//     .catch((err) => console.log(err));
+// };
+
+// document.getElementById("get-country-btn").addEventListener("click", () => {
+//   //const userInput = document.getElementById("country-name-input").value;
+//   //getCountryInfo(userInput);
+//   getPlaceInfo();
+// });

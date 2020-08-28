@@ -26,6 +26,7 @@ router.get(
 router.get("/login", session.isNotAuthenticated, usersController.login);
 router.post("/login", session.isNotAuthenticated, usersController.doLogin);
 router.post("/logout", session.isAuthenticated, usersController.logout);
+
 router.get("/users/new", session.isNotAuthenticated, usersController.new);
 router.post(
   "/users",
@@ -52,11 +53,26 @@ router.get(
   usersController.activateUser
 );
 
+router.get(
+  "/places/search",
+  session.isAuthenticated,
+  placesController.goToSearch
+);
+router.post(
+  "/places/search",
+  session.isAuthenticated,
+  placesController.searchPlace
+);
+
 router.get("/places", session.isAuthenticated, placesController.list);
 
 //TODO: Add session.isAuthenticated middlewarex
-router.get("/tags", placesController.getPlaceByTag);
-router.get("/tags/:tag", placesController.getPlaceByTag);
+router.get("/tags", session.isAuthenticated, placesController.getPlaceByTag);
+router.get(
+  "/tags/:tag",
+  session.isAuthenticated,
+  placesController.getPlaceByTag
+);
 
 router.post(
   "/places",
