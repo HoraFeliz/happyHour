@@ -15,6 +15,14 @@ label {
   font-weight: 400;
 }
 
+h1 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
 /* Navbar */
 
 .bg-purple {
@@ -31,4 +39,57 @@ label {
 .modal-map {
   height: 60vh;
   background-color: #6122ED;
+}
+
+.tour-place {
+  position: relative;
+}
+
+.tour-next-place {
+  padding-top: 20px;
+}
+
+.tour-line {
+  position: absolute;
+  left: 46px;
+}
+
+.tour-line-img {
+  height: 109px;
+  width: 3px;
+}
+
+.tour-desc {
+  height: 70px;
+}
+
+.tour-circle {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 15px;
+}
+
+.tour-num {
+  position: absolute;
+  padding-left: 7px;
+  font-weight: bold;
+  color: white;
+  padding-top: 1px;
+}
+
+.tour-rating {
+  text-align: right;
+  margin-top: -20px;
+}
+
+.user-rating {
+  padding-right: 5px;
+}
+
+.rating-num {
+  color: #6122ED;
+  font-size: 25px;
+  font-weight: bold;
+  padding-right: 5px;
 }
