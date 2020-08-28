@@ -1,4 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-purple fixed-top">
+  <a class="navbar-brand"><img src="/img/appyhour.png" alt=""></a>
+  <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="my-nav" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="dropdown-item" href="/tours">Tours</a>
+        <div class="dropdown-divider"></div>
+      </li>
+      <li class="nav-item">
+        <a class="dropdown-item" href="/users/{{currentUser._id}}">Profile</a>
+        <div class="dropdown-divider"></div>
+
+        <form action="/logout" method="POST">
+          <button type="submit" class="dropdown-item" href="#">
+            <i class="fa fa-power-off mr-1"></i>
+            Logout
+          </button>
+        </form>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown-divider"></div>
+        <form class="form-inline my-lg-0 mr-2" action="/places">
+          <input value="{{search}}" name=" search" class="form-control mr-sm-2" type="search" placeholder="Search"
+            aria-label="Search">
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand mr-5" href="#">Iron Summer Place</a>
 
   <ul class="navbar-nav mr-auto">
@@ -37,4 +75,4 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> --}}

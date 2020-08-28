@@ -1,0 +1,133 @@
+{{>misc/navbar}}
+
+<form>
+    <div class="form-group">
+        <h1 class="pb-3">Create Your Tour</h1>
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white">Beer</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white" disabled>Wine</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="tour-name" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Tour Name">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <select id="inputState" class="form-control">
+            <option selected>Select City</option>
+            <option>Madrid</option>
+            <option>Barcelona</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-purple text-white pl-3" type="button" data-toggle="modal"
+                data-target="#exampleModal"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+    <div class="row pb-3 pt-3">
+        <div class="col-3">
+            <img src="/img/madrilenos.png" alt="Madrileños">
+            <div class="tour-line">
+                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tour-circle">
+                <p class="tour-num">1</p>
+                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+            </div>
+            <h3>Madrileños</h3>
+            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+        </div>
+        <div class="col-12 tour-rating">
+            <span class="user-rating">(74)</span>
+            <span class="rating-num">4.5</span>
+            <img src="/img/star-on.png" alt="1">
+            <img src="/img/star-on.png" alt="2">
+            <img src="/img/star-on.png" alt="3">
+            <img src="/img/star-on.png" alt="4">
+            <img src="/img/star-half.png" alt="5">
+        </div>
+    </div>
+
+    <div class="row pb-3 pt-3">
+        <div class="col-3">
+            <img src="/img/laperla.png" alt="La Perla">
+            <div class="tour-line">
+                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tour-circle">
+                <p class="tour-num">2</p>
+                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+            </div>
+            <h3>La Perla</h3>
+            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+        </div>
+        <div class="col-12 tour-rating">
+            <span class="user-rating">(183)</span>
+            <span class="rating-num">4.3</span>
+            <img src="/img/star-on.png" alt="1">
+            <img src="/img/star-on.png" alt="2">
+            <img src="/img/star-on.png" alt="3">
+            <img src="/img/star-on.png" alt="4">
+            <img src="/img/star-half.png" alt="5">
+        </div>
+    </div>
+
+    <div class="row pb-3 pt-3">
+        <div class="col-3">
+            <img src="/img/next-place-circle.png" alt="La Perla">
+        </div>
+        <div class="col-9">
+            <h3 class="tour-next-place">Next Place</h3>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3">Save Tour</button>
+</form>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Places to Include</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="input-group mb-3 mt-3 pl-2 pr-2">
+                <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="modal-body modal-map">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-block btn-purple text-white">Include on Tour</button>
+            </div>
+        </div>
+    </div>
+</div>
