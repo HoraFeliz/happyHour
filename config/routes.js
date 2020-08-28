@@ -113,7 +113,7 @@ router.post(
 router.get("/", (req, res) => res.redirect("/places"));
 
 router.get('/tours', (req, res, next) => {
-  res.render('tours/form')
+  res.render('tours/list')
 })
 
 module.exports = router;

@@ -3,7 +3,6 @@ body {
   font-weight: 200;
   background: rgb(255, 234, 173);
   background: linear-gradient(180deg, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
-  min-height: 100vh;
   padding-top: 60px;
 }
 
@@ -23,13 +22,82 @@ h3 {
   font-size: 24px;
 }
 
+main {
+  margin-bottom: 20px;
+  min-height: calc(100vh - 162px);
+}
+
 /* Navbar */
 
 .bg-purple {
   background-color: #6122ED;
 }
 
+/* Login */
+
+.home-brand {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-left: 15px;
+}
+
 /* Tours */
+
+/* List */
+
+.tour-list-item {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.tour-list-img {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tour-list-info {
+  padding-top: 10px;
+}
+
+.tour-list-rating {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-top: -10px;
+}
+
+.tour-rating-img {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  padding-left: 3px;
+  margin-top: 2px;
+}
+
+/* Create Tour Button */
+.tour-create-button-background {
+  position: fixed;
+  bottom: 0px;
+  height: 85px;
+  width: 100%;
+  background-image: url('/img/background-create-tour.png');
+  background-repeat: repeat-x;
+  margin-left: -16px;
+}
+
+.tour-create-button {
+  width: 100%;
+  position: fixed;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-left: -16px;
+}
 
 /* Forms */
 .btn-purple {
@@ -92,4 +160,16 @@ h3 {
   font-size: 25px;
   font-weight: bold;
   padding-right: 5px;
+}
+
+/* footer */
+
+footer {
+  background-color: #6122ED;
+  padding: 15px;
+}
+
+.footer-content {
+  margin-top: 12px;
+  color: white;
 }
