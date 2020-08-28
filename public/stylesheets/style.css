@@ -39,7 +39,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 
 /* Tours */
@@ -79,7 +79,6 @@ main {
   margin-top: 2px;
 }
 
-/* Create Tour Button */
 .tour-create-button-background {
   position: fixed;
   bottom: 0px;
@@ -99,7 +98,96 @@ main {
   margin-left: -16px;
 }
 
-/* Forms */
+/* Tour Detail */
+.tour-detail-photo {
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.tour-detail-title {
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.tour-detail-rating {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.tour-detail-desc {
+  text-align: justify;
+}
+
+.tour-detail-location {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.tour-detail-map {
+  height: 70vh;
+  background-color: #6122ED;
+  border-radius: 5px;
+}
+
+.tour-detail-list {
+  margin-top: 20px;
+}
+
+.tour-detail-list-photo {
+  height: 65px;
+  width: 65px;
+  border-radius: 100px;
+  background-position: center;
+  background-size: cover;
+  border: 3px solid #6122ED;
+}
+
+#more {
+  display: none;
+}
+
+.start-tour-button {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+}
+
+.tour-detail-rating {
+  margin-bottom: 15px;
+}
+
+.tour-detail-comments {
+  margin-top: 70px;
+}
+
+.tour-detail-comments-content {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.tour-detail-comments-photos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tour-detail-comments-num-photos {
+  margin-top: 10px;
+}
+
+.tour-comment-current-user {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+
+/* Form Create Tour */
 .btn-purple {
   background-color: #6122ED;
 }
