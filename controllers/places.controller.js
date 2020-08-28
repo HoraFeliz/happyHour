@@ -39,6 +39,7 @@ module.exports.searchPlace = async (req, res, next) => {
     "textquery&fields=photos,place_id,types,formatted_address,name,rating,opening_hours,geometry";
   const fields = "formatted_phone_number,reviews,website";
 
+  // Call Place Details request of Google Places, it needs a place_id,  we get the place_id from the Place Search request
   const getPlaceDetails = async (dataByName) => {
     const response = axios.get(
       `${mapsApiUrl}/details/json?place_id=${dataByName.data.candidates[0].place_id}&fields=${fields}&key=${key}`
@@ -64,11 +65,14 @@ module.exports.searchPlace = async (req, res, next) => {
       getPlaceDetails(dataByName)
         .then((response) => {
           const dataById = response.data.result;
+
           const dataObject = {
             ...dataById,
             ...dataByName.data.candidates[0],
             ...imgSrc,
           };
+
+          console.log("dataObject", dataObject);
 
           const place = new Place({
             name: dataObject.name,
