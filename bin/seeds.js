@@ -6,9 +6,16 @@ const Comment = require("../models/comment.model");
 const Place = require("../models/place.model");
 const Like = require("../models/like.model");
 const Review = require("../models/review.model");
+const Tour = require("../models/tour.model");
 const faker = require("faker");
 
 const users = [];
+const tourNames = [
+  "Ruta Malasaña",
+  "Routa La Movida",
+  "Ruta 80's",
+  "Vinos y más",
+];
 
 function createReview(place) {
   const review = new Review({
@@ -39,7 +46,18 @@ function createUser(staff = false) {
   return user.save();
 }
 
-function createPlace(user) {
+function createTour(user) {
+  const tour = new Tour({
+    name: tourNames[Math.floor(Math.random() * tourNames.length)],
+    description: faker.lorem.paragraph(),
+    city: faker.address.city(),
+    rating: Math.round(Math.random() * 5 * 10) / 10,
+    owner: user._id,
+  });
+
+  return tour.save();
+}
+function createPlace(user, tour) {
   const place = new Place({
     name: faker.company.companyName(),
     description: faker.lorem.paragraph(),
@@ -47,6 +65,7 @@ function createPlace(user) {
     github: faker.internet.url(),
     image: faker.image.image(),
     owner: user._id,
+    tour: tour._id,
     tags: createTags(),
   });
 
@@ -111,25 +130,24 @@ function restoreDatabase() {
 function seeds() {
   restoreDatabase().then(() => {
     console.log("Database restored!");
-
     createUser(true).then(() => {
       console.log();
 
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 3; i++) {
         createUser().then((user) => {
           console.log(user.email);
-
           users.push(user);
-
-          for (let j = 0; j < 3; j++) {
-            createPlace(user).then((place) => {
-              for (let k = 0; k < 10; k++) {
-                createReview(place);
-                createComment(place);
-                createLike(place);
-              }
-            });
-          }
+          createTour(user).then((tour) => {
+            for (let j = 0; j < 3; j++) {
+              createPlace(user, tour).then((place) => {
+                for (let k = 0; k < 5; k++) {
+                  createReview(place);
+                  createComment(place);
+                  createLike(place);
+                }
+              });
+            }
+          });
         });
       }
     });

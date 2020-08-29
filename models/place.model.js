@@ -16,7 +16,6 @@ const placeSchema = new mongoose.Schema(
     url: {
       type: String,
       trim: true,
-      required: [true, "Place url is required"],
     },
     image: {
       type: String,
@@ -28,6 +27,12 @@ const placeSchema = new mongoose.Schema(
       required: true,
     },
     tags: [String],
+    // Must be required when logic is working!!!! TODO
+    tour: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Tour",
+      //required: [true, "Place must belong to a place tour."],
+    },
   },
   {
     toJSON: { virtuals: true },
