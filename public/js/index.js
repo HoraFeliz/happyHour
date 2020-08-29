@@ -36,33 +36,15 @@ function readMore() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = "Read more";
+    btnText.innerHTML = '<img src="/img/more-info-button.png" alt="Read More"> Read More';
+    btnText.classList.add('read-more')
+    btnText.classList.remove("read-less")
     moreText.style.display = "none";
   } else {
     dots.style.display = "none";
-    btnText.innerHTML = "Read less";
+    btnText.innerHTML = '<img src="/img/less-info-button.png" alt="Read More"> Read Less';
+    btnText.classList.remove("read-more")
+    btnText.classList.add('read-less')
     moreText.style.display = "inline";
   }
 }
-
-// //maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API-KEY
-
-// // const getPlaceInfo = (placeName) => {
-// const getPlaceInfo = () => {
-//   axios
-//     .get(
-//       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArt&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API_KEY`
-//     )
-//     .then((response) => {
-//       console.log("Response from API is: ", response);
-//       // const countryDetail = response.data[0];
-//       // console.log("a single country details: ", countryDetail);
-//     })
-//     .catch((err) => console.log(err));
-// };
-
-// document.getElementById("get-country-btn").addEventListener("click", () => {
-//   //const userInput = document.getElementById("country-name-input").value;
-//   //getCountryInfo(userInput);
-//   getPlaceInfo();
-// });

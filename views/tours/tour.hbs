@@ -1,6 +1,7 @@
 <article class="tour-detail">
     <div class="row">
         <div class="col-sm-12">
+            <h1>Tour Detail</h1>
             <h3>Historical Tour</h3>
         </div>
         <div class="col-sm-12">
@@ -28,7 +29,9 @@
                     venenatis
                     imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue
                     eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
-            <button onclick="readMore()" id="myBtn">Read more</button>
+            <button onclick="readMore()" id="myBtn" class="read-more"> <img src="/img/more-info-button.png"
+                    alt="Read More"> Read
+                more</button>
         </div>
 
         {{!-- Tour Location --}}
@@ -38,39 +41,43 @@
             </div>
             <div class="tour-detail-map"></div>
         </div>
+
+        {{!-- Start Tour --}}
         <div class="col-sm-12 pb-3">
             <img class="start-tour-button" src="/img/appyhour-icon.png" alt="AppyHour">
-            <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3">Start Tour</button>
+            <a href="/tours/start" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3"> <strong>Start
+                    Tour</strong></a>
         </div>
 
         {{!-- Tour Places --}}
-        <div class="tour-detail-list-item">
-
-        </div>
-        <div class="col-3">
-            <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
+        <a href="/tours/places">
+            <div class="row tour-detail-list-item">
+                <div class="col-3">
+                    <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
+                    </div>
+                    <div class="tour-line">
+                        <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tour-circle">
+                        <p class="tour-num">1</p>
+                        <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+                    </div>
+                    <h3>Madrileños</h3>
+                    <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque</p>
+                </div>
+                <div class="col-12 tour-detail-rating">
+                    <span class="user-rating">(74)</span>
+                    <span class="rating-num">4.5</span>
+                    <img src="/img/star-on.png" alt="1">
+                    <img src="/img/star-on.png" alt="2">
+                    <img src="/img/star-on.png" alt="3">
+                    <img src="/img/star-on.png" alt="4">
+                    <img src="/img/star-half.png" alt="5">
+                </div>
             </div>
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
-        </div>
-        <div class="col-9">
-            <div class="tour-circle">
-                <p class="tour-num">1</p>
-                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-            </div>
-            <h3>Madrileños</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque</p>
-        </div>
-        <div class="col-12 tour-detail-rating">
-            <span class="user-rating">(74)</span>
-            <span class="rating-num">4.5</span>
-            <img src="/img/star-on.png" alt="1">
-            <img src="/img/star-on.png" alt="2">
-            <img src="/img/star-on.png" alt="3">
-            <img src="/img/star-on.png" alt="4">
-            <img src="/img/star-half.png" alt="5">
-        </div>
+        </a>
 
         {{!-- Second place --}}
 
@@ -103,10 +110,11 @@
 
         <div class="col-sm-12 tour-detail-comments">
             <h3>Comments</h3>
-            {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
-            {{currentUser.name}} --}}
+
             <div class="tour-detail-comments-content">
                 <div class="tour-comment-current-user">
+                    {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
+                    {{currentUser.name}} --}}
                     <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
                 </div>
                 <h4>Madrileños</h4>

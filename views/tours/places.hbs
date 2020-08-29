@@ -1,0 +1,93 @@
+<article class="tour-detail">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Place Detail</h1>
+            <h3>Madrileños</h3>
+        </div>
+        <div class="col-sm-12">
+            <div class="place-detail-photo" style="background-image: url('/img/historical-tour.jpg');">
+            </div>
+        </div>
+
+        {{!-- Food Rating --}}
+        {{!-- <div class="col-sm-12 tour-detail-title">
+            <div class="tour-detail-rating">
+                <span class="rating-num">4.5</span>
+                <img class="tour-rating-img" src="/img/food-rating.png" alt="1">
+                <img class="tour-rating-img" src="/img/food-rating.png" alt="2">
+                <img class="tour-rating-img" src="/img/food-rating.png" alt="3">
+                <img class="tour-rating-img" src="/img/food-rating.png" alt="4">
+                <img class="tour-rating-img" src="/img/food-rating.png" alt="5">
+            </div>
+        </div> --}}
+
+        {{!-- Beer Rating --}}
+        {{!-- <div class="col-sm-12 tour-detail-title">
+            <div class="tour-detail-rating">
+                <span class="rating-num">4.5</span>
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+                <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+            </div>
+        </div> --}}
+
+        {{!-- Google Rating --}}
+        <div class="col-12 tour-detail-rating">
+            <span class="user-rating">(74)</span>
+            <span class="rating-num">4.5</span>
+            <img src="/img/star-on.png" alt="1">
+            <img src="/img/star-on.png" alt="2">
+            <img src="/img/star-on.png" alt="3">
+            <img src="/img/star-on.png" alt="4">
+            <img src="/img/star-half.png" alt="5">
+        </div>
+
+        {{!-- Place info --}}
+        <div class="col-sm-12">
+            <p class="place-text-location"><strong>Dirección: </strong>Calle de San Andrés, 4, 28004 Madrid</p>
+            <p class="place-text-location"><strong>Horario: </strong><span class="text-green">Abierto</span> ⋅ Abierto
+                ahora</p>
+            <p class="place-text-location"><strong>Precios: </strong>€€</p>
+        </div>
+        {{!-- <div class="col-sm-12 tour-detail-desc">
+            <strong>Description:</strong>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum,
+                nisi
+                lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor.
+                    Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut
+                    aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc
+                    venenatis
+                    imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue
+                    eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+            <button onclick="readMore()" id="myBtn">Read more</button>
+        </div> --}}
+
+        {{!-- Tour Location --}}
+        <div class="col-sm-12">
+            <div class="tour-detail-location">
+                <strong>City: </strong> Madrid
+            </div>
+            <div class="place-detail-map"></div>
+        </div>
+
+        {{!-- Reviews --}}
+
+        <div class="col-sm-12 place-detail-reviews">
+            <h3>Reviews</h3>
+
+            <div class="tour-detail-comments-content">
+                <div class="tour-comment-current-user">
+                    {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
+                    {{currentUser.name}} --}}
+                    <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
+                </div>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
+                    corporis nesciunt modi, et ipsa cumque...</p>
+            </div>
+        </div>
+
+
+    </div>
+</article>
