@@ -1,0 +1,110 @@
+{{!-- Tour Create Button --}}
+
+
+<form action="">
+    <div class="form-group">
+        <h1 class="pb-3">Tours</h1>
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white">Beer</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-purple btn-block text-white" disabled>Wine</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <select id="inputState" class="form-control">
+            <option selected>Select City</option>
+            <option>Madrid</option>
+            <option>Barcelona</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Tour" aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+</form>
+
+{{!-- List Tours  --}}
+
+<a href="/tours/tour">
+    <div class="tour-list-item">
+        <div class="row">
+            <div class="col-4">
+                <div class="tour-list-img" style="background-image: url('/img/historical-tour.jpg');"></div>
+            </div>
+            <div class="col-8 tour-list-info">
+                <h3>Historical Tour</h3>
+                <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque...</p>
+                <div class="col-12 tour-list-rating">
+                    {{!-- <span class="user-rating">(74)</span> --}}
+                    <span class="rating-num">4.5</span>
+                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+                    <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+
+<div class="tour-list-item">
+    <div class="row">
+        <div class="col-4">
+            <div class="tour-list-img" style="background-image: url('/img/malasana-tour.jpg');"></div>
+        </div>
+        <div class="col-8 tour-list-info">
+            <h3>Malasaña Tour</h3>
+            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+            <div class="col-12 tour-list-rating">
+                {{!-- <span class="user-rating">(74)</span> --}}
+                <span class="rating-num">3.7</span>
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="4">
+                <img class="tour-rating-img" src="/img/rating-beer-off.png" alt="5">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tour-list-item">
+    <div class="row">
+        <div class="col-4">
+            <div class="tour-list-img" style="background-image: url('/img/lalatina-tour.jpg');"></div>
+        </div>
+        <div class="col-8 tour-list-info">
+            <h3>Malasaña Tour</h3>
+            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+            <div class="col-12 tour-list-rating">
+                {{!-- <span class="user-rating">(74)</span> --}}
+                <span class="rating-num">4.2</span>
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+                <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="/tours/form">
+    <div class="tour-create-button-background">
+        <span class="tour-list-create-title">CREATE</span>
+        <span class="tour-list-create-title">TOUR</span>
+
+    </div>
+    <div class="tour-create-button">
+
+        <img src="/img/create-tour-button.png" alt="Create Tour Button">
+    </div>
+</a>

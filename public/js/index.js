@@ -27,24 +27,24 @@ document.querySelectorAll("[data-like-place]").forEach((el) => {
   });
 });
 
-// //maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API-KEY
+//Read More
 
-// // const getPlaceInfo = (placeName) => {
-// const getPlaceInfo = () => {
-//   axios
-//     .get(
-//       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArt&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=API_KEY`
-//     )
-//     .then((response) => {
-//       console.log("Response from API is: ", response);
-//       // const countryDetail = response.data[0];
-//       // console.log("a single country details: ", countryDetail);
-//     })
-//     .catch((err) => console.log(err));
-// };
+function readMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
 
-// document.getElementById("get-country-btn").addEventListener("click", () => {
-//   //const userInput = document.getElementById("country-name-input").value;
-//   //getCountryInfo(userInput);
-//   getPlaceInfo();
-// });
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = '<img src="/img/more-info-button.png" alt="Read More"> Read More';
+    btnText.classList.add('read-more')
+    btnText.classList.remove("read-less")
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = '<img src="/img/less-info-button.png" alt="Read More"> Read Less';
+    btnText.classList.remove("read-more")
+    btnText.classList.add('read-less')
+    moreText.style.display = "inline";
+  }
+}

@@ -1,0 +1,183 @@
+<article class="tour-start">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Start Tour</h1>
+
+            <div class="accordion mb-4 mt-4" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h3 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <div class="row">
+                                    <div class="col-3 tour-start-more-info">
+                                        <img class="tour-start-more-button" src="/img/more-info-tour.png"
+                                            alt="More Info">
+                                    </div>
+                                    <div class="col-9 tour-start-more-info">
+                                        <span class="tour-start-title">Historical Tour</span>
+                                        <p style="font-weight: normal;">Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit. Phasellus imperdiet,
+                                            nulla...</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </h3>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="col-sm-12">
+                                <div class="tour-detail-photo"
+                                    style="background-image: url('/img/historical-tour.jpg');">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 tour-detail-title">
+                                <div class="tour-detail-rating">
+                                    {{!-- <span class="user-rating">(74)</span> --}}
+                                    <span class="rating-num">4.5</span>
+                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+                                    <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 tour-detail-desc">
+                                <strong>Description:</strong>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla
+                                    et dictum interdum,
+                                    nisi
+                                    lorem egestas vitae scel erisque enim
+                                    ligula venenatis dolor.
+                                    Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus
+                                    vestibulum augue ut
+                                    aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at
+                                    libero sed nunc
+                                    venenatis
+                                    imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis.
+                                    Integer fringilla congue
+                                    eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</p>
+                            </div>
+
+                            {{!-- Tour Location --}}
+                            <div class="col-sm-12 pb-5">
+                                <div class="tour-detail-location">
+                                    <strong>City: </strong> Madrid
+                                </div>
+                                <div class="tour-detail-map"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        {{!-- Tour Places --}}
+        <div class="tour-detail-list-item">
+
+        </div>
+        <div class="col-3">
+            <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
+            </div>
+            <div class="tour-line">
+                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tour-circle">
+                <img src="/img/tour-start-check.png" alt="Circle Purple">
+            </div>
+            <h3>Madrileños</h3>
+            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque</p>
+        </div>
+        <div class="col-12 tour-detail-rating">
+            <span class="user-rating">(74)</span>
+            <span class="rating-num">4.5</span>
+            <img src="/img/star-on.png" alt="1">
+            <img src="/img/star-on.png" alt="2">
+            <img src="/img/star-on.png" alt="3">
+            <img src="/img/star-on.png" alt="4">
+            <img src="/img/star-half.png" alt="5">
+        </div>
+
+        {{!-- Second place --}}
+
+        <div class="col-3">
+            <div class="tour-detail-list-photo " style="background-image: url('/img/laperla.jpg');">
+            </div>
+            <div class="tour-line">
+                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="tour-circle opacity5">
+                <img src="/img/tour-start-check.png" alt="Circle Purple">
+            </div>
+            <h3 class="">La Perla</h3>
+            <p class="tour-desc ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+        </div>
+        <div class="col-12 tour-rating">
+            <span class="user-rating">(183)</span>
+            <span class="rating-num ">4.3</span>
+            <img src="/img/star-on.png" alt="1">
+            <img src="/img/star-on.png" alt="2">
+            <img src="/img/star-on.png" alt="3">
+            <img src="/img/star-on.png" alt="4">
+            <img src="/img/star-half.png" alt="5">
+        </div>
+
+        <div class="col-sm-12 pb-3 opacity5 tour-start-completed-tour">
+            <img class="start-tour-button" src="/img/appyhour-icon.png" alt="AppyHour">
+            <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3">Completed
+                Tour</button>
+        </div>
+
+        {{!-- Your Rating --}}
+
+        <div class="col-sm-12">
+            <h3>Your Rating</h3>
+            <div class="tour-start-your-rating">
+                <img src="/img/your-rating-on.png" alt="1">
+                <img src="/img/your-rating-on.png" alt="2">
+                <img src="/img/your-rating-on.png" alt="3">
+                <img src="/img/your-rating-on.png" alt="4">
+                <img src="/img/your-rating-off.png" alt="5">
+            </div>
+        </div>
+
+        {{!-- Comments --}}
+
+        <div class="col-sm-12 tour-detail-comments">
+            <h3>Comments</h3>
+            {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
+            {{currentUser.name}} --}}
+            <div class="tour-detail-comments-content">
+                <div class="tour-comment-current-user">
+                    <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
+                </div>
+                <h4>Madrileños</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
+                    corporis nesciunt modi, et ipsa cumque...</p>
+                <div class="row">
+                    <div class="col-8 tour-detail-comments-photos">
+                        <img src="/img/comment-photo-1.png" alt="Comment Photo 1">
+                        <img src="/img/comment-photo-2.png" alt="Comment Photo 2">
+                        <img src="/img/comment-photo-3.png" alt="Comment Photo 3">
+                        <img src="/img/comment-photo-4.png" alt="Comment Photo 4">
+                        <img src="/img/comment-photo-5.png" alt="Comment Photo 5">
+                    </div>
+                    <div class="col-4 tour-detail-comments-num-photos">
+                        <img src="/img/comment-icon-photos.png" alt="Photo Count">
+                        <span class="rating-num">12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</article>

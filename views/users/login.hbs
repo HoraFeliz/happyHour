@@ -1,48 +1,50 @@
 <article class="container">
   {{#if message}}
-    <div class="alert alert-primary" role="alert">
-      {{message}}
-    </div>
+  <div class="alert alert-primary" role="alert">
+    {{message}}
+  </div>
   {{/if}}
 
   {{#if error.validation}}
-    <div class="alert alert-danger" role="alert">
-      {{error.validation.message}}
-    </div>
+  <div class="alert alert-danger" role="alert">
+    {{error.validation.message}}
+  </div>
   {{/if}}
+
+  <div class="home-brand pb-4">
+    <img src="/img/appyhour-brand.png" alt="Appy Hour">
+  </div>
 
   <form action="/login" method="POST">
     <div class="form-group">
-      <label for="email">Email</label>
       <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
         placeholder="Enter email" value="{{ user.email }}" required>
-  
+
       {{#if error.email}}
       <div class="invalid-feedback">
         {{error.email.message}}
       </div>
       {{/if}}
     </div>
-  
+
     <div class="form-group">
-      <label for="password">Password</label>
       <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
         placeholder="Enter password" value="{{ user.password }}" required>
-  
+
       {{#if error.password}}
       <div class="invalid-feedback">
         {{error.password.message}}
       </div>
       {{/if}}
     </div>
-  
-    <div class="d-flex mb-3">
-      <button type="submit" class="btn btn-primary mr-3">Login</button>
-      <a href="/auth/slack" class="btn btn-secondary mr-3"><i class="fa fa-slack"></i> Login with Slack</a>
-      <a href="/auth/google" class="btn btn-danger"><i class="fa fa-google"></i> Login with Google</a>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <a href="/auth/slack" class="btn btn-secondary btn-block"><i class="fa fa-slack"></i> Login with Slack</a>
+      <a href="/auth/google" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Login with Google</a>
     </div>
 
-  
+
     <p>Don't have an account? <a href="/users/new">register</a></p>
   </form>
 </article>

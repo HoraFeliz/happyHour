@@ -12,13 +12,15 @@
 </head>
 
 <body>
-  {{#if currentUser}}
+  {{!-- {{#if currentUser}} --}}
   {{>misc/navbar}}
-  {{/if}}
+  {{!-- {{/if}} --}}
 
   <main class="p-3">
     {{{body}}}
   </main>
+
+  {{>misc/footer}}
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
