@@ -30,6 +30,7 @@ const tourSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Place",
       required: true,
+      unique: true,
     },
     // guardar coordenadas
   },

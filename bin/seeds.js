@@ -158,25 +158,6 @@ function seeds() {
           }
         });
       }
-
-      // for (let i = 0; i < 3; i++) {
-      //   createUser().then((user) => {
-      //     console.log(user.email);
-      //     users.push(user);
-      //     createTour(user, place).then(() => {
-      //       console.log("place", place);
-      //       for (let j = 0; j < 3; j++) {
-      //         createPlace(user).then((place) => {
-      //           for (let k = 0; k < 5; k++) {
-      //             createReview(place);
-      //             createComment(place);
-      //             createLike(place);
-      //           }
-      //         });
-      //       }
-      //     });
-      //   });
-      // }
     });
   });
 }

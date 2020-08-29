@@ -6,11 +6,6 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 const faker = require("faker");
 
-const capitalize = (s) => {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
-
 // GET /places/:id
 module.exports.show = (req, res, next) => {
   Place.findById(req.params.id)
@@ -72,8 +67,6 @@ module.exports.searchPlace = async (req, res, next) => {
             ...dataByName.data.candidates[0],
             ...imgSrc,
           };
-
-          console.log("dataObject", dataObject);
 
           const place = new Place({
             name: dataObject.name,
