@@ -1,10 +1,8 @@
 const Place = require("../models/place.model");
-const Review = require("../models/review.model");
 const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
 const axios = require("axios");
-const faker = require("faker");
 
 // GET /places/:id
 module.exports.show = (req, res, next) => {
@@ -26,9 +24,9 @@ module.exports.show = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.searchPlace = async (req, res, next) => {
+module.exports.doPlaceSearch = async (req, res, next) => {
   const key = process.env.GOOGLE_API_KEY;
-  const placeName = req.body.name;
+  const placeName = req.query.name;
 
   const mapsApiUrl = "https://maps.googleapis.com/maps/api/place";
   const inputTypeSearch =
@@ -76,34 +74,7 @@ module.exports.searchPlace = async (req, res, next) => {
             image: dataObject.imgSrc,
             owner: req.currentUser._id,
           });
-
-          place
-            .save()
-            .then((place) => {
-              dataObject.reviews.map((reviewItem) => {
-                let review = new Review({
-                  autorName: reviewItem.author_name,
-                  autorUrl: reviewItem.author_url,
-                  autorPhoto: reviewItem.profile_photo_url,
-                  rating: reviewItem.rating,
-                  relativeTimeDesc: reviewItem.relative_time_description,
-                  text: reviewItem.text,
-                  time: reviewItem.time,
-                  place: place._id,
-                });
-                review.save();
-              });
-
-              res.json(place);
-            })
-
-            .catch((error) => {
-              if (error instanceof mongoose.Error.ValidationError) {
-                console.log("Validation error saving place to db", error);
-              } else {
-                next(error);
-              }
-            });
+          res.render("tours/form", { place });
         })
         .catch((err) => {
           console.log(`Error: ${err}`);

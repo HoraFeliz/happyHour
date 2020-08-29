@@ -3,6 +3,7 @@ const router = express.Router();
 const session = require("../middlewares/session.middleware");
 const placesMiddleware = require("../middlewares/place.middleware");
 const placesController = require("../controllers/places.controller");
+const tourController = require("../controllers/tour.controller");
 const usersController = require("../controllers/users.controller");
 const commentsController = require("../controllers/comments.controller");
 const upload = require("../config/multer.config");
@@ -58,11 +59,6 @@ router.get(
   session.isAuthenticated,
   placesController.goToSearch
 );
-router.post(
-  "/places/search",
-  session.isAuthenticated,
-  placesController.searchPlace
-);
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
@@ -112,24 +108,41 @@ router.post(
 
 router.get("/", (req, res) => res.redirect("/places"));
 
-router.get('/tours/start', (req, res, next) => {
-  res.render('tours/start')
-})
+router.get("/tours/start", (req, res, next) => {
+  res.render("tours/start");
+});
 
-router.get('/tours/form', (req, res, next) => {
-  res.render('tours/form')
-})
+router.get("/tours/form", session.isAuthenticated, tourController.new);
 
-router.get('/tours', (req, res, next) => {
-  res.render('tours/list')
-})
+router.get(
+  "/tours/place/new",
+  session.isAuthenticated,
+  placesController.doPlaceSearch
+);
 
-router.get('/tours/tour', (req, res, next) => {
-  res.render('tours/tour')
-})
+router.get(
+  "/tours/place/new",
+  session.isAuthenticated,
+  placesController.doPlaceSearch
+);
 
-router.get('/tours/places', (req, res, next) => {
-  res.render('tours/places')
-})
+router.get("/tours/form", session.isAuthenticated, tourController.new);
+
+// router.get("/tours/place/new", (req, res, next) => {
+//   console.log("pepepepe");
+//   res.json({ prueba: "Holaaaa" });
+// });
+
+router.get("/tours", (req, res, next) => {
+  res.render("tours/list");
+});
+
+router.get("/tours/tour", (req, res, next) => {
+  res.render("tours/tour");
+});
+
+router.get("/tours/places", (req, res, next) => {
+  res.render("tours/places");
+});
 
 module.exports = router;

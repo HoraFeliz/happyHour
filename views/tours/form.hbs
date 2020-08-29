@@ -1,5 +1,11 @@
 <form>
+{{#if place}}
+<pre>{{place}}</pre>
+{{/if}}
     <div class="form-group">
+    <img src=“{{currentUser.avatar}}” width=“20" class=“mr-2 rounded-circle” />
+                    {{currentUser.name}}
+
         <h1 class="pb-3">Create Your Tour</h1>
         <div class="row">
             <div class="col-6">
@@ -102,6 +108,7 @@
 
 
 <!-- Modal -->
+<form action="/tours/place/new" method="GET">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -113,15 +120,15 @@
             </div>
 
             <div class="input-group mb-3 mt-3 pl-2 pr-2">
-                <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
+                <input value="{{place.name}}" name="name" id="name" type="text" class="form-control" placeholder="Search Place fsdsfs" aria-label="Recipient's username"
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-purple text-white pl-3" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </div>
 
             <div class="modal-body modal-map">
-
+              
             </div>
 
             <div class="modal-footer">
@@ -131,3 +138,4 @@
         </div>
     </div>
 </div>
+</form>
