@@ -27,12 +27,6 @@ const placeSchema = new mongoose.Schema(
       required: true,
     },
     tags: [String],
-    // Must be required when logic is working!!!! TODO
-    tour: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Tour",
-      //required: [true, "Place must belong to a place tour."],
-    },
   },
   {
     toJSON: { virtuals: true },

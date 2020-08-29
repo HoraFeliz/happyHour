@@ -26,6 +26,12 @@ const tourSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    places: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Place",
+      required: true,
+    },
+    // guardar coordenadas
   },
   {
     toJSON: { virtuals: true },
@@ -46,5 +52,4 @@ tourSchema.post("remove", function (next) {
 });
 
 const Tour = mongoose.model("Tour", tourSchema);
-
 module.exports = Tour;

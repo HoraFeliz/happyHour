@@ -10,6 +10,8 @@ const Tour = require("../models/tour.model");
 const faker = require("faker");
 
 const users = [];
+const places = [];
+
 const tourNames = [
   "Ruta Malasaña",
   "Routa La Movida",
@@ -46,18 +48,23 @@ function createUser(staff = false) {
   return user.save();
 }
 
-function createTour(user) {
+function createTour(user, places) {
   const tour = new Tour({
     name: tourNames[Math.floor(Math.random() * tourNames.length)],
     description: faker.lorem.paragraph(),
     city: faker.address.city(),
     rating: Math.round(Math.random() * 5 * 10) / 10,
+    places: [
+      places[Math.floor(Math.random() * places.length)]._id,
+      places[Math.floor(Math.random() * places.length)]._id,
+      places[Math.floor(Math.random() * places.length)]._id,
+    ],
     owner: user._id,
   });
 
   return tour.save();
 }
-function createPlace(user, tour) {
+function createPlace(user) {
   const place = new Place({
     name: faker.company.companyName(),
     description: faker.lorem.paragraph(),
@@ -65,7 +72,7 @@ function createPlace(user, tour) {
     github: faker.internet.url(),
     image: faker.image.image(),
     owner: user._id,
-    tour: tour._id,
+    // tour: tour._id,
     tags: createTags(),
   });
 
@@ -131,25 +138,45 @@ function seeds() {
   restoreDatabase().then(() => {
     console.log("Database restored!");
     createUser(true).then(() => {
-      console.log();
-
       for (let i = 0; i < 3; i++) {
         createUser().then((user) => {
           console.log(user.email);
           users.push(user);
-          createTour(user).then((tour) => {
-            for (let j = 0; j < 3; j++) {
-              createPlace(user, tour).then((place) => {
-                for (let k = 0; k < 5; k++) {
-                  createReview(place);
-                  createComment(place);
-                  createLike(place);
-                }
-              });
-            }
-          });
+          for (let j = 0; j < 6; j++) {
+            createPlace(user).then((place) => {
+              places.push(place);
+              for (let z = 0; z < 3; z++) {
+                createTour(user, places).then(() => {
+                  for (let k = 0; k < 5; k++) {
+                    createReview(place);
+                    createComment(place);
+                    createLike(place);
+                  }
+                });
+              }
+            });
+          }
         });
       }
+
+      // for (let i = 0; i < 3; i++) {
+      //   createUser().then((user) => {
+      //     console.log(user.email);
+      //     users.push(user);
+      //     createTour(user, place).then(() => {
+      //       console.log("place", place);
+      //       for (let j = 0; j < 3; j++) {
+      //         createPlace(user).then((place) => {
+      //           for (let k = 0; k < 5; k++) {
+      //             createReview(place);
+      //             createComment(place);
+      //             createLike(place);
+      //           }
+      //         });
+      //       }
+      //     });
+      //   });
+      // }
     });
   });
 }
