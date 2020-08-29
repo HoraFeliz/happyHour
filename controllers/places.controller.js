@@ -1,4 +1,5 @@
 const Place = require("../models/place.model");
+const Review = require("../models/review.model");
 const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
@@ -81,14 +82,28 @@ module.exports.searchPlace = async (req, res, next) => {
             url: dataObject.website,
             image: dataObject.imgSrc,
             owner: req.currentUser._id,
-            reviews: dataObject.reviews,
           });
 
           place
             .save()
             .then((place) => {
+              dataObject.reviews.map((reviewItem) => {
+                let review = new Review({
+                  autorName: reviewItem.author_name,
+                  autorUrl: reviewItem.author_url,
+                  autorPhoto: reviewItem.profile_photo_url,
+                  rating: reviewItem.rating,
+                  relativeTimeDesc: reviewItem.relative_time_description,
+                  text: reviewItem.text,
+                  time: reviewItem.time,
+                  place: place._id,
+                });
+                review.save();
+              });
+
               res.json(place);
             })
+
             .catch((error) => {
               if (error instanceof mongoose.Error.ValidationError) {
                 console.log("Validation error saving place to db", error);
@@ -137,7 +152,6 @@ module.exports.update = (req, res, next) => {
   }
 
   const place = req.place;
-
   place.set(body);
   place
     .save()

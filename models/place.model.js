@@ -28,7 +28,10 @@ const placeSchema = new mongoose.Schema(
       required: true,
     },
     tags: [String],
-    reviews: Array,
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   },
   { timestamps: true }
 );
@@ -38,6 +41,13 @@ placeSchema.virtual("comments", {
   localField: "_id",
   foreignField: "place",
   justOne: false,
+});
+
+// Virtual populate
+placeSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "place",
+  localField: "_id",
 });
 
 placeSchema.virtual("likes", {

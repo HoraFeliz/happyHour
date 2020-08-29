@@ -5,10 +5,24 @@ const User = require("../models/user.model");
 const Comment = require("../models/comment.model");
 const Place = require("../models/place.model");
 const Like = require("../models/like.model");
+const Review = require("../models/review.model");
 const faker = require("faker");
 
 const users = [];
 
+function createReview(place) {
+  const review = new Review({
+    autorName: faker.name.findName(),
+    autorUrl: faker.internet.url(),
+    autorPhoto: faker.image.image(),
+    rating: Math.round(Math.random() * 5 * 10) / 10,
+    relativeTimeDesc: createTextDateDescription(),
+    text: faker.lorem.paragraph(),
+    time: faker.date.past(),
+    place: place._id,
+  });
+  return review.save();
+}
 function createUser(staff = false) {
   const user = new User({
     name: faker.name.findName(),
@@ -72,12 +86,25 @@ function createTags() {
   return tags;
 }
 
+function createTextDateDescription() {
+  const dateTextDesc = [
+    "a month ago",
+    "a year ago",
+    "a week ago",
+    "last week",
+    "today",
+    "more than one year ago",
+  ];
+  return dateTextDesc[Math.floor(Math.random() * dateTextDesc.length)];
+}
+
 function restoreDatabase() {
   return Promise.all([
     User.deleteMany({}),
     Comment.deleteMany({}),
     Place.deleteMany({}),
     Like.deleteMany({}),
+    Review.deleteMany({}),
   ]);
 }
 
@@ -97,6 +124,7 @@ function seeds() {
           for (let j = 0; j < 3; j++) {
             createPlace(user).then((place) => {
               for (let k = 0; k < 10; k++) {
+                createReview(place);
                 createComment(place);
                 createLike(place);
               }
