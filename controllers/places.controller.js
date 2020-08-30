@@ -1,4 +1,5 @@
 const Place = require("../models/place.model");
+const Review = require("../models/review.model");
 const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
@@ -85,7 +86,6 @@ module.exports.searchPlace = async (req, res, next) => {
             },
             isOpen: dataObject.opening_hours.open_now,
             openingHours: dataObject.opening_hours.weekday_text,
-            reviews: dataObject.reviews,
             rating: dataObject.rating,
             priceLevel: dataObject.price_level,
           });
@@ -93,6 +93,19 @@ module.exports.searchPlace = async (req, res, next) => {
           place
             .save()
             .then((place) => {
+              dataObject.reviews.map((reviewItem) => {
+                let review = new Review({
+                  autorName: reviewItem.author_name,
+                  autorUrl: reviewItem.author_url,
+                  autorPhoto: reviewItem.profile_photo_url,
+                  rating: reviewItem.rating,
+                  relativeTimeDesc: reviewItem.relative_time_description,
+                  text: reviewItem.text,
+                  time: reviewItem.time,
+                  place: place._id,
+                });
+                review.save();
+              });
               res.json(place);
             })
             .catch((error) => {

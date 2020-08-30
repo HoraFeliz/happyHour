@@ -41,7 +41,6 @@ const placeSchema = new mongoose.Schema(
       coordinates: [Number],
     },
     tags: [String],
-    reviews: Array,
     rating: Number,
     priceLevel: Number,
   },
@@ -60,6 +59,13 @@ placeSchema.virtual("likes", {
   localField: "_id",
   foreignField: "place",
   count: true,
+});
+
+// Virtual populate
+placeSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "place",
+  localField: "_id",
 });
 
 placeSchema.post("remove", function (next) {
