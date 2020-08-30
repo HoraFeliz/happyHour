@@ -33,6 +33,11 @@ function createPlace(user) {
     github: faker.internet.url(),
     image: faker.image.image(),
     owner: user._id,
+    address: faker.address.city(),
+    location: {
+      type: "Point",
+      coordinates: [faker.address.latitude(), faker.address.longitude()],
+    },
     tags: createTags(),
   });
 

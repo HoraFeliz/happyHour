@@ -27,8 +27,23 @@ const placeSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    openingHours: {
+      type: [String],
+    },
+    isOpen: Boolean,
+    address: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    location: {
+      type: { type: String },
+      coordinates: [Number],
+    },
     tags: [String],
     reviews: Array,
+    rating: Number,
+    priceLevel: Number,
   },
   { timestamps: true }
 );

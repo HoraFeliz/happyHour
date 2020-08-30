@@ -3,12 +3,6 @@ const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
 const axios = require("axios");
-const faker = require("faker");
-
-const capitalize = (s) => {
-  if (typeof s !== "string") return "";
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
 
 // GET /places/:id
 module.exports.show = (req, res, next) => {
@@ -36,8 +30,9 @@ module.exports.searchPlace = async (req, res, next) => {
 
   const mapsApiUrl = "https://maps.googleapis.com/maps/api/place";
   const inputTypeSearch =
-    "textquery&fields=photos,place_id,types,formatted_address,name,rating,opening_hours,geometry";
-  const fields = "formatted_phone_number,reviews,website";
+    "textquery&fields=photos,place_id,types,formatted_address,name,rating,geometry";
+  const fields =
+    "formatted_phone_number,reviews,website,opening_hours,price_level";
 
   // Call Place Details request of Google Places, it needs a place_id,  we get the place_id from the Place Search request
   const getPlaceDetails = async (dataByName) => {
@@ -71,8 +66,7 @@ module.exports.searchPlace = async (req, res, next) => {
             ...dataByName.data.candidates[0],
             ...imgSrc,
           };
-
-          console.log("dataObject", dataObject);
+          console.log(dataObject.opening_hours);
 
           const place = new Place({
             name: dataObject.name,
@@ -81,7 +75,19 @@ module.exports.searchPlace = async (req, res, next) => {
             url: dataObject.website,
             image: dataObject.imgSrc,
             owner: req.currentUser._id,
+            address: dataObject.formatted_address,
+            location: {
+              type: "Point",
+              coordinates: [
+                dataObject.geometry.location.lat,
+                dataObject.geometry.location.lng,
+              ],
+            },
+            isOpen: dataObject.opening_hours.open_now,
+            openingHours: dataObject.opening_hours.weekday_text,
             reviews: dataObject.reviews,
+            rating: dataObject.rating,
+            priceLevel: dataObject.price_level,
           });
 
           place
