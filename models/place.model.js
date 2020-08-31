@@ -36,6 +36,11 @@ const placeSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    city: {
+      type: String,
+      trim: true,
+      required: true,
+    },
     location: {
       type: { type: String },
       coordinates: [Number],

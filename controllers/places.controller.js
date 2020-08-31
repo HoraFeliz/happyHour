@@ -33,7 +33,7 @@ module.exports.searchPlace = async (req, res, next) => {
   const inputTypeSearch =
     "textquery&fields=photos,place_id,types,formatted_address,name,rating,geometry";
   const fields =
-    "formatted_phone_number,reviews,website,opening_hours,price_level";
+    "formatted_phone_number,address_components,reviews,website,opening_hours,price_level";
 
   // Call Place Details request of Google Places, it needs a place_id,  we get the place_id from the Place Search request
   const getPlaceDetails = async (dataByName) => {
@@ -77,6 +77,7 @@ module.exports.searchPlace = async (req, res, next) => {
             image: dataObject.imgSrc,
             owner: req.currentUser._id,
             address: dataObject.formatted_address,
+            city: dataObject.address_components[2].long_name,
             location: {
               type: "Point",
               coordinates: [
@@ -89,6 +90,8 @@ module.exports.searchPlace = async (req, res, next) => {
             rating: dataObject.rating,
             priceLevel: dataObject.price_level,
           });
+
+          console.log("city", place.city);
 
           place
             .save()
