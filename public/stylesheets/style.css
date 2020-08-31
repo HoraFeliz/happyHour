@@ -369,7 +369,7 @@ button:focus {
 
 /* Places */
 .place-detail-photo {
-  height: 400px;
+  height: 250px;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -389,8 +389,16 @@ button:focus {
   color: green;
 }
 
+.text-red {
+  color: red
+}
+
 .place-text-location {
   margin-bottom: 2px;
+}
+
+.schedule {
+  margin-bottom: 0px;
 }
 
 /* footer */

@@ -19,6 +19,10 @@ app.use(logger("dev"));
 app.use(cookieParser())
 app.use(session)
 app.use(passport)
+app.use((req, res, next) => {
+  res.locals.GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY
+  next()
+})
 
 /**
  * View engine setup
