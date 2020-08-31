@@ -34,6 +34,7 @@ function createPlace(user) {
     image: faker.image.image(),
     owner: user._id,
     address: faker.address.city(),
+    city: faker.address.city(),
     location: {
       type: "Point",
       coordinates: [faker.address.latitude(), faker.address.longitude()],
