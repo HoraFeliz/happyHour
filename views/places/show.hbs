@@ -1,5 +1,6 @@
 <article class="container">
   <div class="mb-4">
+    <h1>Place Detail</h1>
     {{>places/placecard place=place showDescription=true}}
   </div>
 
@@ -18,6 +19,21 @@
   </div>
   {{/ifEquals}}
 
+
+  {{!-- Reviews --}}
+
+  <h3>Reviews</h3>
+
+  <div class="tour-detail-comments-content">
+    <div class="tour-comment-current-user">
+      {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
+                    {{currentUser.name}} --}}
+      <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
+    </div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
+      corporis nesciunt modi, et ipsa cumque...</p>
+  </div>
+
   <div id="comments">
     <h2>Comments</h2>
 
@@ -28,7 +44,7 @@
       <p>{{comment.text}}</p>
 
       <small>
-        Owner:
+        User:
         <a href="/users/{{comment.user._id}}">
           <img src="{{comment.user.avatar}}" class="rounded-circle" width="20" />
           {{comment.user.name}}

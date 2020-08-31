@@ -7,6 +7,7 @@ const axios = require("axios");
 
 // GET /places/:id
 module.exports.show = (req, res, next) => {
+  console.log(`req.params.id: ` + req.params.id);
   Place.findById(req.params.id)
     .populate("owner")
     .populate("likes")
@@ -20,6 +21,7 @@ module.exports.show = (req, res, next) => {
       populate: "user",
     })
     .then((place) => {
+      console.log(place);
       res.render("places/show", { place });
     })
     .catch(next);
@@ -224,6 +226,7 @@ module.exports.create = (req, res, next) => {
 module.exports.list = (req, res, next) => {
   const criteria = {};
 
+
   if (req.query.search) {
     res.locals.search = req.query.search;
     criteria["$or"] = [
@@ -237,6 +240,7 @@ module.exports.list = (req, res, next) => {
     .populate("owner")
     .populate("staff")
     .populate("likes")
+
     .then((places) => {
       res.render("places/list", { places });
     })
