@@ -58,11 +58,8 @@ router.get(
   session.isAuthenticated,
   placesController.goToSearch
 );
-router.post(
-  "/places/search",
-  session.isAuthenticated,
-  placesController.searchPlace
-);
+
+router.post("/add", session.isAuthenticated, placesController.addPlace);
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
@@ -112,28 +109,28 @@ router.post(
 
 router.get("/", (req, res) => res.redirect("/places"));
 
-router.get('/tours/start', (req, res, next) => {
-  res.render('tours/start')
-})
+router.get("/tours/start", (req, res, next) => {
+  res.render("tours/start");
+});
 
-router.get('/tours/form', (req, res, next) => {
-  res.render('tours/form-1')
-})
+router.get("/tours/form", (req, res, next) => {
+  res.render("tours/form-1");
+});
 
-router.get('/tours/form-2', (req, res, next) => {
-  res.render('tours/form-2')
-})
+router.get("/tours/form-2", (req, res, next) => {
+  res.render("tours/form-2");
+});
 
-router.get('/tours', (req, res, next) => {
-  res.render('tours/list')
-})
+router.get("/tours", (req, res, next) => {
+  res.render("tours/list");
+});
 
-router.get('/tours/tour', (req, res, next) => {
-  res.render('tours/tour')
-})
+router.get("/tours/tour", (req, res, next) => {
+  res.render("tours/tour");
+});
 
-router.get('/tours/places', (req, res, next) => {
-  res.render('tours/places')
-})
+router.get("/tours/places", (req, res, next) => {
+  res.render("tours/places");
+});
 
 module.exports = router;

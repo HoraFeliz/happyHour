@@ -1,12 +1,11 @@
 <div class="purple-back purple-back-select">
-
-    <div class="create-tour-img text-center">
+  <h1>{{place.name}}</h1>
+    <div class="create-tour-img">
         <h3 class="select-place-tour font-regular"><strong>Select </strong>Place on Tour</h3>
         <img src="/img/selectplaceontour.png" alt="AppyHour Tour" style="margin-top:-7px; margin-left: -5px;">
     </div>
 </div>
 
-<form>
     {{!-- Google Search --}}
     <div class="pac-card" id="pac-card">
         <div>
@@ -24,8 +23,9 @@
         <span id="place-address"></span>
     </div>
 
-    <form method="POST">
+    <form method="POST" action="/add">
         <button class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
+        <input type="hidden" name="placeData" id="placeData"/>
     </form>
 
     <div class="row pb-3 pt-3">
@@ -91,38 +91,3 @@
         </div>
     </div>
     <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-2 pb-2">Save Tour</button>
-</form>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Places to Include</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="input-group mb-3 mt-3 pl-2 pr-2">
-                <input type="text" class="form-control" placeholder="Search Place" aria-label="Recipient's username"
-                    aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-
-            <div class="modal-body modal-map">
-
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-block btn-purple text-white">Include on Tour</button>
-            </div>
-        </div>
-    </div>
-</div>

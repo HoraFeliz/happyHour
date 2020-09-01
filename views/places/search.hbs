@@ -37,11 +37,8 @@
   <span id="place-address"></span>
 </div>
 
-<form method="POST">
+<form method="POST" action="/add">
   <button class="btn btn-purple btn-block text-white include-button">INCLUDE PLACE ON TOUR</button>
-</form>
-
-<form action="/places/search" method="POST">
   <div class="form-group mt-3">
     <label for="name">Name</label>
     <input value="{{place.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}"
@@ -52,5 +49,6 @@
     </div>
     {{/if}}
   </div>
+  <input type="hidden" name="placeData" id="placeData"/>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
