@@ -58,11 +58,6 @@ router.get(
   session.isAuthenticated,
   placesController.goToSearch
 );
-router.post(
-  "/places/search",
-  session.isAuthenticated,
-  placesController.searchPlace
-);
 
 router.post("/add", session.isAuthenticated, placesController.addPlace);
 

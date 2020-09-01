@@ -27,111 +27,6 @@ module.exports.show = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.searchPlace = async (req, res, next) => {
-  const key = process.env.GOOGLE_API_KEY;
-  const placeName = req.body.name;
-
-  const mapsApiUrl = "https://maps.googleapis.com/maps/api/place";
-  const inputTypeSearch =
-    "textquery&fields=photos,place_id,types,formatted_address,name,rating,geometry";
-  const fields =
-    "formatted_phone_number,address_components,reviews,website,opening_hours,price_level";
-
-  // Call Place Details request of Google Places, it needs a place_id,  we get the place_id from the Place Search request
-  const getPlaceDetails = async (dataByName) => {
-    const response = axios.get(
-      `${mapsApiUrl}/details/json?place_id=${dataByName.data.candidates[0].place_id}&fields=${fields}&key=${key}`
-    );
-    if (response) {
-      const data = await response;
-      return data;
-    } else {
-      throw new Error("Unable to get place details");
-    }
-  };
-
-  const getPlacesInfo = async () => {
-    try {
-      const dataByName = await axios.get(
-        `${mapsApiUrl}/findplacefromtext/json?input=${placeName}&inputtype=${inputTypeSearch}&key=${key}`
-      );
-
-      const imgSrc = {
-        imgSrc: `${mapsApiUrl}/photo?maxwidth=400&photoreference=${dataByName.data.candidates[0].photos[0].photo_reference}&key=${key}`,
-      };
-
-      getPlaceDetails(dataByName)
-        .then((response) => {
-          const dataById = response.data.result;
-
-          const dataObject = {
-            ...dataById,
-            ...dataByName.data.candidates[0],
-            ...imgSrc,
-          };
-          console.log(dataObject.opening_hours);
-
-          const place = new Place({
-            name: dataObject.name,
-            description: dataObject.types.join(","),
-            tags: dataObject.types,
-            url: dataObject.website,
-            image: dataObject.imgSrc,
-            owner: req.currentUser._id,
-            address: dataObject.formatted_address,
-            city: dataObject.address_components[2].long_name,
-            location: {
-              type: "Point",
-              coordinates: [
-                dataObject.geometry.location.lat,
-                dataObject.geometry.location.lng,
-              ],
-            },
-            isOpen: dataObject.opening_hours.open_now,
-            openingHours: dataObject.opening_hours.weekday_text,
-            rating: dataObject.rating,
-            priceLevel: dataObject.price_level,
-          });
-
-          console.log("city", place.city);
-
-          place
-            .save()
-            .then((place) => {
-              dataObject.reviews.map((reviewItem) => {
-                let review = new Review({
-                  autorName: reviewItem.author_name,
-                  autorUrl: reviewItem.author_url,
-                  autorPhoto: reviewItem.profile_photo_url,
-                  rating: reviewItem.rating,
-                  relativeTimeDesc: reviewItem.relative_time_description,
-                  text: reviewItem.text,
-                  time: reviewItem.time,
-                  place: place._id,
-                });
-                review.save();
-              });
-              res.json(place);
-            })
-            .catch((error) => {
-              if (error instanceof mongoose.Error.ValidationError) {
-                console.log("Validation error saving place to db", error);
-              } else {
-                next(error);
-              }
-            });
-        })
-        .catch((err) => {
-          console.log(`Error: ${err}`);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  getPlacesInfo();
-};
-
 module.exports.getPlaceByTag = (req, res, next) => {
   const tag = req.params.tag.toLowerCase();
   console.log("tag", tag);
@@ -190,7 +85,8 @@ module.exports.addPlace = (req, res, next) => {
         });
         review.save();
       });
-      res.json(place);
+      //res.json(place);
+      res.render("tours/form-2", { place });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
