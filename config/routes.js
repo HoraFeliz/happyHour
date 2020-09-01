@@ -117,7 +117,11 @@ router.get('/tours/start', (req, res, next) => {
 })
 
 router.get('/tours/form', (req, res, next) => {
-  res.render('tours/form')
+  res.render('tours/form-1')
+})
+
+router.get('/tours/form-2', (req, res, next) => {
+  res.render('tours/form-2')
 })
 
 router.get('/tours', (req, res, next) => {

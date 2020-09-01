@@ -1,9 +1,13 @@
+html,
 body {
   font-family: 'Roboto';
   font-weight: 200;
   background: rgb(255, 234, 173);
   background: linear-gradient(180deg, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
   padding-top: 60px;
+  margin: 0;
+  margin-top: 30px;
+  padding: 0;
 }
 
 strong {
@@ -24,7 +28,7 @@ h3 {
 
 main {
   margin-bottom: 20px;
-  min-height: calc(100vh - 162px);
+  min-height: calc(100vh - 140px);
 }
 
 a {
@@ -39,6 +43,23 @@ a:hover {
 
 button:focus {
   outline: none
+}
+
+.container {
+  padding-top: 20px;
+
+}
+
+/* Responsive */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 20px;
+
+  }
 }
 
 /* Navbar */
@@ -124,6 +145,12 @@ button:focus {
   font-size: 20px;
   font-weight: bold;
   margin-left: -16px;
+}
+
+.tour-create-button-panel {
+  display: flex;
+  justify-content: space-around;
+  margin-right: -15px;
 }
 
 /* Tour Detail */
@@ -231,6 +258,40 @@ button:focus {
 
 
 /* Form Create Tour */
+.create-tour-img {
+  position: relative;
+}
+
+.purple-back {
+  margin-bottom: 71px;
+  margin-top: -21px;
+  margin-left: -15px;
+  margin-right: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  background-color: #6122ED;
+  position: relative;
+  padding: 20px 20px 0px 20px;
+  height: 100%;
+  height: 170px;
+}
+
+.purple-back-select {
+  height: 128px;
+}
+
+.font-regular {
+  font-weight: 300;
+}
+
+.select-place-tour {
+  font-size: 30px;
+  color: white;
+  margin-top: -10px;
+  text-align: center;
+}
+
 .btn-purple {
   background-color: #6122ED;
   font-size: 20px;
@@ -259,9 +320,7 @@ button:focus {
   width: 3px;
 }
 
-.tour-desc {
-  height: 70px;
-}
+.tour-desc {}
 
 .tour-circle {
   position: absolute;
@@ -405,10 +464,152 @@ button:focus {
 
 footer {
   background-color: #6122ED;
-  padding: 15px;
+  padding: 5px 20px;
 }
 
 .footer-content {
   margin-top: 12px;
   color: white;
+}
+
+/* Maps */
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 60vh;
+  border: 1px solid #6122ED;
+  border-radius: 5px;
+  margin-top: 80px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+  width: 100%;
+  right: -10px !important;
+  top: -10px !important;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+.gm-style-mtc {
+  display: none;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#pac-input {
+  height: 50px;
+  width: 100%;
+  margin-left: 0px;
+  border: 0px;
+}
+
+#pac-container {
+  padding-bottom: 0px;
+  margin-right: 0px;
+  border-bottom: 1px solid #6122ED;
+
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 15px;
+  height: 63px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 0px;
+  background-color: #6122ED;
+}
+
+.pac-controls {
+  display: none !important;
+  margin-top: 12px;
+  display: block;
+  align-items: center;
+}
+
+.pac-controls>label {
+  margin-left: 10px;
+}
+
+.pac-controls>input {
+  margin-left: 10px;
+  margin-top: -8px;
+
+}
+
+#strict-bounds-selector {
+  display: none !important;
+}
+
+.panel-back {
+  background: rgb(255, 234, 173);
+  background: linear-gradient(180deg, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
+}
+
+.include-button {
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#map.map-place-detail {
+  height: 40vh;
 }

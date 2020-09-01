@@ -1,29 +1,34 @@
 <div class="pac-card" id="pac-card">
   <div>
-    <div id="title">
-      Autocomplete search
-    </div>
-    <div id="type-selector" class="pac-controls">
-      <input type="radio" name="type" id="changetype-all" checked="checked" />
-      <label for="changetype-all">All</label>
+    {{!-- <div id="title">
+      Select Place on Tour
+    </div> --}}
+    <div class="panel-back">
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location" />
+      </div>
+      {{!-- <div id="type-selector" class="pac-controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked" />
+        <label for="changetype-all">All</label>
 
-      <input type="radio" name="type" id="changetype-establishment" />
-      <label for="changetype-establishment">Establishments</label>
+        <input type="radio" name="type" id="changetype-establishment" />
+        <label for="changetype-establishment">Establishments</label>
 
-      <input type="radio" name="type" id="changetype-address" />
-      <label for="changetype-address">Addresses</label>
+        <input type="radio" name="type" id="changetype-address" />
+        <label for="changetype-address">Addresses</label>
 
-      <input type="radio" name="type" id="changetype-geocode" />
-      <label for="changetype-geocode">Geocodes</label>
+        <input type="radio" name="type" id="changetype-geocode" />
+        <label for="changetype-geocode">Geocodes</label>
+      </div> 
+      <div id="strict-bounds-selector" class="pac-controls">
+        <input type="checkbox" id="use-strict-bounds" value="" />
+        <label for="use-strict-bounds">Strict Bounds</label>
+      </div>--}}
     </div>
-    <div id="strict-bounds-selector" class="pac-controls">
-      <input type="checkbox" id="use-strict-bounds" value="" />
-      <label for="use-strict-bounds">Strict Bounds</label>
-    </div>
+
+
   </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text" placeholder="Enter a location" />
-  </div>
+
 </div>
 <div id="map"></div>
 <div id="infowindow-content">
@@ -32,8 +37,12 @@
   <span id="place-address"></span>
 </div>
 
+<form method="POST">
+  <button class="btn btn-purple btn-block text-white include-button">INCLUDE PLACE ON TOUR</button>
+</form>
+
 <form action="/places/search" method="POST">
-  <div class="form-group">
+  <div class="form-group mt-3">
     <label for="name">Name</label>
     <input value="{{place.name}}" name="name" type="text" class="form-control {{#if error.name }}is-invalid{{/if}}"
       id="name">
