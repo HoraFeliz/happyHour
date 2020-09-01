@@ -72,6 +72,12 @@ button:focus {
   color: white;
 }
 
+nav.navbar {
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.10);
+}
+
 /* Login */
 
 .home-brand {
@@ -154,6 +160,34 @@ button:focus {
 }
 
 /* Tour Detail */
+.purple-back-secundary {
+  margin-bottom: 20px;
+  margin-top: -21px;
+  margin-left: -15px;
+  margin-right: -15px;
+  position: relative;
+  background-color: #6122ED;
+  position: relative;
+  padding: 20px 20px 0px 20px;
+  height: 100%;
+  height: 70px;
+
+}
+
+.tour-detail-title-primary {
+  position: absolute;
+  color: #fff;
+  font-weight: normal;
+  margin-top: 15px;
+
+}
+
+.tour-detail-img {
+  position: absolute;
+  right: 15px;
+  margin-top: -10px;
+}
+
 .tour-detail-photo {
   height: 200px;
   width: 100%;
@@ -260,6 +294,7 @@ button:focus {
 /* Form Create Tour */
 .create-tour-img {
   position: relative;
+  margin-left: 5px;
 }
 
 .purple-back {
@@ -480,7 +515,7 @@ footer {
   height: 60vh;
   border: 1px solid #6122ED;
   border-radius: 5px;
-  margin-top: 80px;
+  /* margin-top: 75px; */
 }
 
 /* Optional: Makes the sample page fill the window. */
