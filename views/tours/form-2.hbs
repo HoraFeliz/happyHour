@@ -1,93 +1,95 @@
 <div class="purple-back purple-back-select">
-  <h1>{{place.name}}</h1>
     <div class="create-tour-img">
         <h3 class="select-place-tour font-regular"><strong>Select </strong>Place on Tour</h3>
         <img src="/img/selectplaceontour.png" alt="AppyHour Tour" style="margin-top:-7px; margin-left: -5px;">
     </div>
 </div>
 
-    {{!-- Google Search --}}
-    <div class="pac-card" id="pac-card">
-        <div>
-            <div class="panel-back">
-                <div id="pac-container">
-                    <input id="pac-input" type="text" placeholder="Enter a location" />
-                </div>
+{{!-- Google Search --}}
+<div class="pac-card" id="pac-card">
+    <div>
+        <div class="panel-back">
+            <div id="pac-container">
+                <input id="pac-input" type="text" placeholder="Enter a location" />
             </div>
         </div>
     </div>
-    <div id="map"></div>
-    <div id="infowindow-content">
-        <img src="" width="16" height="16" id="place-icon" />
-        <span id="place-name" class="title"></span><br />
-        <span id="place-address"></span>
-    </div>
+</div>
+<div id="map"></div>
+<div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon" />
+    <span id="place-name" class="title"></span><br />
+    <span id="place-address"></span>
+</div>
 
-    <form method="POST" action="/add">
-        <button class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
-        <input type="hidden" name="placeData" id="placeData"/>
-    </form>
+<form method="POST" action="/add">
+    <button class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
+    <input type="hidden" name="placeData" id="placeData" />
+</form>
 
-    <div class="row pb-3 pt-3">
-        <div class="col-3">
-            <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
-            </div>
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
+
+
+<div class="row pb-3 pt-3">
+    <div class="col-3">
+        <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
         </div>
-        <div class="col-9">
-            <div class="tour-circle">
-                <p class="tour-num">1</p>
-                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-            </div>
-            <h3>Madrileños</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
-        </div>
-        <div class="col-12 tour-rating">
-            <span class="user-rating">(74)</span>
-            <span class="rating-num">4.5</span>
-            <img src="/img/star-on.png" alt="1">
-            <img src="/img/star-on.png" alt="2">
-            <img src="/img/star-on.png" alt="3">
-            <img src="/img/star-on.png" alt="4">
-            <img src="/img/star-half.png" alt="5">
+        <div class="tour-line">
+            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
         </div>
     </div>
+    <div class="col-9">
+        <div class="tour-circle">
+            <p class="tour-num">1</p>
+            <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+        </div>
+        <h3>{{place.name}}</h3>
+        <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
+    </div>
+    <div class="col-12 tour-rating">
+        <span class="user-rating">(74)</span>
+        <span class="rating-num">4.5</span>
+        <img src="/img/star-on.png" alt="1">
+        <img src="/img/star-on.png" alt="2">
+        <img src="/img/star-on.png" alt="3">
+        <img src="/img/star-on.png" alt="4">
+        <img src="/img/star-half.png" alt="5">
+    </div>
+</div>
 
-    <div class="row pb-3 pt-3">
-        <div class="col-3">
-            <div class="tour-detail-list-photo" style="background-image: url('/img/laperla.jpg');">
-            </div>
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
+
+{{!-- <div class="row pb-3 pt-3">
+    <div class="col-3">
+        <div class="tour-detail-list-photo" style="background-image: url('/img/laperla.jpg');">
         </div>
-        <div class="col-9">
-            <div class="tour-circle">
-                <p class="tour-num">2</p>
-                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-            </div>
-            <h3>La Perla</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
-        </div>
-        <div class="col-12 tour-rating">
-            <span class="user-rating">(183)</span>
-            <span class="rating-num">4.3</span>
-            <img src="/img/star-on.png" alt="1">
-            <img src="/img/star-on.png" alt="2">
-            <img src="/img/star-on.png" alt="3">
-            <img src="/img/star-on.png" alt="4">
-            <img src="/img/star-half.png" alt="5">
+        <div class="tour-line">
+            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
         </div>
     </div>
-
-    <div class="row pb-3 pt-3">
-        <div class="col-3">
-            <img src="/img/next-place-circle.png" alt="La Perla">
+    <div class="col-9">
+        <div class="tour-circle">
+            <p class="tour-num">2</p>
+            <img src="/img/tour-circle-purple.png" alt="Circle Purple">
         </div>
-        <div class="col-9">
-            <h3 class="tour-next-place">Next Place</h3>
-        </div>
+        <h3>La Perla</h3>
+        <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
     </div>
-    <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-2 pb-2">Save Tour</button>
+    <div class="col-12 tour-rating">
+        <span class="user-rating">(183)</span>
+        <span class="rating-num">4.3</span>
+        <img src="/img/star-on.png" alt="1">
+        <img src="/img/star-on.png" alt="2">
+        <img src="/img/star-on.png" alt="3">
+        <img src="/img/star-on.png" alt="4">
+        <img src="/img/star-half.png" alt="5">
+    </div>
+</div> --}}
+
+<div class="row pb-3 pt-3">
+    <div class="col-3">
+        <img src="/img/next-place-circle.png" alt="La Perla">
+    </div>
+    <div class="col-9">
+        <h3 class="tour-next-place">Next Place</h3>
+    </div>
+</div>
+<button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-2 pb-2">Save Tour</button>
