@@ -215,3 +215,24 @@ module.exports.like = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.listTourDetail = (req, res, next) => {
+  const criteria = {};
+
+  // if (req.query.search) {
+  //   res.locals.search = req.query.search;
+  //   criteria["$or"] = [
+  //     { name: new RegExp(req.query.search, "i") },
+  //     { ["owner.name"]: new RegExp(req.query.search, "i") },
+  //     { ["staff.name"]: new RegExp(req.query.search, "i") },
+  //   ];
+  // }
+
+  Place.find(req.query.search)
+
+    .then((places) => {
+      console.log('places', { places });
+      res.render("tours/form-2", { places });
+    })
+    .catch(next);
+};

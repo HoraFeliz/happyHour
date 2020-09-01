@@ -117,9 +117,11 @@ router.get("/tours/form", (req, res, next) => {
   res.render("tours/form-1");
 });
 
-router.get("/tours/form-2", (req, res, next) => {
-  res.render("tours/form-2");
-});
+// router.get("/tours/form-2", (req, res, next) => {
+//   res.render("tours/form-2");
+// });
+
+router.get("/tours/form-2", session.isAuthenticated, placesController.listTourDetail);
 
 router.get("/tours", (req, res, next) => {
   res.render("tours/list");
