@@ -59,7 +59,10 @@ module.exports.addPlace = (req, res, next) => {
     owner: req.currentUser._id,
     location: {
       type: "Point",
-      coordinates: ["53534534", "34534543534"],
+      coordinates: [
+        placeFromDb.geometry.longitude,
+        placeFromDb.geometry.latitude,
+      ],
     },
     url: placeFromDb.website,
     address: placeFromDb.formatted_address,

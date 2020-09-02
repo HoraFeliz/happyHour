@@ -65,6 +65,10 @@ function initMap() {
 
     const placeData = {
       ...place,
+      geometry: {
+        longitude: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat(),
+      },
       imgSrc: place.photos[0].getUrl(),
       city: place.address_components[2].long_name,
       tags: place.types,
