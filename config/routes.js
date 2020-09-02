@@ -118,11 +118,17 @@ router.get("/tours/start", (req, res, next) => {
   res.render("tours/start");
 });
 
-router.get("/tours/form", (req, res, next) => {
-  res.render("tours/form-1");
-});
+// router.get("/tours/form", (req, res, next) => {
+//   res.render("tours/form-1");
+// });
 
 router.post("/tours/add", session.isAuthenticated, tourController.addTour);
+
+router.get(
+  "/tours/form",
+  session.isAuthenticated,
+  placesController.createTourStep
+);
 
 router.get(
   "/tours/form-2",
