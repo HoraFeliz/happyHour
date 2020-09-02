@@ -21,7 +21,6 @@ function initMap() {
   const autocomplete = new google.maps.places.Autocomplete(input, options); // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
-
   autocomplete.bindTo("bounds", map); // Set the data fields to return when the user selects a place.
   // photos, place_id, types, formatted_address, name, rating, geometry;
   const completeFields = [
@@ -45,7 +44,7 @@ function initMap() {
   autocomplete.setFields(completeFields);
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById("infowindow-content");
-
+  console.log("info", infowindow);
   infowindow.setContent(infowindowContent);
   const marker = new google.maps.Marker({
     map,
@@ -55,14 +54,6 @@ function initMap() {
     infowindow.close();
     marker.setVisible(false);
     const place = autocomplete.getPlace();
-
-    const validTypes = ["restaurant", "bar", "food", "bakery"];
-    validTypes.forEach((type) => {
-      if (place.types.indexOf(type) !== -1) {
-        console.log(place.types.indexOf(type));
-      }
-    });
-
     const placeData = {
       ...place,
       geometry: {
