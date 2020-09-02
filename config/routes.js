@@ -59,7 +59,7 @@ router.get(
   placesController.goToSearch
 );
 
-router.post("/add", session.isAuthenticated, placesController.addPlace);
+router.post("/tours/form-2", session.isAuthenticated, placesController.addPlace);
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
@@ -117,11 +117,7 @@ router.get("/tours/form", (req, res, next) => {
   res.render("tours/form-1");
 });
 
-// router.get("/tours/form-2", (req, res, next) => {
-//   res.render("tours/form-2");
-// });
-
-router.get("/tours/form-2", session.isAuthenticated, placesController.listTourDetail);
+router.get("/tours/form-2", session.isAuthenticated, placesController.createTourStep2);
 
 router.get("/tours", (req, res, next) => {
   res.render("tours/list");

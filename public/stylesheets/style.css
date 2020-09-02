@@ -2,12 +2,15 @@ html,
 body {
   font-family: 'Roboto';
   font-weight: 200;
-  background: rgb(255, 234, 173);
-  background: linear-gradient(180deg, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
   padding-top: 60px;
   margin: 0;
-  margin-top: 30px;
   padding: 0;
+}
+
+body.purple-body {
+  background: #6122ED !important;
 }
 
 strong {
@@ -29,6 +32,11 @@ h3 {
 main {
   margin-bottom: 20px;
   min-height: calc(100vh - 140px);
+  padding-top: 80px;
+}
+
+.main-purple {
+  padding-top: 40px;
 }
 
 a {
@@ -45,9 +53,10 @@ button:focus {
   outline: none
 }
 
-.container {
-  padding-top: 20px;
+.container {}
 
+.text-purple {
+  color: #6122ED;
 }
 
 /* Responsive */
@@ -79,6 +88,10 @@ nav.navbar {
 }
 
 /* Login */
+
+.login-input {
+  margin-bottom: 10px;
+}
 
 .home-brand {
   width: 100%;
@@ -114,6 +127,10 @@ nav.navbar {
   align-items: baseline;
   justify-content: flex-end;
   margin-top: -10px;
+}
+
+.tour-list-banner {
+  margin-top: 0px;
 }
 
 .tour-rating-img {
@@ -159,6 +176,10 @@ nav.navbar {
   margin-right: -15px;
 }
 
+.tour-create-title {
+  padding-right: 25px;
+}
+
 /* Tour Detail */
 .purple-back-secundary {
   margin-bottom: 20px;
@@ -168,7 +189,7 @@ nav.navbar {
   position: relative;
   background-color: #6122ED;
   position: relative;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 0px 15px;
   height: 100%;
   height: 70px;
 
@@ -178,14 +199,15 @@ nav.navbar {
   position: absolute;
   color: #fff;
   font-weight: normal;
-  margin-top: 15px;
+  margin-top: 12px;
+  font-size: 23px;
 
 }
 
 .tour-detail-img {
-  position: absolute;
   right: 15px;
   margin-top: -10px;
+  position: absolute;
 }
 
 .tour-detail-photo {
@@ -241,7 +263,7 @@ nav.navbar {
 
 .start-tour-button {
   position: absolute;
-  top: 31px;
+  top: 15px;
   left: 37px;
 }
 
@@ -290,6 +312,12 @@ nav.navbar {
   border: none;
 }
 
+.map-icons {
+  right: 15px;
+  position: absolute;
+  top: 10px;
+}
+
 
 /* Form Create Tour */
 .create-tour-img {
@@ -323,12 +351,21 @@ nav.navbar {
 .select-place-tour {
   font-size: 30px;
   color: white;
-  margin-top: -10px;
+  margin-top: -5px;
   text-align: center;
 }
 
 .btn-purple {
   background-color: #6122ED;
+  font-size: 20px;
+}
+
+.btn-orange {
+  background-color: #ffcb37;
+}
+
+.btn-white {
+  background-color: #fff;
   font-size: 20px;
 }
 
@@ -355,7 +392,9 @@ nav.navbar {
   width: 3px;
 }
 
-.tour-desc {}
+.tour-desc {
+  height: 75px;
+}
 
 .tour-circle {
   position: absolute;
