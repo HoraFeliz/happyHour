@@ -3,6 +3,7 @@ const router = express.Router();
 const session = require("../middlewares/session.middleware");
 const placesMiddleware = require("../middlewares/place.middleware");
 const placesController = require("../controllers/places.controller");
+const tourController = require("../controllers/tour.controller");
 const usersController = require("../controllers/users.controller");
 const commentsController = require("../controllers/comments.controller");
 const upload = require("../config/multer.config");
@@ -59,7 +60,11 @@ router.get(
   placesController.goToSearch
 );
 
-router.post("/tours/form-2", session.isAuthenticated, placesController.addPlace);
+router.post(
+  "/tours/form-2",
+  session.isAuthenticated,
+  placesController.addPlace
+);
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
@@ -117,7 +122,13 @@ router.get("/tours/form", (req, res, next) => {
   res.render("tours/form-1");
 });
 
-router.get("/tours/form-2", session.isAuthenticated, placesController.createTourStep2);
+router.post("/tours/add", session.isAuthenticated, tourController.addTour);
+
+router.get(
+  "/tours/form-2",
+  session.isAuthenticated,
+  placesController.createTourStep2
+);
 
 router.get("/tours", (req, res, next) => {
   res.render("tours/list");

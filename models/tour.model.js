@@ -15,7 +15,6 @@ const tourSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      required: [true, "Tour city is required"],
       trim: true,
     },
     rating: {
@@ -29,10 +28,8 @@ const tourSchema = new mongoose.Schema(
     places: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Place",
-      required: true,
-      unique: true,
+      // unique: true,
     },
-    // guardar coordenadas
   },
   {
     toJSON: { virtuals: true },
