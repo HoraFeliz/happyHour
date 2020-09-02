@@ -89,7 +89,12 @@ module.exports.addPlace = (req, res, next) => {
         review.save();
       });
       //res.json(place);
-      res.render("tours/form-2", { place });
+      Place.find()
+
+        .then((places) => {
+          res.render("tours/form-2", { places });
+        })
+        .catch(next);
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -129,7 +134,7 @@ module.exports.delete = (req, res, next) => {
   req.place
     .remove()
     .then(() => {
-      res.redirect("/places");
+      res.redirect("/tours/form-2");
     })
     .catch(next);
 };
@@ -215,6 +220,15 @@ module.exports.like = (req, res, next) => {
           })
           .catch(next);
       }
+    })
+    .catch(next);
+};
+
+module.exports.createTourStep2 = (req, res, next) => {
+  Place.find(req.query.search)
+
+    .then((places) => {
+      res.render("tours/form-2", { places });
     })
     .catch(next);
 };

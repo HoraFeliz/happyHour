@@ -4,7 +4,7 @@ const mailer = require("../config/mailer.config");
 const passport = require("passport");
 
 module.exports.login = (req, res, next) => {
-  res.render("users/login");
+  res.render("users/login-purple", { layout: 'layout-purple' });
 };
 
 module.exports.doGoogleLogin = (req, res, next) => {

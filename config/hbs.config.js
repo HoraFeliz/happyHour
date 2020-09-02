@@ -41,3 +41,13 @@ hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
   }
 });
 
+hbs.registerHelper("inc", function (value, options) {
+  return parseInt(value) + 1;
+});
+
+hbs.registerHelper('dotdotdot', function (str, charLenght) {
+  if (str.length > charLenght)
+    return str.substring(0, charLenght) + '...';
+  return str;
+});
+
