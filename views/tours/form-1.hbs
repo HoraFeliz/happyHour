@@ -28,14 +28,14 @@
     <div class="form-group mb-3">
 
 
-        {{!-- <div class="input-group">
+        <div class="input-group">
             <div class="custom-file">
                 <input type="file" class="custom-file-input {{#if error.image }}is-invalid{{/if}}" id="image"
                     name="image">
-                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                <label class="custom-file-label" for="image">Choose file</label>
             </div>
-        </div> --}}
-        <input type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
+        </div>
+        {{!-- <input type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image"> --}}
 
         {{#if error.image}}
         <div class="invalid-feedback">
