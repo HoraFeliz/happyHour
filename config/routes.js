@@ -120,7 +120,7 @@ router.get("/tours/start", (req, res, next) => {
 router.post(
   "/tours",
   session.isAuthenticated,
-  upload.single("avatar"),
+  upload.single("image"),
   tourController.addTour);
 
 router.get(

@@ -20,7 +20,7 @@ const tourSchema = new mongoose.Schema(
     rating: {
       type: Number,
     },
-    avatar: {
+    image: {
       type: String,
       default: '/img/tour-def-icon.png'
     },

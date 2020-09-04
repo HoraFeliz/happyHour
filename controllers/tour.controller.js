@@ -9,14 +9,13 @@ const multer = require("multer");
 const mongoose = require("mongoose");
 
 module.exports.addTour = (req, res, next) => {
-  // console.log('************************** req ******************************', req);
   const name = req.body.tourName;
   const description = req.body.tourDescription;
   const tour = new Tour({
     name,
     description,
     owner: req.currentUser._id,
-    avatar: req.file ? req.file.path : undefined,
+    image: req.file ? req.file.path : undefined,
   });
 
   tour

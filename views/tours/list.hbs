@@ -45,12 +45,14 @@
         <div class="row">
             <div class="col-12">
 
-                <div class="tour-list-img" style="background-image: url('{{this.avatar}}');">
+                <div class="tour-list-img" style="background-image: url('{{this.image}}');">
                     {{!-- if recommended => include on tour model --}}
                     {{!-- Recommended Tag --}}
+                    {{#if this.recommended}}
                     <div class="tour-list-recommended">
                         <i class="fa fa-star"></i> <span>RECOMMENDED</span>
                     </div>
+                    {{/if}}
                     {{!-- Tour Rating --}}
                     <div class="tour-list-rating">
                         <span class="rating-num">4.5</span>

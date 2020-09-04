@@ -35,11 +35,11 @@
                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             </div>
         </div> --}}
-        <input type="file" class="form-control-file {{#if error.avatar }}is-invalid{{/if}}" id="avatar" name="avatar">
+        <input type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image" name="image">
 
-        {{#if error.avatar}}º
+        {{#if error.image}}
         <div class="invalid-feedback">
-            {{error.avatar.message}}
+            {{error.image.message}}
         </div>
         {{/if}}
         {{!-- <div class="input-group-append">
