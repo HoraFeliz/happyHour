@@ -11,12 +11,14 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
-<body class="purple-body">
-  {{#if currentUser}}
+<body>
+  {{!-- {{#if currentUser}} --}}
   {{>misc/navbar}}
-  {{/if}}
+  {{!-- {{/if}} --}}
 
-  <main class="main-purple">
+
+  <main style="padding-bottom: 60px; background-image: url('/img/burbujas.png');background-repeat: repeat;
+  background-size: contain;">
     <div class="container">
       {{{body}}}
     </div>

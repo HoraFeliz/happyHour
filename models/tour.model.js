@@ -20,6 +20,14 @@ const tourSchema = new mongoose.Schema(
     rating: {
       type: Number,
     },
+    avatar: {
+      type: String,
+      default: '/img/tour-def-icon.png'
+    },
+    recommended: {
+      type: Boolean,
+      default: false,
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

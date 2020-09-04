@@ -60,11 +60,6 @@ router.get(
   placesController.goToSearch
 );
 
-router.post(
-  "/tours/form-2",
-  session.isAuthenticated,
-  placesController.addPlace
-);
 
 router.get("/places", session.isAuthenticated, placesController.list);
 
@@ -112,7 +107,7 @@ router.post(
   commentsController.delete
 );
 
-router.get("/", (req, res) => res.redirect("/places"));
+router.get("/", (req, res) => res.redirect("tours"));
 
 router.get("/tours/start", (req, res, next) => {
   res.render("tours/start");
@@ -122,18 +117,35 @@ router.get("/tours/start", (req, res, next) => {
 //   res.render("tours/form-1");
 // });
 
-router.post("/tours/add", session.isAuthenticated, tourController.addTour);
+router.post(
+  "/tours",
+  session.isAuthenticated,
+  upload.single("avatar"),
+  tourController.addTour);
 
 router.get(
   "/tours/form",
   session.isAuthenticated,
-  placesController.createTourStep
+  tourController.createTourStep
 );
+
 
 router.get(
   "/tours/form-2",
   session.isAuthenticated,
-  placesController.createTourStep2
+  tourController.createTourStep2
+);
+
+router.post(
+  "/tours/form-2",
+  session.isAuthenticated,
+  placesController.addPlace
+);
+
+router.get(
+  "/tours",
+  session.isAuthenticated,
+  tourController.list
 );
 
 router.get("/tours", (req, res, next) => {
@@ -141,7 +153,7 @@ router.get("/tours", (req, res, next) => {
 });
 
 router.get("/tours/tour", (req, res, next) => {
-  res.render("tours/tour");
+  res.render("tours/tour", { layout: 'layout-nofooter' });
 });
 
 router.get("/tours/places", (req, res, next) => {

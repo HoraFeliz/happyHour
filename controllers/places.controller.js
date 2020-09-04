@@ -223,21 +223,3 @@ module.exports.like = (req, res, next) => {
     })
     .catch(next);
 };
-
-module.exports.createTourStep2 = (req, res, next) => {
-  Place.find(req.query.search)
-
-    .then((places) => {
-      res.render("tours/form-2", { places });
-    })
-    .catch(next);
-};
-
-module.exports.createTourStep = (req, res, next) => {
-  Place.find(req.query.search)
-
-    .then((places) => {
-      res.render("tours/form-1", { places });
-    })
-    .catch(next);
-};

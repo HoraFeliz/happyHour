@@ -1,0 +1,47 @@
+<article class="container">
+
+  <div class="home-brand pb-4">
+    <img src="/img/appyTourBrandPurple.png" alt="Appy Hour">
+  </div>
+
+  <form action="/login" method="POST">
+    <div class="form-group login-input">
+      <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
+        placeholder="Enter email" value="{{ user.email }}" required>
+
+      {{#if error.email}}
+      <div class="invalid-feedback">
+        {{error.email.message}}
+      </div>
+      {{/if}}
+    </div>
+
+    <div class="form-group login-input">
+      <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
+        placeholder="Enter password" value="{{ user.password }}" required>
+
+      {{#if error.password}}
+      <div class="invalid-feedback">
+        {{error.password.message}}
+      </div>
+      {{/if}}
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-white btn-block text-left text-purple mb-4 "><i class="fa fa-user pr-3"></i>
+        Login</button>
+      <a href="/auth/slack" class="btn btn-orange btn-block text-left text-purple "><i class="fa fa-slack pr-3"></i>
+        Login
+        with
+        Slack</a>
+      <a href="/auth/google" class="btn btn-orange btn-block text-left text-purple"><i class="fa fa-google pr-3"></i>
+        Login
+        with
+        Google</a>
+    </div>
+
+
+    <p class="text-white">Don't have an account? <strong><a class="text-white" href="/users/new">register</a></strong>
+    </p>
+  </form>
+</article>

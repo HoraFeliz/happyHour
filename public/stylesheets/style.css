@@ -4,6 +4,7 @@ body {
   font-weight: 200;
   background: rgb(255, 255, 255);
   background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 234, 173, 1) 0%, rgba(255, 187, 0, 1) 100%);
+
   padding-top: 60px;
   margin: 0;
   padding: 0;
@@ -30,6 +31,7 @@ h3 {
 }
 
 main {
+  
   margin-bottom: 20px;
   min-height: calc(100vh - 82px);
   padding-top: 80px;
@@ -37,6 +39,9 @@ main {
 
 .main-purple {
   padding-top: 40px;
+  min-height: 100vh;
+  margin-bottom: 0px;
+  padding-bottom: 40px;
 }
 
 a {
@@ -53,7 +58,9 @@ button:focus {
   outline: none
 }
 
-.container {}
+.container {
+  margin-bottom: 60px;
+}
 
 .text-purple {
   color: #6122ED;
@@ -105,21 +112,39 @@ nav.navbar {
 /* List */
 
 .tour-list-item {
-  background-color: white;
+  /* background-color: white; */
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .tour-list-img {
-  height: 100%;
+  height: 136px;
   background-size: cover;
   background-position: center;
   border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.tour-list-city {
+  position: absolute;
+  right: 30px;
 }
 
 .tour-list-info {
-  padding-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.tour-list-name {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.tour-list-desc {
+  font-size: 14px;
+  color: #777;
 }
 
 .tour-list-rating {
@@ -127,10 +152,27 @@ nav.navbar {
   align-items: baseline;
   justify-content: flex-end;
   margin-top: -10px;
+  position: absolute;
+  bottom: 10px;
+  right: 24px;
+  background-color: rgba(255, 255, 255, 0.81);
+  border-radius: 3px;
+  padding: 2px 10px;
 }
 
 .tour-list-banner {
   margin-top: 0px;
+}
+
+.tour-list-recommended {
+  background-color: #6122ED;
+  border-radius: 3px;
+  padding: 2px 10px;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: white;
 }
 
 .tour-rating-img {
@@ -139,6 +181,7 @@ nav.navbar {
   justify-content: flex-end;
   padding-left: 3px;
   margin-top: 2px;
+  width: 20px;
 }
 
 .tour-create-button-background {
@@ -151,6 +194,9 @@ nav.navbar {
   margin-left: -16px;
   display: flex;
   justify-content: space-around;
+  -webkit-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
 }
 
 .tour-create-button {
@@ -177,7 +223,7 @@ nav.navbar {
 }
 
 .tour-create-title {
-  padding-right: 25px;
+  padding-right: 35px;
 }
 
 /* Tour Detail */
@@ -216,6 +262,8 @@ nav.navbar {
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .tour-detail-title {
@@ -263,7 +311,7 @@ nav.navbar {
 
 .start-tour-button {
   position: absolute;
-  top: 15px;
+  top: 30px;
   left: 37px;
 }
 
@@ -300,6 +348,14 @@ nav.navbar {
 .tour-detail-list-item {
   margin-left: 0;
   margin-right: 0;
+  margin-top: 40px;
+
+}
+
+#map.tour-detail-map {
+  height: 40vh;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .read-more {
@@ -317,6 +373,44 @@ nav.navbar {
   position: absolute;
   top: 10px;
 }
+
+.tour-detail-start-button {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: #6122EDaa;
+  z-index: 1;
+  -webkit-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+i.fa.fa-image {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #6123ed;
+  color: white;
+}
+
+
+
+input#avatar {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: #6123ed;
+  display: inline-block;
+}
+
+input#avatar:focus+label,
+input#avatar+label:hover {
+  background-color: red;
+}
+
+
 
 
 /* Form Create Tour */
@@ -393,7 +487,7 @@ nav.navbar {
 }
 
 .tour-desc {
-  height: 75px;
+  /* height: 75px; */
 }
 
 .tour-circle {
@@ -405,10 +499,12 @@ nav.navbar {
 
 .tour-num {
   position: absolute;
-  padding-left: 7px;
+  padding-left: 2px;
   font-weight: bold;
   color: white;
-  padding-top: 1px;
+  padding-top: 5px;
+  width: 29px;
+  text-align: center;
 }
 
 .tour-rating {
@@ -429,6 +525,11 @@ nav.navbar {
 
 .form-control {
   height: calc(1.5em + .75rem + 10px);
+}
+
+.form-control-file {
+  font-size: 14px;
+  padding: 12px;
 }
 
 /* Tour Start */

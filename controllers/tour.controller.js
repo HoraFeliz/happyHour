@@ -1,15 +1,22 @@
 const Place = require("../models/place.model");
 const Tour = require("../models/tour.model");
+const mailer = require("../config/mailer.config");
+const passport = require("passport");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 
 const mongoose = require("mongoose");
 
 module.exports.addTour = (req, res, next) => {
+  // console.log('************************** req ******************************', req);
   const name = req.body.tourName;
   const description = req.body.tourDescription;
   const tour = new Tour({
     name,
     description,
     owner: req.currentUser._id,
+    avatar: req.file ? req.file.path : undefined,
   });
 
   tour
@@ -43,6 +50,33 @@ module.exports.update = (req, res, next) => {
         next(error);
       }
     });
+};
+
+module.exports.list = (req, res, next) => {
+  Tour.find(req.query.search)
+
+    .then((tours) => {
+      res.render("tours/list", { tours });
+    })
+    .catch(next);
+};
+
+module.exports.createTourStep2 = (req, res, next) => {
+  Place.find(req.query.search)
+
+    .then((places) => {
+      res.render("tours/form-2", { places });
+    })
+    .catch(next);
+};
+
+module.exports.createTourStep = (req, res, next) => {
+  Place.find(req.query.search)
+
+    .then((places) => {
+      res.render("tours/form-1", { places });
+    })
+    .catch(next);
 };
 
 // module.exports.delete = (req, res, next) => {

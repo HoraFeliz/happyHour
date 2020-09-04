@@ -16,7 +16,7 @@ const placeSchema = new mongoose.Schema(
     url: {
       type: String,
       trim: true,
-      required: [true, "Place url is required"],
+      // required: [true, "Place url is required"],
     },
     image: {
       type: String,

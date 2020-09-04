@@ -149,6 +149,7 @@ module.exports.show = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
+  console.log('req user', req);
   const user = new User({
     ...req.body,
     staff: false,

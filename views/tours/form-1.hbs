@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<form action="/tours/add" method="POST">
+<form action="/tours" method="POST" enctype="multipart/form-data">
     <div class="form-group">
 
         <div class="row">
@@ -19,10 +19,33 @@
     </div>
     <div class="form-group">
         <input name="tourName" id="tourName" type="text" class="form-control" aria-describedby="emailHelp"
-            placeholder="Tour Name">
+            placeholder="Tour Name" required>
     </div>
     <div class="form-group">
-        <textarea name="tourDescription" id="tourDescripton" class="form-control" rows="3" placeholder="Description"></textarea>
+        <textarea name="tourDescription" id="tourDescripton" class="form-control" rows="3" placeholder="Description"
+            required></textarea>
+    </div>
+    <div class="form-group mb-3">
+
+
+        {{!-- <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input {{#if error.image }}is-invalid{{/if}}" id="image"
+                    name="image">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+        </div> --}}
+        <input type="file" class="form-control-file {{#if error.avatar }}is-invalid{{/if}}" id="avatar" name="avatar">
+
+        {{#if error.avatar}}º
+        <div class="invalid-feedback">
+            {{error.avatar.message}}
+        </div>
+        {{/if}}
+        {{!-- <div class="input-group-append">
+            <button class="btn btn-purple text-white pl-3" type="button"><i class="fa fa-photo"></i></button>
+
+        </div> --}}
     </div>
 
     <!-- <a type="submit" href="/tours/form-2" class="btn btn-purple text-white btn-block mt-3">Next Step</a> -->

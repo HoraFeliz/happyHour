@@ -20,13 +20,13 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    {{!-- <div class="form-group">
         <select id="inputState" class="form-control">
             <option selected>Select City</option>
             <option>Madrid</option>
             <option>Barcelona</option>
         </select>
-    </div>
+    </div> --}}
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Search Tour" aria-label="Recipient's username"
             aria-describedby="basic-addon2">
@@ -38,70 +38,48 @@
 
 {{!-- List Tours  --}}
 
+{{#each tours}}
+
 <a href="/tours/tour">
     <div class="tour-list-item">
         <div class="row">
-            <div class="col-4">
-                <div class="tour-list-img" style="background-image: url('/img/historical-tour.jpg');"></div>
+            <div class="col-12">
+
+                <div class="tour-list-img" style="background-image: url('{{this.avatar}}');">
+                    {{!-- if recommended => include on tour model --}}
+                    {{!-- Recommended Tag --}}
+                    <div class="tour-list-recommended">
+                        <i class="fa fa-star"></i> <span>RECOMMENDED</span>
+                    </div>
+                    {{!-- Tour Rating --}}
+                    <div class="tour-list-rating">
+                        <span class="rating-num">4.5</span>
+                        <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+                        <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+                        <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+                        <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+                        <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+                    </div>
+                </div>
+                {{!-- <img class="img-fluid" src="/img/tour-def-icon.png" alt="Tour Icon"> --}}
             </div>
-            <div class="col-8 tour-list-info">
-                <h3>Historical Tour</h3>
-                <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque...</p>
-                <div class="col-12 tour-list-rating">
-                    {{!-- <span class="user-rating">(74)</span> --}}
-                    <span class="rating-num">4.5</span>
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
-                    <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+            <div class="col-12">
+                <div class="tour-list-info">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="tour-list-name">{{this.name}}</h3>
+                        </div>
+                        <div class="tour-list-city col-4 text-right">
+                            <i class="fa fa-map-marker text-purple"></i> <span>Madrid</span>
+                        </div>
+                    </div>
+                    <p class="tour-list-desc">{{dotdotdot this.description 100}}</p>
                 </div>
             </div>
         </div>
     </div>
 </a>
-
-<div class="tour-list-item">
-    <div class="row">
-        <div class="col-4">
-            <div class="tour-list-img" style="background-image: url('/img/malasana-tour.jpg');"></div>
-        </div>
-        <div class="col-8 tour-list-info">
-            <h3>Malasaña Tour</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
-            <div class="col-12 tour-list-rating">
-                {{!-- <span class="user-rating">(74)</span> --}}
-                <span class="rating-num">3.7</span>
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-                <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="4">
-                <img class="tour-rating-img" src="/img/rating-beer-off.png" alt="5">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="tour-list-item">
-    <div class="row">
-        <div class="col-4">
-            <div class="tour-list-img" style="background-image: url('/img/lalatina-tour.jpg');"></div>
-        </div>
-        <div class="col-8 tour-list-info">
-            <h3>Malasaña Tour</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
-            <div class="col-12 tour-list-rating">
-                {{!-- <span class="user-rating">(74)</span> --}}
-                <span class="rating-num">4.2</span>
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-                <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
-                <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
-            </div>
-        </div>
-    </div>
-</div>
+{{/each}}
 
 
 <a class="tour-create-button-panel" href="/tours/form">
