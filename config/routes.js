@@ -126,7 +126,7 @@ router.get(
 );
 
 router.post(
-  "/tours/form-3",
+  "/tours/form-3/:id",
   session.isAuthenticated,
   placesController.addPlace
 );

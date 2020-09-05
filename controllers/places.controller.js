@@ -49,6 +49,7 @@ module.exports.edit = (req, res, next) => {
 };
 
 module.exports.addPlace = (req, res, next) => {
+  console.log("*** tour id in addplace", req.params.id);
   const placeFromDb = JSON.parse(req.body.placeData);
   const place = new Place({
     name: placeFromDb.name,
