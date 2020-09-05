@@ -1,10 +1,5 @@
 const Place = require("../models/place.model");
 const Tour = require("../models/tour.model");
-const mailer = require("../config/mailer.config");
-const passport = require("passport");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const multer = require("multer");
 
 const mongoose = require("mongoose");
 
@@ -61,12 +56,10 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.createTourStep2 = (req, res, next) => {
-  console.log("test test *******+", req.params);
   const tourId = req.params.id;
   Tour.findById(tourId)
     .populate("places")
     .then((tour) => {
-      console.log("test **********", tour);
       res.render("tours/form-2", { tour });
     })
     .catch(next);

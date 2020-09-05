@@ -84,19 +84,25 @@ module.exports.addPlace = (req, res, next) => {
     priceLevel: placeFromDb.price_level,
   });
 
+  Tour.findByIdAndUpdate(
+    tourId,
+    {
+      places: place,
+    },
+    { runValidators: true, new: true }
+  )
+    .then((tour) => {
+      if (tour) {
+        console.log("********************** testupdate tour found", tour);
+      } else {
+        console.log("********************testupdate tour not found", tour);
+      }
+    })
+    .catch(next);
+
   place
     .save()
     .then((place) => {
-      Tour.findByIdAndUpdate(tourId, { places: place })
-        .then((tour) => {
-          if (tour) {
-            console.log("********************** testupdate tour found", tour);
-          } else {
-            console.log("********************testupdate tour not found", tour);
-          }
-        })
-        .catch(next);
-
       placeFromDb.reviews.map((reviewItem) => {
         let review = new Review({
           autorName: reviewItem.author_name,
