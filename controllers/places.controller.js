@@ -101,19 +101,17 @@ module.exports.addPlace = (req, res, next) => {
           },
           { runValidators: true, new: true }
         )
+          .populate("place")
           .then((tour) => {
             if (tour) {
-              console.log("pepe", tour);
               res.render("tours/form-2", { places: places });
             } else {
-              console.log(
-                "********************testupdate tour not found",
-                tour
-              );
+              console.log("Couldn´t update tour with list of places");
             }
           })
           .catch(next);
       })
+
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
           console.log("Validation error saving place to db", error);
@@ -123,21 +121,6 @@ module.exports.addPlace = (req, res, next) => {
         }
       });
   });
-  Tour.findByIdAndUpdate(
-    tourId,
-    {
-      places,
-    },
-    { runValidators: true, new: true }
-  )
-    .then((tour) => {
-      if (tour) {
-        console.log("********************** testupdate tour found", tour);
-      } else {
-        console.log("********************testupdate tour not found", tour);
-      }
-    })
-    .catch(next);
 };
 
 module.exports.update = (req, res, next) => {
