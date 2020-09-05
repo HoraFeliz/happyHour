@@ -1,4 +1,5 @@
 const Place = require("../models/place.model");
+const Tour = require("../models/tour.model");
 const Review = require("../models/review.model");
 const User = require("../models/user.model");
 const Like = require("../models/like.model");
@@ -89,10 +90,10 @@ module.exports.addPlace = (req, res, next) => {
         review.save();
       });
       //res.json(place);
-      Place.find()
-
-        .then((places) => {
-          res.render("tours/form-2", { places });
+      Tour.find()
+        .populate('places')
+        .then((tour) => {
+          res.render("tours/form-2", { tour });
         })
         .catch(next);
     })
