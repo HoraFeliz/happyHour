@@ -1,9 +1,9 @@
 const Place = require("../models/place.model");
+const Tour = require("../models/tour.model");
 const Review = require("../models/review.model");
 const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
-const axios = require("axios");
 
 // GET /places/:id
 module.exports.show = (req, res, next) => {
@@ -49,7 +49,18 @@ module.exports.edit = (req, res, next) => {
 };
 
 module.exports.addPlace = (req, res, next) => {
-  console.log("*** tour id in addplace", req.params.id);
+  const tourId = req.params.id;
+
+  // Tour.findById(tourId)
+  //   .then((res) => {
+  //     if (res) {
+  //       console.log("tour found", res);
+  //     } else {
+  //       console.log("tour not found");
+  //     }
+  //   })
+  //   .catch(next);
+
   const placeFromDb = JSON.parse(req.body.placeData);
   const place = new Place({
     name: placeFromDb.name,
@@ -76,6 +87,16 @@ module.exports.addPlace = (req, res, next) => {
   place
     .save()
     .then((place) => {
+      Tour.findByIdAndUpdate(tourId, { places: place })
+        .then((tour) => {
+          if (tour) {
+            console.log("********************** testupdate tour found", tour);
+          } else {
+            console.log("********************testupdate tour not found", tour);
+          }
+        })
+        .catch(next);
+
       placeFromDb.reviews.map((reviewItem) => {
         let review = new Review({
           autorName: reviewItem.author_name,
