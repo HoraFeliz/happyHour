@@ -103,10 +103,8 @@ module.exports.addPlace = (req, res, next) => {
         )
           .then((tour) => {
             if (tour) {
-              our.populate("places").then((tour) => {
-                console.log("pepe", tour);
-                res.render("tours/form-2", { places: tour.places });
-              });
+              console.log("pepe", tour);
+              res.render("tours/form-2", { places: places });
             } else {
               console.log(
                 "********************testupdate tour not found",
