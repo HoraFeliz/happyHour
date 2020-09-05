@@ -61,10 +61,13 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.createTourStep2 = (req, res, next) => {
-  Place.find(req.query.search)
+  Tour.findById(req.query.search)
 
-    .then((places) => {
-      res.render("tours/form-2", { places });
+    .populate('places')
+    .then((tour) => {
+      console.log(tour);
+      res.render("tours/form-2", { tour });
+
     })
     .catch(next);
 };

@@ -107,18 +107,18 @@ router.post(
   commentsController.delete
 );
 
+// TOURS
+
 router.get("/", (req, res) => res.redirect("tours"));
 
-router.get("/tours/start", (req, res, next) => {
-  res.render("tours/start");
-});
-
-// router.get("/tours/form", (req, res, next) => {
-//   res.render("tours/form-1");
-// });
+router.get(
+  "/tours",
+  session.isAuthenticated,
+  tourController.list
+);
 
 router.post(
-  "/tours",
+  "/tours/form-2",
   session.isAuthenticated,
   upload.single("image"),
   tourController.addTour);
@@ -137,20 +137,12 @@ router.get(
 );
 
 router.post(
-  "/tours/form-2",
+  "/tours/form-3",
   session.isAuthenticated,
   placesController.addPlace
 );
 
-router.get(
-  "/tours",
-  session.isAuthenticated,
-  tourController.list
-);
 
-router.get("/tours", (req, res, next) => {
-  res.render("tours/list");
-});
 
 router.get("/tours/tour", (req, res, next) => {
   res.render("tours/tour", { layout: 'layout-nofooter' });
@@ -158,6 +150,10 @@ router.get("/tours/tour", (req, res, next) => {
 
 router.get("/tours/places", (req, res, next) => {
   res.render("tours/places");
+});
+
+router.get("/tours/start", (req, res, next) => {
+  res.render("tours/start");
 });
 
 module.exports = router;
