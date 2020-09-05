@@ -27,109 +27,18 @@
 </div>
 
 <form method="POST" action="/tours/form-3/{{tour.id}}">
-    <button class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
     <input hidden name="placeData" id="placeData" />
-    <pre id="placeDataTest"></pre>
-</form>
-
-
-
-{{#each places}}
-<a href="/places/{{this._id}}">
-    <div class="row pb-3 pt-3">
-        <div class="col-3">
-            <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
-            </div>
-            {{#if @index}}
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
-            {{ else if @first}}
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
-            {{/if}}
-        </div>
-        <div class="col-9">
-            <div class="tour-circle">
-                <p class="tour-num">{{inc @index}}</p>
-                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-            </div>
-            <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
-            <p class="tour-desc">{{dotdotdot this.address 60}}</p>
-        </div>
-        <div class="col-12 tour-rating">
-            {{!-- <span class="user-rating">(74)</span> --}}
-            <span class="rating-num">{{this.rating}}</span>
-
-            {{!-- Star 1 --}}
-            {{#ifCond this.rating '<=' 0}}
-            <img src="/img/star-off.png" alt="1">
-            {{ else ifCond this.rating '>=' 1}}
-            <img src="/img/star-on.png" alt="1">
-            {{ else ifCond this.rating '>=' 0.5}}
-            <img src="/img/star-half.png" alt="1">
-            {{ else }}
-            <img src="/img/star-off.png" alt="1">
-            {{/ifCond}}
-
-            {{!-- Star 2 --}}
-            {{#ifCond this.rating '<=' 1}}
-            <img src="/img/star-off.png" alt="2">
-            {{ else ifCond this.rating '>=' 2}}
-            <img src="/img/star-on.png" alt="2">
-            {{ else ifCond this.rating '>=' 1.5}}
-            <img src="/img/star-half.png" alt="2">
-            {{ else }}
-            <img src="/img/star-off.png" alt="2">
-            {{/ifCond}}
-
-            {{!-- Star 3 --}}
-            {{#ifCond this.rating '<=' 2}}
-            <img src="/img/star-off.png" alt="3">
-            {{ else ifCond this.rating '>=' 3}}
-            <img src="/img/star-on.png" alt="3">
-            {{ else ifCond this.rating '>=' 2.5}}
-            <img src="/img/star-half.png" alt="3">
-            {{ else }}
-            <img src="/img/star-off.png" alt="3">
-            {{/ifCond}}
-
-            {{!-- Star 4 --}}
-            {{#ifCond this.rating '<=' 3}}
-            <img src="/img/star-off.png" alt="4">
-            {{ else ifCond this.rating '>=' 4}}
-            <img src="/img/star-on.png" alt="4">
-            {{ else ifCond this.rating '>=' 3.5}}
-            <img src="/img/star-half.png" alt="4">
-            {{ else }}
-            <img src="/img/star-off.png" alt="4">
-            {{/ifCond}}
-
-            {{!-- Star 5 --}}
-            {{#ifCond this.rating '<=' 4}}
-            <img src="/img/star-off.png" alt="5">
-            {{ else ifCond this.rating '>=' 5}}
-            <img src="/img/star-on.png" alt="5">
-            {{ else ifCond this.rating '>=' 4.5}}
-            <img src="/img/star-half.png" alt="5">
-            {{ else }}
-            <img src="/img/star-off.png" alt="5">
-            {{/ifCond}}
-        </div>
-    </div>
-</a>
-{{/each}}
-
-
-
-
-<div class="row pb-3 pt-3">
+    <ul id="placeList">
+    </ul>
+<div onclick="addPlace()" class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</div>
+  <div class="row pb-3 pt-3">
     <div class="col-3">
         <img src="/img/more-info-tour.png" alt="La Perla">
     </div>
     <div class="col-9">
         <h3 class="tour-next-place">Next Place</h3>
     </div>
-</div>
-<button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-2 pb-2">Save Tour</button>
+  </div>
+
+  <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-2 pb-2">Save Places</button>
+</form>
