@@ -130,15 +130,6 @@ module.exports.update = (req, res, next) => {
     });
 };
 
-module.exports.delete = (req, res, next) => {
-  req.place
-    .remove()
-    .then(() => {
-      res.redirect("/tours/form-2");
-    })
-    .catch(next);
-};
-
 module.exports.new = (req, res, next) => {
   User.find({ staff: true })
     .then((staffUsers) => {
