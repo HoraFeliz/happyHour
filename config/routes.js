@@ -60,7 +60,6 @@ router.get(
   placesController.goToSearch
 );
 
-
 router.get("/places", session.isAuthenticated, placesController.list);
 
 //TODO: Add session.isAuthenticated middlewarex
@@ -84,12 +83,6 @@ router.get(
   session.isAuthenticated,
   placesMiddleware.placeOwner,
   placesController.edit
-);
-router.get(
-  "/places/:id/delete",
-  session.isAuthenticated,
-  placesMiddleware.placeOwner,
-  placesController.delete
 );
 router.post(
   "/places/:id/edit",
@@ -117,11 +110,14 @@ router.get("/tours/start", (req, res, next) => {
 //   res.render("tours/form-1");
 // });
 
+router.get("/tours", session.isAuthenticated, tourController.list);
+
 router.post(
   "/tours",
   session.isAuthenticated,
   upload.single("image"),
-  tourController.addTour);
+  tourController.addTour
+);
 
 router.get(
   "/tours/form",
@@ -129,31 +125,26 @@ router.get(
   tourController.createTourStep
 );
 
-
 router.get(
-  "/tours/form-2",
+  "/tours/form-2/:id",
   session.isAuthenticated,
   tourController.createTourStep2
 );
 
 router.post(
-  "/tours/form-2",
+  "/tours/form-2/:id",
   session.isAuthenticated,
   placesController.addPlace
 );
 
-router.get(
-  "/tours",
-  session.isAuthenticated,
-  tourController.list
-);
+router.get("/tours", session.isAuthenticated, tourController.list);
 
 router.get("/tours", (req, res, next) => {
   res.render("tours/list");
 });
 
 router.get("/tours/tour", (req, res, next) => {
-  res.render("tours/tour", { layout: 'layout-nofooter' });
+  res.render("tours/tour", { layout: "layout-nofooter" });
 });
 
 router.get("/tours/places", (req, res, next) => {

@@ -22,7 +22,8 @@ module.exports.addTour = (req, res, next) => {
     .save()
     .then(() => {
       console.log("tour", tour);
-      res.render("tours/form-2", { tour });
+      //res.render("tours/form-2", { tour });
+      res.redirect(`/tours/form-2/${tour.id}`);
     })
     .catch((err) => console.log("err saving tour:", err));
 };
@@ -61,10 +62,11 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.createTourStep2 = (req, res, next) => {
-  Place.find(req.query.search)
-
-    .then((places) => {
-      res.render("tours/form-2", { places });
+  const tourId = req.params.id;
+  Tour.findById(tourId)
+    .populate("places")
+    .then((tour) => {
+      res.render("tours/form-2", { tour });
     })
     .catch(next);
 };
