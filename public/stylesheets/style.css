@@ -31,7 +31,7 @@ h3 {
 }
 
 main {
-  
+
   margin-bottom: 20px;
   min-height: calc(100vh - 82px);
   padding-top: 80px;
@@ -59,7 +59,7 @@ button:focus {
 }
 
 .container {
-  margin-bottom: 60px;
+  padding-bottom: 30px;
 }
 
 .text-purple {
@@ -145,6 +145,7 @@ nav.navbar {
 .tour-list-desc {
   font-size: 14px;
   color: #777;
+  margin-bottom: 0px;
 }
 
 .tour-list-rating {
@@ -264,6 +265,7 @@ nav.navbar {
   border-radius: 5px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+  position: relative;
 }
 
 .tour-detail-title {
@@ -325,7 +327,7 @@ nav.navbar {
 
 .tour-detail-comments-content {
   background-color: white;
-  padding: 10px;
+  padding: 20px;
   border-radius: 5px;
   margin-top: 15px;
 }
@@ -383,6 +385,12 @@ nav.navbar {
   -webkit-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 0px -3px 5px 0px rgba(0, 0, 0, 0.15);
+  padding: 0 15px;
+}
+
+.mp-less {
+  margin: 0;
+  padding: 0;
 }
 
 i.fa.fa-image {
@@ -394,8 +402,6 @@ i.fa.fa-image {
   background-color: #6123ed;
   color: white;
 }
-
-
 
 input#avatar {
   font-size: 1.25em;
@@ -410,7 +416,33 @@ input#avatar+label:hover {
   background-color: red;
 }
 
+.tour-detail-your-rating {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding: 20px 0px;
+  width: 100%;
+}
 
+/* .beer-rating {
+  padding: 0 9px;
+  margin: 0px -40px;
+} */
+
+.beer-rating-cont {
+  height: 46px;
+  width: 39px !important;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: center;
+}
+
+#beer-rating-cont-01 {
+  z-index: 5;
+}
 
 
 /* Form Create Tour */

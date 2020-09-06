@@ -7,14 +7,57 @@
             <img src="/img/tourdetail.svg" alt="Tour Detail">
         </div>
     </div>
-    <div class="row">
+    <h3>Historical Tour</h3>
+    <div class="tour-detail-photo" style="background-image: url('/img/historical-tour.jpg');">
+        <div class="tour-list-recommended">
+            <i class="fa fa-star"></i> <span>RECOMMENDED</span>
+        </div>
+        <div class="tour-list-rating">
+            <span class="rating-num">4.5</span>
+            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
+            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
+            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
+            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
+            <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+        </div>
+    </div>
+
+    <div id="map" class="tour-detail-map"></div>
+    <div id="infowindow-content">
+        <img src="" width="16" height="16" id="place-icon" />
+        <span id="place-name" class="title"></span><br />
+        <span id="place-address"></span>
+    </div>
+
+
+    <div class="tour-detail-desc mt-3">
+        <strong>Description:</strong>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum,
+            nisi
+            lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor.
+                Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut
+                aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc
+                venenatis
+                imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue
+                eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+        <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2" src="/img/more-info-button.png"
+                alt="Read More">
+            Read
+            more</button>
+    </div>
+
+
+
+
+    {{!-- <div class="row">
         <div class="col-sm-12">
             <h3>Historical Tour</h3>
         </div>
         <div class="col-sm-12">
-            <div class="tour-detail-photo" style="background-image: url('/img/historical-tour.jpg');">
-                {{!-- Recommended Tag --}}
-                <div class="tour-list-recommended">
+            <div class="tour-detail-photo" style="background-image: url('/img/historical-tour.jpg');"> --}}
+
+    {{!-- Recommended Tag --}}
+    {{!-- <div class="tour-list-recommended">
                     <i class="fa fa-star"></i> <span>RECOMMENDED</span>
                 </div>
                 <div class="tour-list-rating">
@@ -26,52 +69,33 @@
                     <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        {{!-- Tour Location --}}
-        <div class="col-sm-12">
-            {{!-- <div class="tour-detail-location">
+    {{!-- Tour Location --}}
+    {{!-- <div class="col-sm-12"> --}}
+    {{!-- <div class="tour-detail-location">
                 <strong>City: </strong> Madrid
             </div> --}}
 
-            {{!-- Map --}}
-            <div id="map" class="tour-detail-map"></div>
-            <div id="infowindow-content">
-                <img src="" width="16" height="16" id="place-icon" />
-                <span id="place-name" class="title"></span><br />
-                <span id="place-address"></span>
-            </div>
-
+    {{!-- Map --}}
+    {{!-- <div id="map" class="tour-detail-map"></div>
+        <div id="infowindow-content">
+            <img src="" width="16" height="16" id="place-icon" />
+            <span id="place-name" class="title"></span><br />
+            <span id="place-address"></span>
         </div>
 
-        {{!-- Start Tour  ### Sticky Button --}}
-        <div class="tour-detail-start-button col-sm-12">
-            <img class="start-tour-button" src="/img/appyhour-icon.png" alt="AppyHour">
-            <a href="/tours/start" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3"> <strong>Start
-                    Tour</strong></a>
-        </div>
-        <div class="col-sm-12 tour-detail-desc mt-3">
-            <strong>Description:</strong>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum,
-                nisi
-                lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor.
-                    Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut
-                    aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc
-                    venenatis
-                    imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue
-                    eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
-            <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2" src="/img/more-info-button.png"
-                    alt="Read More">
-                Read
-                more</button>
-        </div>
+    </div> --}}
+
+    {{!-- Start Tour  ### Sticky Button --}}
 
 
 
 
 
-        {{!-- Tour Places --}}
-        <a href="/tours/places">
+
+    {{!-- Tour Places --}}
+    {{!-- <a href="/tours/places">
             <div class="row tour-detail-list-item">
                 <div class="col-3">
                     <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
@@ -98,11 +122,11 @@
                     <img src="/img/star-half.png" alt="5">
                 </div>
             </div>
-        </a>
+        </a> --}}
 
-        {{!-- Second place --}}
+    {{!-- Second place --}}
 
-        <div class="col-3">
+    {{!-- <div class="col-3">
             <div class="tour-detail-list-photo" style="background-image: url('/img/laperla.jpg');">
             </div>
             <div class="tour-line">
@@ -125,38 +149,66 @@
             <img src="/img/star-on.png" alt="3">
             <img src="/img/star-on.png" alt="4">
             <img src="/img/star-half.png" alt="5">
-        </div>
+        </div> --}}
 
-        {{!-- Comments --}}
+    {{!-- Your Rating --}}
 
-        <div class="col-sm-12 tour-detail-comments">
-            <h3>Comments</h3>
+    <h3 class="mt-5">Your Rating</h3>
 
-            <div class="tour-detail-comments-content">
-                <div class="tour-comment-current-user">
-                    {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
+    <div id="tour-detail-your-rating" class="tour-detail-your-rating">
+        <a href="/tours/form-2">
+            <div id="beer-rating-cont-01" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-01" src="/img/your-rating-off.png" alt="1">
+            </div>
+        </a>
+        <a href="/tours/form-2">
+            <div id="beer-rating-cont-02" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-02" src="/img/your-rating-off.png" alt="2">
+            </div>
+        </a>
+        <a href="/tours/form-2">
+            <div id="beer-rating-cont-03" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-03" src="/img/your-rating-off.png" alt="3">
+            </div>
+        </a>
+        <a href="/tours/form-2">
+            <div id="beer-rating-cont-04" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-04" src="/img/your-rating-off.png" alt="4">
+            </div>
+        </a>
+        <a href="/tours/form-2">
+            <div id="beer-rating-cont-05" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-05" src="/img/your-rating-off.png" alt="5">
+            </div>
+        </a>
+    </div>
+
+    <h3 class="mt-5">Comments</h3>
+
+    <div class="tour-detail-comments-content">
+        <div class="tour-comment-current-user">
+            {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
                     {{currentUser.name}} --}}
-                    <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
-                </div>
-                <h4>Madrileños</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
-                    corporis nesciunt modi, et ipsa cumque...</p>
-                <div class="row">
-                    <div class="col-8 tour-detail-comments-photos">
-                        <img src="/img/comment-photo-1.png" alt="Comment Photo 1">
-                        <img src="/img/comment-photo-2.png" alt="Comment Photo 2">
-                        <img src="/img/comment-photo-3.png" alt="Comment Photo 3">
-                        <img src="/img/comment-photo-4.png" alt="Comment Photo 4">
-                        <img src="/img/comment-photo-5.png" alt="Comment Photo 5">
-                    </div>
-                    <div class="col-4 tour-detail-comments-num-photos">
-                        <img src="/img/comment-icon-photos.png" alt="Photo Count">
-                        <span class="rating-num">12</span>
-                    </div>
-                </div>
+            <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
+        </div>
+        <h4>Madrileños</h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
+            corporis nesciunt modi, et ipsa cumque...</p>
+        <div class="row">
+            <div class="col-7 tour-detail-comments-photos">
+                <img src="/img/comment-photo-1.png" alt="Comment Photo 1">
+                <img src="/img/comment-photo-2.png" alt="Comment Photo 2">
+                <img src="/img/comment-photo-3.png" alt="Comment Photo 3">
+                <img src="/img/comment-photo-4.png" alt="Comment Photo 4">
+                {{!-- <img src="/img/comment-photo-5.png" alt="Comment Photo 5"> --}}
+            </div>
+            <div class="col-5 tour-detail-comments-num-photos">
+                <img src="/img/comment-icon-photos.png" alt="Photo Count">
+                <span class="rating-num">12</span>
             </div>
         </div>
     </div>
-    </div>
+
+
 
 </article>
