@@ -3,24 +3,28 @@ const Tour = require("../models/tour.model");
 const mongoose = require("mongoose");
 
 module.exports.getTour = (req, res, next) => {
+  const places = [];
+  let tourById;
   Tour.findById(req.params.id)
     .populate("place")
     .then((tour) => {
+      tourById = tour;
       const placesInTour = tour.places;
-      console.log("get tours list", tour);
-      console.log("get places list", placesInTour);
-      const places = [];
-      placesInTour.forEach((place) => {
-        Place.findById(place)
-          .then((place) => {
-            places.push(place.name);
-            console.log("place in tour name", place.name);
-          })
-          .catch(next);
+      placesInTour.forEach((placeId) => {
+        Place.findById(placeId).then((place) => {
+          places.push(place);
+        });
       });
-      res.render("tours/tour", { layout: "layout-nofooter", tour, places });
     })
     .catch(next);
+  setTimeout(() => {
+    console.log(`Tour: ${tourById}, places in tour: ${places}`);
+    res.render("tours/tour", {
+      layout: "layout-nofooter",
+      tour: tourById,
+      places,
+    });
+  }, 100);
 };
 
 module.exports.addTour = (req, res, next) => {
