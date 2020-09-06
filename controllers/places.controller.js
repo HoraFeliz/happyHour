@@ -99,12 +99,12 @@ module.exports.addPlace = (req, res, next) => {
           {
             places,
           },
-          { runValidators: true, new: true }
+          { runValidators: true, new: true, useFindAndModify: false }
         )
           .populate("place")
           .then((tour) => {
             if (tour) {
-              res.render("tours/form-2", { places: places });
+              res.render("tours/places-list", { places: places });
             } else {
               console.log("Couldn´t update tour with list of places");
             }

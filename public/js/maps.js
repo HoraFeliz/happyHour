@@ -3,7 +3,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPJpjD-qcR_yIxJnS8maR5W9KB0E3EzYI&libraries=places">
 const placeList = [];
 
-document.getElementById("pac-input").addEventListener("change", addPlace);
+// document.getElementById("pac-input").addEventListener("change", addPlace);
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -27,7 +27,6 @@ function initMap() {
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
   console.log("auto", autocomplete.getPlace());
-  autoAddPlace();
   autocomplete.bindTo("bounds", map); // Set the data fields to return when the user selects a place.
   // photos, place_id, types, formatted_address, name, rating, geometry;
   const completeFields = [
@@ -125,10 +124,7 @@ function initMap() {
       infowindowContent.children["place-address"].textContent = address;
       infowindow.open(map, marker);
     }
-    alert("hola");
   });
-  console.log("placeDataList", placeDataList);
-  console.log("placeList", placeList);
 }
 
 function addPlace() {
