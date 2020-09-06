@@ -135,9 +135,7 @@ router.post(
 
 router.get("/tours", session.isAuthenticated, tourController.list);
 
-router.get("/tours/tour/:id", (req, res, next) => {
-  res.render("tours/tour", { layout: "layout-nofooter" });
-});
+router.get("/tours/tour/:id", session.isAuthenticated, tourController.getTour);
 
 router.get("/tours/places", (req, res, next) => {
   res.render("tours/places");

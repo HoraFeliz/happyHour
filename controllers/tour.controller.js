@@ -8,6 +8,15 @@ const multer = require("multer");
 
 const mongoose = require("mongoose");
 
+module.exports.getTour = (req, res, next) => {
+  Tour.findById(req.params.id)
+    .then((tour) => {
+      console.log("tour by id", tour);
+      res.render("tours/tour", { layout: "layout-nofooter", tour });
+    })
+    .catch(next);
+};
+
 module.exports.addTour = (req, res, next) => {
   const name = req.body.tourName;
   const description = req.body.tourDescription;
