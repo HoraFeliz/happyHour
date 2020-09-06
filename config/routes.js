@@ -143,7 +143,7 @@ router.get("/tours", (req, res, next) => {
   res.render("tours/list");
 });
 
-router.get("/tours/tour", (req, res, next) => {
+router.get("/tours/tour/:id", (req, res, next) => {
   res.render("tours/tour", { layout: "layout-nofooter" });
 });
 
