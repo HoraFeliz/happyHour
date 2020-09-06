@@ -5,6 +5,32 @@ const User = require("../models/user.model");
 const Like = require("../models/like.model");
 const mongoose = require("mongoose");
 
+module.exports.getList = (req, res, next) => {
+  Tour.findById(req.params.id)
+    .populate("place")
+    .then((tour) => {
+      if (tour) {
+        const placesInTour = tour.places;
+        console.log("get tours list", tour);
+        console.log("get places list", placesInTour);
+        const places = [];
+
+        placesInTour.forEach((place) => {
+          console.log("loop place", place);
+          Place.findById(place)
+            .then((place) => {
+              places.push(place);
+            })
+            .catch(next);
+        });
+
+        res.render("tours/form-2", { places: places, tour });
+      } else {
+        console.log("Couldn´t update tour with list of places");
+      }
+    })
+    .catch(next);
+};
 // GET /places/:id
 module.exports.show = (req, res, next) => {
   console.log(`req.params.id: ` + req.params.id);
@@ -100,7 +126,7 @@ module.exports.addPlace = (req, res, next) => {
         .then((tour) => {
           if (tour) {
             // res.render("tours/form-2", { places, tour });
-            res.redirect(`/tours/form-2/${tour.id}`);
+            res.redirect(`/tours/form-2/added/${tour.id}`);
           } else {
             console.log("Couldn´t update tour with list of places");
           }

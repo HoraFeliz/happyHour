@@ -135,6 +135,12 @@ router.post(
 
 router.get("/tours", session.isAuthenticated, tourController.list);
 
+router.get(
+  "/tours/form-2/added/:id",
+  session.isAuthenticated,
+  placesController.getList
+);
+
 router.get("/tours/tour/:id", session.isAuthenticated, tourController.getTour);
 
 router.get("/tours/places", (req, res, next) => {
