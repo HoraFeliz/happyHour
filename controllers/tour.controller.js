@@ -1,18 +1,24 @@
 const Place = require("../models/place.model");
 const Tour = require("../models/tour.model");
-const mailer = require("../config/mailer.config");
-const passport = require("passport");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const multer = require("multer");
-
 const mongoose = require("mongoose");
 
 module.exports.getTour = (req, res, next) => {
   Tour.findById(req.params.id)
+    .populate("place")
     .then((tour) => {
-      console.log("tour by id", tour);
-      res.render("tours/tour", { layout: "layout-nofooter", tour });
+      const placesInTour = tour.places;
+      console.log("get tours list", tour);
+      console.log("get places list", placesInTour);
+      const places = [];
+      placesInTour.forEach((place) => {
+        Place.findById(place)
+          .then((place) => {
+            places.push(place.name);
+            console.log("place in tour name", place.name);
+          })
+          .catch(next);
+      });
+      res.render("tours/tour", { layout: "layout-nofooter", tour, places });
     })
     .catch(next);
 };
