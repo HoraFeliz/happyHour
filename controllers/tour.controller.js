@@ -22,7 +22,11 @@ module.exports.addTour = (req, res, next) => {
     .save()
     .then(() => {
       console.log("tour", tour);
-      res.render("tours/form-2", { tour });
+      Place.find()
+        .then((places) => {
+          res.render("tours/form-2", { tour, places });
+
+        })
     })
     .catch((err) => console.log("err saving tour:", err));
 };
