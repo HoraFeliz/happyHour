@@ -104,7 +104,7 @@ module.exports.addPlace = (req, res, next) => {
           .populate("place")
           .then((tour) => {
             if (tour) {
-              res.render("tours/places-list", { places: places });
+              res.render("tours/places-list", { places, tour });
             } else {
               console.log("Couldn´t update tour with list of places");
             }
