@@ -50,77 +50,72 @@ module.exports.edit = (req, res, next) => {
 
 module.exports.addPlace = (req, res, next) => {
   const tourId = req.params.id;
-  let places = [];
 
-  const placesFromDb = JSON.parse(req.body.placeData);
-  placesFromDb.forEach((placeFromDb) => {
-    let place = new Place({
-      name: placeFromDb.name,
-      description: placeFromDb.types.join(","),
-      tags: placeFromDb.tags,
-      city: placeFromDb.city,
-      image: placeFromDb.imgSrc,
-      owner: req.currentUser._id,
-      location: {
-        type: "Point",
-        coordinates: [
-          placeFromDb.geometry.longitude,
-          placeFromDb.geometry.latitude,
-        ],
-      },
-      url: placeFromDb.website,
-      address: placeFromDb.formatted_address,
-      isOpen: placeFromDb.opening_hours.open_now,
-      openingHours: placeFromDb.opening_hours.weekday_text,
-      rating: placeFromDb.rating,
-      priceLevel: placeFromDb.price_level,
-    });
-
-    places.push(place);
-
-    place
-      .save()
-      .then((place) => {
-        placeFromDb.reviews.map((reviewItem) => {
-          let review = new Review({
-            autorName: reviewItem.author_name,
-            autorUrl: reviewItem.author_url,
-            autorPhoto: reviewItem.profile_photo_url,
-            rating: reviewItem.rating,
-            relativeTimeDesc: reviewItem.relative_time_description,
-            text: reviewItem.text,
-            time: reviewItem.time,
-            place: place._id,
-          });
-          review.save();
-        });
-        Tour.findByIdAndUpdate(
-          tourId,
-          {
-            places,
-          },
-          { runValidators: true, new: true, useFindAndModify: false }
-        )
-          .populate("place")
-          .then((tour) => {
-            if (tour) {
-              res.render("tours/form-2", { places, tour });
-            } else {
-              console.log("Couldn´t update tour with list of places");
-            }
-          })
-          .catch(next);
-      })
-
-      .catch((error) => {
-        if (error instanceof mongoose.Error.ValidationError) {
-          console.log("Validation error saving place to db", error);
-        } else {
-          console.log("error", error);
-          next(error);
-        }
-      });
+  const placeFromDb = JSON.parse(req.body.placeData);
+  const place = new Place({
+    name: placeFromDb.name,
+    tags: placeFromDb.tags,
+    city: placeFromDb.city,
+    image: placeFromDb.imgSrc,
+    owner: req.currentUser._id,
+    location: {
+      type: "Point",
+      coordinates: [
+        placeFromDb.geometry.longitude,
+        placeFromDb.geometry.latitude,
+      ],
+    },
+    url: placeFromDb.website,
+    address: placeFromDb.formatted_address,
+    isOpen: placeFromDb.opening_hours.open_now,
+    openingHours: placeFromDb.opening_hours.weekday_text,
+    rating: placeFromDb.rating,
+    priceLevel: placeFromDb.price_level,
   });
+
+  place
+    .save()
+    .then((place) => {
+      placeFromDb.reviews.map((reviewItem) => {
+        let review = new Review({
+          autorName: reviewItem.author_name,
+          autorUrl: reviewItem.author_url,
+          autorPhoto: reviewItem.profile_photo_url,
+          rating: reviewItem.rating,
+          relativeTimeDesc: reviewItem.relative_time_description,
+          text: reviewItem.text,
+          time: reviewItem.time,
+          place: place._id,
+        });
+        review.save();
+      });
+      Tour.findByIdAndUpdate(
+        tourId,
+        {
+          $push: { places: place },
+        },
+        { runValidators: true, new: true, useFindAndModify: false }
+      )
+        .populate("place")
+        .then((tour) => {
+          if (tour) {
+            // res.render("tours/form-2", { places, tour });
+            res.redirect(`/tours/form-2/${tour.id}`);
+          } else {
+            console.log("Couldn´t update tour with list of places");
+          }
+        })
+        .catch(next);
+    })
+
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        console.log("Validation error saving place to db", error);
+      } else {
+        console.log("error", error);
+        next(error);
+      }
+    });
 };
 
 module.exports.update = (req, res, next) => {
