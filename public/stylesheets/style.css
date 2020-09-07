@@ -234,6 +234,20 @@ nav.navbar {
 }
 
 /* Tour Detail */
+
+.place-detail-rating {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-top: -10px;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  background-color: rgba(98, 34, 237, 0.81);
+  border-radius: 3px;
+  padding: 2px 10px;
+}
+
 .purple-back-secundary {
   margin-bottom: 20px;
   margin-top: -21px;

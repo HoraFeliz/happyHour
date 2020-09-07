@@ -7,6 +7,69 @@
     </div>
     <div class="col-sm-12">
       <div class="place-detail-photo" style="background-image: url('{{place.image}}');">
+        {{!-- Tour Rating --}}
+        <div class="place-detail-rating">
+          <span class="rating-num text-white pr-2">{{place.rating}}</span>
+
+          {{!-- Star 1 --}}
+          {{#ifCond place.rating '<=' 0}}
+          <img src="/img/star-off.png" alt="1">
+          {{ else ifCond place.rating '>=' 1}}
+          <img src="/img/star-on.png" alt="1">
+          {{ else ifCond place.rating '>=' 0.5}}
+          <img src="/img/star-half.png" alt="1">
+          {{ else }}
+          <img src="/img/star-off.png" alt="1">
+          {{/ifCond}}
+
+          {{!-- Star 2 --}}
+          {{#ifCond place.rating '<=' 1}}
+          <img src="/img/star-off.png" alt="2">
+          {{ else ifCond place.rating '>=' 2}}
+          <img src="/img/star-on.png" alt="2">
+          {{ else ifCond place.rating '>=' 1.5}}
+          <img src="/img/star-half.png" alt="2">
+          {{ else }}
+          <img src="/img/star-off.png" alt="2">
+          {{/ifCond}}
+
+          {{!-- Star 3 --}}
+          {{#ifCond place.rating '<=' 2}}
+          <img src="/img/star-off.png" alt="3">
+          {{ else ifCond place.rating '>=' 3}}
+          <img src="/img/star-on.png" alt="3">
+          {{ else ifCond place.rating '>=' 2.5}}
+          <img src="/img/star-half.png" alt="3">
+          {{ else }}
+          <img src="/img/star-off.png" alt="3">
+          {{/ifCond}}
+
+          {{!-- Star 4 --}}
+          {{#ifCond place.rating '<=' 3}}
+          <img src="/img/star-off.png" alt="4">
+          {{ else ifCond place.rating '>=' 4}}
+          <img src="/img/star-on.png" alt="4">
+          {{ else ifCond place.rating '>=' 3.5}}
+          <img src="/img/star-half.png" alt="4">
+          {{ else }}
+          <img src="/img/star-off.png" alt="4">
+          {{/ifCond}}
+
+          {{!-- Star 5 --}}
+          {{#ifCond place.rating '<=' 4}}
+          <img src="/img/star-off.png" alt="5">
+          {{ else ifCond place.rating '>=' 5}}
+          <img src="/img/star-on.png" alt="5">
+          {{ else ifCond place.rating '>=' 4.5}}
+          <img src="/img/star-half.png" alt="5">
+          {{ else }}
+          <img src="/img/star-off.png" alt="5">
+          {{/ifCond}}
+        </div>
+      </div>
+      {{!-- Google Rating --}}
+      <div class="tour-detail-rating">
+
       </div>
     </div>
 
@@ -34,65 +97,7 @@
       </div>
     </div> --}}
 
-    {{!-- Google Rating --}}
-    <div class="col-12 tour-detail-rating">
-      <span class="rating-num">{{place.rating}}</span>
 
-      {{!-- Star 1 --}}
-      {{#ifCond place.rating '<=' 0}}
-      <img src="/img/star-off.png" alt="1">
-      {{ else ifCond place.rating '>=' 1}}
-      <img src="/img/star-on.png" alt="1">
-      {{ else ifCond place.rating '>=' 0.5}}
-      <img src="/img/star-half.png" alt="1">
-      {{ else }}
-      <img src="/img/star-off.png" alt="1">
-      {{/ifCond}}
-
-      {{!-- Star 2 --}}
-      {{#ifCond place.rating '<=' 1}}
-      <img src="/img/star-off.png" alt="2">
-      {{ else ifCond place.rating '>=' 2}}
-      <img src="/img/star-on.png" alt="2">
-      {{ else ifCond place.rating '>=' 1.5}}
-      <img src="/img/star-half.png" alt="2">
-      {{ else }}
-      <img src="/img/star-off.png" alt="2">
-      {{/ifCond}}
-
-      {{!-- Star 3 --}}
-      {{#ifCond place.rating '<=' 2}}
-      <img src="/img/star-off.png" alt="3">
-      {{ else ifCond place.rating '>=' 3}}
-      <img src="/img/star-on.png" alt="3">
-      {{ else ifCond place.rating '>=' 2.5}}
-      <img src="/img/star-half.png" alt="3">
-      {{ else }}
-      <img src="/img/star-off.png" alt="3">
-      {{/ifCond}}
-
-      {{!-- Star 4 --}}
-      {{#ifCond place.rating '<=' 3}}
-      <img src="/img/star-off.png" alt="4">
-      {{ else ifCond place.rating '>=' 4}}
-      <img src="/img/star-on.png" alt="4">
-      {{ else ifCond place.rating '>=' 3.5}}
-      <img src="/img/star-half.png" alt="4">
-      {{ else }}
-      <img src="/img/star-off.png" alt="4">
-      {{/ifCond}}
-
-      {{!-- Star 5 --}}
-      {{#ifCond place.rating '<=' 4}}
-      <img src="/img/star-off.png" alt="5">
-      {{ else ifCond place.rating '>=' 5}}
-      <img src="/img/star-on.png" alt="5">
-      {{ else ifCond place.rating '>=' 4.5}}
-      <img src="/img/star-half.png" alt="5">
-      {{ else }}
-      <img src="/img/star-off.png" alt="5">
-      {{/ifCond}}
-    </div>
 
     {{!-- Place info --}}
     <div class="col-sm-12">
@@ -102,9 +107,11 @@
       {{#each place.openingHours}}
       <p class="schedule">{{this}}</p>
       {{/each}}
+      {{#if place.priceLevel}}
       <p class="place-text-location"><strong>Prices:
         </strong>{{#ifCond place.priceLevel '==' 1}}€{{ else ifCond place.priceLevel '==' 2}}€€{{ else ifCond place.priceLevel '==' 3}}€€€{{/ifCond}}
       </p>
+      {{/if}}
     </div>
     {{!-- <div class="col-sm-12 tour-detail-desc">
             <strong>Description:</strong>
@@ -122,7 +129,7 @@
     {{!-- Tour Location --}}
     <div class="col-sm-12">
       <div class="tour-detail-location">
-        <strong>City: </strong> Madrid
+        <strong><i class="fa fa-map-marker text-purple"></i></strong> Madrid
       </div>
       <div class="place-detail-map"></div>
     </div>
