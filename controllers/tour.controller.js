@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 module.exports.getTour = (req, res, next) => {
   const places = [];
+  const ratings = [];
   let tourById;
   Tour.findById(req.params.id)
     .populate("place")
@@ -13,16 +14,22 @@ module.exports.getTour = (req, res, next) => {
       placesInTour.forEach((placeId) => {
         Place.findById(placeId).then((place) => {
           places.push(place);
+          ratings.push(place.rating);
         });
       });
     })
     .catch(next);
   setTimeout(() => {
-    // console.log(`Tour: ${tourById}, places in tour: ${places}`);
+    const rating =
+      Math.round(
+        (ratings.reduce((total, rating) => total + rating) / ratings.length) *
+          10
+      ) / 10;
     res.render("tours/tour", {
       layout: "layout-nofooter",
       tour: tourById,
       places,
+      rating,
     });
   }, 100);
 };
