@@ -20,11 +20,6 @@ module.exports.getTour = (req, res, next) => {
     })
     .catch(next);
   setTimeout(() => {
-    const rating =
-      Math.round(
-        (ratings.reduce((total, rating) => total + rating) / ratings.length) *
-          10
-      ) / 10;
     res.render("tours/tour", {
       layout: "layout-nofooter",
       tour: tourById,

@@ -18,8 +18,7 @@ const tourSchema = new mongoose.Schema(
       trim: true,
     },
     rating: {
-      type: Number,
-      default: 0,
+      type: [Number],
     },
     image: {
       type: String,

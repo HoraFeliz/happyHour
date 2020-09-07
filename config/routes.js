@@ -151,6 +151,10 @@ router.get("/tours/places", (req, res, next) => {
 //   res.render("tours/start");
 // });
 
-router.get("/tours/start/:id", session.isAuthenticated, tourController.startTour);
+router.get(
+  "/tours/start/:id",
+  session.isAuthenticated,
+  tourController.startTour
+);
 
 module.exports = router;

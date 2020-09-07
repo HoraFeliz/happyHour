@@ -11,12 +11,9 @@ module.exports.getList = (req, res, next) => {
     .then((tour) => {
       if (tour) {
         const placesInTour = tour.places;
-        console.log("get tours list", tour);
-        console.log("get places list", placesInTour);
         const places = [];
 
         placesInTour.forEach((place) => {
-          console.log("loop place", place);
           Place.findById(place)
             .then((place) => {
               places.push(place);
@@ -76,7 +73,6 @@ module.exports.edit = (req, res, next) => {
 
 module.exports.addPlace = (req, res, next) => {
   const tourId = req.params.id;
-
   const placeFromDb = JSON.parse(req.body.placeData);
   const place = new Place({
     name: placeFromDb.name,
@@ -98,7 +94,7 @@ module.exports.addPlace = (req, res, next) => {
     rating: placeFromDb.rating,
     priceLevel: placeFromDb.price_level,
   });
-
+  const placeRating = place.rating;
   place
     .save()
     .then((place) => {
@@ -115,17 +111,18 @@ module.exports.addPlace = (req, res, next) => {
         });
         review.save();
       });
+
       Tour.findByIdAndUpdate(
         tourId,
         {
           $push: { places: place },
+          $push: { rating: placeRating },
         },
         { runValidators: true, new: true, useFindAndModify: false }
       )
         .populate("place")
         .then((tour) => {
           if (tour) {
-            // res.render("tours/form-2", { places, tour });
             res.redirect(`/tours/form-2/added/${tour.id}`);
           } else {
             console.log("Couldn´t update tour with list of places");
