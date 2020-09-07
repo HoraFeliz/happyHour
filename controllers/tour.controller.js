@@ -18,9 +18,34 @@ module.exports.getTour = (req, res, next) => {
     })
     .catch(next);
   setTimeout(() => {
-    console.log(`Tour: ${tourById}, places in tour: ${places}`);
+    // console.log(`Tour: ${tourById}, places in tour: ${places}`);
     res.render("tours/tour", {
       layout: "layout-nofooter",
+      tour: tourById,
+      places,
+    });
+  }, 100);
+};
+
+module.exports.startTour = (req, res, next) => {
+  const places = [];
+  let tourById;
+  Tour.findById(req.params.id)
+    .populate("place")
+    .then((tour) => {
+      tourById = tour;
+      const placesInTour = tour.places;
+      placesInTour.forEach((placeId) => {
+        Place.findById(placeId).then((place) => {
+          places.push(place);
+        });
+      });
+    })
+    .catch(next);
+  setTimeout(() => {
+    // console.log(`Tour: ${tourById}, places in tour: ${places}`);
+    res.render("tours/start", {
+      layout: "layout",
       tour: tourById,
       places,
     });

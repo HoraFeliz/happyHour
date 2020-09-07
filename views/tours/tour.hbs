@@ -7,12 +7,14 @@
             <img src="/img/tourdetail.svg" alt="Tour Detail">
         </div>
     </div>
-    <h3>Historical Tour</h3>
-    <div class="tour-detail-photo" style="background-image: url('/img/historical-tour.jpg');">
+    <h3>{{tour.name}}</h3>
+    <div class="tour-detail-photo" style="background-image: url('{{tour.image}}');">
+        {{#if tour.recommended}}
         <div class="tour-list-recommended">
             <i class="fa fa-star"></i> <span>RECOMMENDED</span>
         </div>
-        <div class="tour-list-rating">
+        {{/if}}
+        <div class="tour-list-rating detail">
             <span class="rating-num">4.5</span>
             <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
             <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
@@ -30,158 +32,140 @@
     </div>
 
 
-    <div class="tour-detail-desc mt-3">
+    <div class="tour-detail-desc mt-3 mb-3">
         <strong>Description:</strong>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum,
-            nisi
-            lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor.
-                Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut
-                aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc
-                venenatis
-                imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue
-                eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+        <p id="dotdotdot-descrip">{{tour.description}}</p>
         <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2" src="/img/more-info-button.png"
                 alt="Read More">
             Read
             more</button>
     </div>
 
+    {{#each places}}
+    <a href="/places/{{this._id}}">
+        <div class="row pb-3 pt-3">
+            <div class="col-3">
+                <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
+                </div>
+                {{#if @last }}
+                <div class="tour-line">
+                    {{!-- <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line"> --}}
+                </div>
+                {{ else if @index }}
+                <div class="tour-line">
+                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+                </div>
+                {{ else if @first }}
+                <div class="tour-line">
+                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+                </div>
+                {{/if}}
+            </div>
+            <div class="col-9">
+                <div class="tour-circle">
+                    <p class="tour-num">{{inc @index}}</p>
+                    <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+                </div>
+                <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
+                <p class="tour-desc">{{dotdotdot this.address 60}}</p>
+            </div>
 
+            {{!-- Place Rating --}}
+            <div class="col-12 tour-rating">
+                {{!-- <span class="user-rating">(74)</span> --}}
+                <span class="rating-num">{{this.rating}}</span>
 
+                {{!-- Star 1 --}}
+                {{#ifCond this.rating '<=' 0}}
+                <img src="/img/star-off.png" alt="1">
+                {{ else ifCond this.rating '>=' 1}}
+                <img src="/img/star-on.png" alt="1">
+                {{ else ifCond this.rating '>=' 0.5}}
+                <img src="/img/star-half.png" alt="1">
+                {{ else }}
+                <img src="/img/star-off.png" alt="1">
+                {{/ifCond}}
 
-    {{!-- <div class="row">
-        <div class="col-sm-12">
-            <h3>Historical Tour</h3>
+                {{!-- Star 2 --}}
+                {{#ifCond this.rating '<=' 1}}
+                <img src="/img/star-off.png" alt="2">
+                {{ else ifCond this.rating '>=' 2}}
+                <img src="/img/star-on.png" alt="2">
+                {{ else ifCond this.rating '>=' 1.5}}
+                <img src="/img/star-half.png" alt="2">
+                {{ else }}
+                <img src="/img/star-off.png" alt="2">
+                {{/ifCond}}
+
+                {{!-- Star 3 --}}
+                {{#ifCond this.rating '<=' 2}}
+                <img src="/img/star-off.png" alt="3">
+                {{ else ifCond this.rating '>=' 3}}
+                <img src="/img/star-on.png" alt="3">
+                {{ else ifCond this.rating '>=' 2.5}}
+                <img src="/img/star-half.png" alt="3">
+                {{ else }}
+                <img src="/img/star-off.png" alt="3">
+                {{/ifCond}}
+
+                {{!-- Star 4 --}}
+                {{#ifCond this.rating '<=' 3}}
+                <img src="/img/star-off.png" alt="4">
+                {{ else ifCond this.rating '>=' 4}}
+                <img src="/img/star-on.png" alt="4">
+                {{ else ifCond this.rating '>=' 3.5}}
+                <img src="/img/star-half.png" alt="4">
+                {{ else }}
+                <img src="/img/star-off.png" alt="4">
+                {{/ifCond}}
+
+                {{!-- Star 5 --}}
+                {{#ifCond this.rating '<=' 4}}
+                <img src="/img/star-off.png" alt="5">
+                {{ else ifCond this.rating '>=' 5}}
+                <img src="/img/star-on.png" alt="5">
+                {{ else ifCond this.rating '>=' 4.5}}
+                <img src="/img/star-half.png" alt="5">
+                {{ else }}
+                <img src="/img/star-off.png" alt="5">
+                {{/ifCond}}
+            </div>
         </div>
-        <div class="col-sm-12">
-            <div class="tour-detail-photo" style="background-image: url('/img/historical-tour.jpg');"> --}}
-
-    {{!-- Recommended Tag --}}
-    {{!-- <div class="tour-list-recommended">
-                    <i class="fa fa-star"></i> <span>RECOMMENDED</span>
-                </div>
-                <div class="tour-list-rating">
-                    <span class="rating-num">4.5</span>
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
-                    <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
-                </div>
-            </div>
-        </div> --}}
-
-    {{!-- Tour Location --}}
-    {{!-- <div class="col-sm-12"> --}}
-    {{!-- <div class="tour-detail-location">
-                <strong>City: </strong> Madrid
-            </div> --}}
-
-    {{!-- Map --}}
-    {{!-- <div id="map" class="tour-detail-map"></div>
-        <div id="infowindow-content">
-            <img src="" width="16" height="16" id="place-icon" />
-            <span id="place-name" class="title"></span><br />
-            <span id="place-address"></span>
-        </div>
-
-    </div> --}}
-
-    {{!-- Start Tour  ### Sticky Button --}}
-
-
-
-
-
-
-    {{!-- Tour Places --}}
-    {{!-- <a href="/tours/places">
-            <div class="row tour-detail-list-item">
-                <div class="col-3">
-                    <div class="tour-detail-list-photo" style="background-image: url('/img/madrilenos.jpg');">
-                    </div>
-                    <div class="tour-line">
-                        <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="tour-circle">
-                        <p class="tour-num">1</p>
-                        <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-                    </div>
-                    <h3>Madrileños</h3>
-                    <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque</p>
-                </div>
-                <div class="col-12 tour-detail-rating">
-                    <span class="user-rating">(74)</span>
-                    <span class="rating-num">4.5</span>
-                    <img src="/img/star-on.png" alt="1">
-                    <img src="/img/star-on.png" alt="2">
-                    <img src="/img/star-on.png" alt="3">
-                    <img src="/img/star-on.png" alt="4">
-                    <img src="/img/star-half.png" alt="5">
-                </div>
-            </div>
-        </a> --}}
-
-    {{!-- Second place --}}
-
-    {{!-- <div class="col-3">
-            <div class="tour-detail-list-photo" style="background-image: url('/img/laperla.jpg');">
-            </div>
-            <div class="tour-line">
-                <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-            </div>
-        </div>
-        <div class="col-9">
-            <div class="tour-circle">
-                <p class="tour-num">2</p>
-                <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-            </div>
-            <h3>La Perla</h3>
-            <p class="tour-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, cumque?</p>
-        </div>
-        <div class="col-12 tour-rating">
-            <span class="user-rating">(183)</span>
-            <span class="rating-num">4.3</span>
-            <img src="/img/star-on.png" alt="1">
-            <img src="/img/star-on.png" alt="2">
-            <img src="/img/star-on.png" alt="3">
-            <img src="/img/star-on.png" alt="4">
-            <img src="/img/star-half.png" alt="5">
-        </div> --}}
+    </a>
+    {{/each}}
 
     {{!-- Your Rating --}}
-
     <h3 class="mt-5">Your Rating</h3>
 
     <div id="tour-detail-your-rating" class="tour-detail-your-rating">
-        <a href="/tours/form-2">
+        <a href="/tours/tour/{{tour._id}}">
             <div id="beer-rating-cont-01" class="beer-rating-cont">
                 <img class="beer-rating" id="beer-01" src="/img/your-rating-off.png" alt="1">
             </div>
         </a>
-        <a href="/tours/form-2">
+        <a href="/tours/start/{{tour._id}}">
             <div id="beer-rating-cont-02" class="beer-rating-cont">
                 <img class="beer-rating" id="beer-02" src="/img/your-rating-off.png" alt="2">
             </div>
         </a>
-        <a href="/tours/form-2">
+        <a href="/tours/start/{{tour._id}}">
             <div id="beer-rating-cont-03" class="beer-rating-cont">
                 <img class="beer-rating" id="beer-03" src="/img/your-rating-off.png" alt="3">
             </div>
         </a>
-        <a href="/tours/form-2">
+        <a href="/tours/start/{{tour._id}}">
             <div id="beer-rating-cont-04" class="beer-rating-cont">
                 <img class="beer-rating" id="beer-04" src="/img/your-rating-off.png" alt="4">
             </div>
         </a>
-        <a href="/tours/form-2">
+        <a href="/tours/start/{{tour._id}}">
             <div id="beer-rating-cont-05" class="beer-rating-cont">
                 <img class="beer-rating" id="beer-05" src="/img/your-rating-off.png" alt="5">
             </div>
         </a>
     </div>
+
+    {{!-- Comments --}}
 
     <h3 class="mt-5">Comments</h3>
 

@@ -1,4 +1,3 @@
-
 <article class="tour-detail">
   <div class="row">
     <div class="col-sm-12">
@@ -97,13 +96,13 @@
 
     {{!-- Place info --}}
     <div class="col-sm-12">
-      <p class="place-text-location"><strong>Dirección: </strong>{{place.address}}</p>
-      <p class="place-text-location"><strong>Horario: {{#if place.isOpen}}</strong><span
-          class="text-green">Abierto</span>{{else}}</strong><span class="text-red">Cerrado</span>{{/if}}</p>
+      <p class="place-text-location"><strong>Address: </strong>{{place.address}}</p>
+      <p class="place-text-location"><strong>Schedule: {{#if place.isOpen}}</strong><span
+          class="text-green">Open</span>{{else}}</strong><span class="text-red">Close</span>{{/if}}</p>
       {{#each place.openingHours}}
       <p class="schedule">{{this}}</p>
       {{/each}}
-      <p class="place-text-location"><strong>Precios:
+      <p class="place-text-location"><strong>Prices:
         </strong>{{#ifCond place.priceLevel '==' 1}}€{{ else ifCond place.priceLevel '==' 2}}€€{{ else ifCond place.priceLevel '==' 3}}€€€{{/ifCond}}
       </p>
     </div>

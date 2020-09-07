@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", beerRating);
-
+document.addEventListener("DOMContentLoaded", domFunctions);
 
 document.querySelectorAll("[data-enable]").forEach((el) => {
   el.addEventListener("click", function () {
@@ -50,6 +49,19 @@ function readMore() {
     btnText.classList.add('read-less')
     moreText.style.display = "inline";
   }
+}
+
+function readMoreText() {
+  const dot = document.getElementById('dotdotdot-descrip').innerHTML
+  const myBtn = document.getElementById('myBtn')
+  const textLenght = 100
+
+  if (dot.length > textLenght) {
+    document.getElementById('dotdotdot-descrip').innerHTML = dot.substring(0, textLenght) + '<span id="dots">...</span><span id="more">' + dot.substring(textLenght + 1, dot.length) + '</span></span>'
+  } else {
+    myBtn.style.display = 'none'
+  }
+
 }
 
 function beerRating() {
@@ -108,37 +120,9 @@ function beerRating() {
     beerFour.src = '/img/your-rating-off.png'
     beerFive.src = '/img/your-rating-off.png'
   })
-  // beerRatingDiv02.addEventListener("mouseout", function () {
-  //   beerOne.src = '/img/your-rating-off.png'
-  //   beerTwo.src = '/img/your-rating-off.png'
-  //   beerThree.src = '/img/your-rating-off.png'
-  //   beerFour.src = '/img/your-rating-off.png'
-  //   beerFive.src = '/img/your-rating-off.png'
-  //   console.log('mouseout');
-  // })
-  // beerRatingDiv03.addEventListener("mouseout", function () {
-  //   beerOne.src = '/img/your-rating-off.png'
-  //   beerTwo.src = '/img/your-rating-off.png'
-  //   beerThree.src = '/img/your-rating-off.png'
-  //   beerFour.src = '/img/your-rating-off.png'
-  //   beerFive.src = '/img/your-rating-off.png'
-  //   console.log('mouseout');
-  // })
-  // beerRatingDiv04.addEventListener("mouseout", function () {
-  //   beerOne.src = '/img/your-rating-off.png'
-  //   beerTwo.src = '/img/your-rating-off.png'
-  //   beerThree.src = '/img/your-rating-off.png'
-  //   beerFour.src = '/img/your-rating-off.png'
-  //   beerFive.src = '/img/your-rating-off.png'
-  //   console.log('mouseout');
-  // })
-  // beerRatingDiv05.addEventListener("mouseout", function () {
-  //   beerOne.src = '/img/your-rating-off.png'
-  //   beerTwo.src = '/img/your-rating-off.png'
-  //   beerThree.src = '/img/your-rating-off.png'
-  //   beerFour.src = '/img/your-rating-off.png'
-  //   beerFive.src = '/img/your-rating-off.png'
-  //   console.log('mouseout');
-  // })
+}
 
+function domFunctions() {
+  beerRating()
+  readMoreText()
 }

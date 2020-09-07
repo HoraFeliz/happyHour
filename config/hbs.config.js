@@ -47,7 +47,7 @@ hbs.registerHelper("inc", function (value, options) {
 
 hbs.registerHelper('dotdotdot', function (str, charLenght) {
   if (str.length > charLenght)
-    return str.substring(0, charLenght) + '...';
+    return str.substring(0, charLenght) + `...`;
   return str;
 });
 
