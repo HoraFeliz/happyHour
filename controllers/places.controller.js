@@ -37,6 +37,7 @@ module.exports.show = (req, res, next) => {
   Place.findById(req.params.id)
     .populate("owner")
     .populate("likes")
+    .populate("reviews")
     .populate({
       path: "comments",
       options: {

@@ -1,11 +1,13 @@
 <article class="tour-start">
     <div class="purple-back-secundary">
         <h4 class="tour-detail-title-primary">
-            <strong>START </strong>TOUR
+            <a class="appyhour-breadcrumb" href="/tours">TOURS</a> <span class="appy-slack">/</span> <a
+                class="appyhour-breadcrumb" onclick="goBack()" href="javascript:void(0);">TOUR</a> <span
+                class="appy-slack">/</span> START
         </h4>
-        <div class="tour-detail-img">
+        {{!-- <div class="tour-detail-img">
             <img src="/img/starttour.svg" alt="Tour Detail">
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         <div class="col-sm-12">
@@ -33,211 +35,235 @@
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-sm-12">
-                                <div class="tour-detail-photo" style="background-image: url('{{tour.image}}">
+                                <div class="tour-list-img" style="background-image: url('{{tour.image}}');">
+                                    {{!-- if recommended => include on tour model --}}
+                                    {{!-- Recommended Tag --}}
+                                    {{#if tour.recommended}}
+                                    <div class="tour-list-recommended">
+                                        <i class="fa fa-star"></i> <span>RECOMMENDED</span>
+                                    </div>
+                                    {{/if}}
+                                    {{!-- Tour Rating --}}
+                                    <div class="tour-list-rating">
+                                        <span class="rating-num">{{tour.rating}}</span>
+                                        {{!-- Beer 1 --}}
+                                        {{#ifCond tour.rating '<=' 0}}
+                                        <img src="/img/rating-beer-off.png" alt="1">
+                                        {{ else ifCond tour.rating '>=' 1}}
+                                        <img src="/img/rating-beer-on.png" alt="1">
+                                        {{ else ifCond tour.rating '>=' 0.5}}
+                                        <img src="/img/rating-beer-half.png" alt="1">
+                                        {{ else }}
+                                        <img src="/img/rating-beer-off.png" alt="1">
+                                        {{/ifCond}}
+
+                                        {{!-- Beer 2 --}}
+                                        {{#ifCond tour.rating '<=' 1}}
+                                        <img src="/img/rating-beer-off.png" alt="2">
+                                        {{ else ifCond tour.rating '>=' 2}}
+                                        <img src="/img/rating-beer-on.png" alt="2">
+                                        {{ else ifCond tour.rating '>=' 1.5}}
+                                        <img src="/img/rating-beer-half.png" alt="2">
+                                        {{ else }}
+                                        <img src="/img/rating-beer-off.png" alt="2">
+                                        {{/ifCond}}
+
+                                        {{!-- Beer 3 --}}
+                                        {{#ifCond tour.rating '<=' 2}}
+                                        <img src="/img/rating-beer-off.png" alt="3">
+                                        {{ else ifCond tour.rating '>=' 3}}
+                                        <img src="/img/rating-beer-on.png" alt="3">
+                                        {{ else ifCond tour.rating '>=' 2.5}}
+                                        <img src="/img/rating-beer-half.png" alt="3">
+                                        {{ else }}
+                                        <img src="/img/rating-beer-off.png" alt="3">
+                                        {{/ifCond}}
+
+                                        {{!-- Beer 4 --}}
+                                        {{#ifCond tour.rating '<=' 3}}
+                                        <img src="/img/rating-beer-off.png" alt="4">
+                                        {{ else ifCond tour.rating '>=' 4}}
+                                        <img src="/img/rating-beer-on.png" alt="4">
+                                        {{ else ifCond tour.rating '>=' 3.5}}
+                                        <img src="/img/rating-beer-half.png" alt="4">
+                                        {{ else }}
+                                        <img src="/img/rating-beer-off.png" alt="4">
+                                        {{/ifCond}}
+
+                                        {{!-- Beer 5 --}}
+                                        {{#ifCond tour.rating '<=' 4}}
+                                        <img src="/img/rating-beer-off.png" alt="5">
+                                        {{ else ifCond tour.rating '>=' 5}}
+                                        <img src="/img/rating-beer-on.png" alt="5">
+                                        {{ else ifCond tour.rating '>=' 4.5}}
+                                        <img src="/img/rating-beer-half.png" alt="5">
+                                        {{ else }}
+                                        <img src="/img/rating-beer-off.png" alt="5">
+                                        {{/ifCond}}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 tour-detail-title">
-                                <div class="tour-detail-rating">
-                                    {{!-- <span class="user-rating">(74)</span> --}}
-                                    <span class="rating-num">{{tour.rating}}</span>
-                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-                                    <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
-                                    <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
-                                </div>
-                            </div>
-                            <div class="col-sm-12 tour-detail-desc">
-                                <strong>Description:</strong>
-                                <p id="dotdotdot-descrip">{{tour.description}}</p>
-                                <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2"
-                                        src="/img/more-info-button.png" alt="Read More">
-                                    Read
-                                    more</button>
-                            </div>
 
-                            {{!-- Tour Location --}}
-                            <div class="col-sm-12 pb-3">
-                                <div class="tour-detail-location">
-                                    <strong>City: </strong> Madrid
-                                </div>
-                                <div class="tour-detail-map"></div>
-                            </div>
                         </div>
-                    </div>
-                </div>
 
-            </div>
-
-
-        </div>
-
-
-        {{!-- Tour Places --}}
-        <div class="col-sm-12">
-            {{#each places}}
-            <a href="/places/{{this._id}}">
-                <div class="row pb-3 pt-3">
-                    <div class="col-3">
-                        <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
+                        <div id="map" class="tour-detail-map mb-3"></div>
+                        <div id="infowindow-content">
+                            <img src="" width="16" height="16" id="place-icon" />
+                            <span id="place-name" class="title"></span><br />
+                            <span id="place-address"></span>
                         </div>
-                        {{#if @last }}
-                        <div class="tour-line">
-                            {{!-- <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line"> --}}
-                        </div>
-                        {{ else if @index }}
-                        <div class="tour-line">
-                            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-                        </div>
-                        {{ else if @first }}
-                        <div class="tour-line">
-                            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-                        </div>
-                        {{/if}}
-                    </div>
-                    <div class="col-9">
-                        <div class="tour-circle">
-                            <p class="tour-num"><i class="fa fa-check"></i></p>
-                            <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-                        </div>
-                        <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
-                        <p class="tour-desc">{{dotdotdot this.address 60}}</p>
-                    </div>
-
-                    {{!-- Place Rating --}}
-                    <div class="col-12 tour-rating">
-                        {{!-- <span class="user-rating">(74)</span> --}}
-                        <span class="rating-num">{{this.rating}}</span>
-
-                        {{!-- Star 1 --}}
-                        {{#ifCond this.rating '<=' 0}}
-                        <img src="/img/star-off.png" alt="1">
-                        {{ else ifCond this.rating '>=' 1}}
-                        <img src="/img/star-on.png" alt="1">
-                        {{ else ifCond this.rating '>=' 0.5}}
-                        <img src="/img/star-half.png" alt="1">
-                        {{ else }}
-                        <img src="/img/star-off.png" alt="1">
-                        {{/ifCond}}
-
-                        {{!-- Star 2 --}}
-                        {{#ifCond this.rating '<=' 1}}
-                        <img src="/img/star-off.png" alt="2">
-                        {{ else ifCond this.rating '>=' 2}}
-                        <img src="/img/star-on.png" alt="2">
-                        {{ else ifCond this.rating '>=' 1.5}}
-                        <img src="/img/star-half.png" alt="2">
-                        {{ else }}
-                        <img src="/img/star-off.png" alt="2">
-                        {{/ifCond}}
-
-                        {{!-- Star 3 --}}
-                        {{#ifCond this.rating '<=' 2}}
-                        <img src="/img/star-off.png" alt="3">
-                        {{ else ifCond this.rating '>=' 3}}
-                        <img src="/img/star-on.png" alt="3">
-                        {{ else ifCond this.rating '>=' 2.5}}
-                        <img src="/img/star-half.png" alt="3">
-                        {{ else }}
-                        <img src="/img/star-off.png" alt="3">
-                        {{/ifCond}}
-
-                        {{!-- Star 4 --}}
-                        {{#ifCond this.rating '<=' 3}}
-                        <img src="/img/star-off.png" alt="4">
-                        {{ else ifCond this.rating '>=' 4}}
-                        <img src="/img/star-on.png" alt="4">
-                        {{ else ifCond this.rating '>=' 3.5}}
-                        <img src="/img/star-half.png" alt="4">
-                        {{ else }}
-                        <img src="/img/star-off.png" alt="4">
-                        {{/ifCond}}
-
-                        {{!-- Star 5 --}}
-                        {{#ifCond this.rating '<=' 4}}
-                        <img src="/img/star-off.png" alt="5">
-                        {{ else ifCond this.rating '>=' 5}}
-                        <img src="/img/star-on.png" alt="5">
-                        {{ else ifCond this.rating '>=' 4.5}}
-                        <img src="/img/star-half.png" alt="5">
-                        {{ else }}
-                        <img src="/img/star-off.png" alt="5">
-                        {{/ifCond}}
-                    </div>
-                </div>
-            </a>
-            {{/each}}
-        </div>
 
 
-        <div class="col-sm-12 pb-3 tour-start-completed-tour">
-            <img class="start-tour-button" src="/img/appyhour-icon.png" alt="AppyHour">
-            <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3" disabled>Completed
-                Tour</button>
-        </div>
+                        <strong>Description:</strong>
+                        <p id="dotdotdot-descrip">{{tour.description}}</p>
+                        <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2"
+                                src="/img/more-info-button.png" alt="Read More">
+                            Read
+                            more</button>
 
-        {{!-- Your Rating --}}
-        <div class="col-sm-12">
-            <h3 class="mt-5">Your Rating</h3>
-
-            <div id="tour-detail-your-rating" class="tour-detail-your-rating">
-                <a href="/tours/start/{{tour._id}}">
-                    <div id="beer-rating-cont-01" class="beer-rating-cont">
-                        <img class="beer-rating" id="beer-01" src="/img/your-rating-off.png" alt="1">
-                    </div>
-                </a>
-                <a href="/tours/start/{{tour._id}}">
-                    <div id="beer-rating-cont-02" class="beer-rating-cont">
-                        <img class="beer-rating" id="beer-02" src="/img/your-rating-off.png" alt="2">
-                    </div>
-                </a>
-                <a href="/tours/start/{{tour._id}}">
-                    <div id="beer-rating-cont-03" class="beer-rating-cont">
-                        <img class="beer-rating" id="beer-03" src="/img/your-rating-off.png" alt="3">
-                    </div>
-                </a>
-                <a href="/tours/start/{{tour._id}}">
-                    <div id="beer-rating-cont-04" class="beer-rating-cont">
-                        <img class="beer-rating" id="beer-04" src="/img/your-rating-off.png" alt="4">
-                    </div>
-                </a>
-                <a href="/tours/start/{{tour._id}}">
-                    <div id="beer-rating-cont-05" class="beer-rating-cont">
-                        <img class="beer-rating" id="beer-05" src="/img/your-rating-off.png" alt="5">
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
-        {{!-- Comments --}}
-
-        <div class="col-sm-12 tour-detail-comments">
-            <h3>Comments</h3>
-            {{!-- <img src="{{currentUser.avatar}}" width="20" class="mr-2 rounded-circle" />
-            {{currentUser.name}} --}}
-            <div class="tour-detail-comments-content">
-                <div class="tour-comment-current-user">
-                    <img class="pr-2" src="/img/current-user.png" alt="Current User"> Jaime Baró Val
-                </div>
-                <h4>Madrileños</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam amet unde deleniti perferendis saepe
-                    corporis nesciunt modi, et ipsa cumque...</p>
-                <div class="row">
-                    <div class="col-8 tour-detail-comments-photos">
-                        <img src="/img/comment-photo-1.png" alt="Comment Photo 1">
-                        <img src="/img/comment-photo-2.png" alt="Comment Photo 2">
-                        <img src="/img/comment-photo-3.png" alt="Comment Photo 3">
-                        <img src="/img/comment-photo-4.png" alt="Comment Photo 4">
-                        <img src="/img/comment-photo-5.png" alt="Comment Photo 5">
-                    </div>
-                    <div class="col-4 tour-detail-comments-num-photos">
-                        <img src="/img/comment-icon-photos.png" alt="Photo Count">
-                        <span class="rating-num">12</span>
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     </div>
+
+
+    {{!-- Tour Places --}}
+    {{#each places}}
+    <a href="/places/{{this._id}}">
+        <div class="row pb-3 pt-3">
+            <div class="col-3">
+                <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
+                </div>
+                {{#if @last }}
+                <div class="tour-line">
+                    {{!-- <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line"> --}}
+                </div>
+                {{ else if @index }}
+                <div class="tour-line">
+                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+                </div>
+                {{ else if @first }}
+                <div class="tour-line">
+                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
+                </div>
+                {{/if}}
+            </div>
+            <div class="col-9">
+                <div class="tour-circle">
+                    <p class="tour-num"><i class="fa fa-check"></i></p>
+                    <img src="/img/tour-circle-purple.png" alt="Circle Purple">
+                </div>
+                <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
+                <p class="tour-desc">{{dotdotdot this.address 60}}</p>
+            </div>
+
+            {{!-- Place Rating --}}
+            <div class="col-12 tour-rating">
+                {{!-- <span class="user-rating">(74)</span> --}}
+                <span class="rating-num">{{this.rating}}</span>
+
+                {{!-- Star 1 --}}
+                {{#ifCond this.rating '<=' 0}}
+                <img src="/img/star-off.png" alt="1">
+                {{ else ifCond this.rating '>=' 1}}
+                <img src="/img/star-on.png" alt="1">
+                {{ else ifCond this.rating '>=' 0.5}}
+                <img src="/img/star-half.png" alt="1">
+                {{ else }}
+                <img src="/img/star-off.png" alt="1">
+                {{/ifCond}}
+
+                {{!-- Star 2 --}}
+                {{#ifCond this.rating '<=' 1}}
+                <img src="/img/star-off.png" alt="2">
+                {{ else ifCond this.rating '>=' 2}}
+                <img src="/img/star-on.png" alt="2">
+                {{ else ifCond this.rating '>=' 1.5}}
+                <img src="/img/star-half.png" alt="2">
+                {{ else }}
+                <img src="/img/star-off.png" alt="2">
+                {{/ifCond}}
+
+                {{!-- Star 3 --}}
+                {{#ifCond this.rating '<=' 2}}
+                <img src="/img/star-off.png" alt="3">
+                {{ else ifCond this.rating '>=' 3}}
+                <img src="/img/star-on.png" alt="3">
+                {{ else ifCond this.rating '>=' 2.5}}
+                <img src="/img/star-half.png" alt="3">
+                {{ else }}
+                <img src="/img/star-off.png" alt="3">
+                {{/ifCond}}
+
+                {{!-- Star 4 --}}
+                {{#ifCond this.rating '<=' 3}}
+                <img src="/img/star-off.png" alt="4">
+                {{ else ifCond this.rating '>=' 4}}
+                <img src="/img/star-on.png" alt="4">
+                {{ else ifCond this.rating '>=' 3.5}}
+                <img src="/img/star-half.png" alt="4">
+                {{ else }}
+                <img src="/img/star-off.png" alt="4">
+                {{/ifCond}}
+
+                {{!-- Star 5 --}}
+                {{#ifCond this.rating '<=' 4}}
+                <img src="/img/star-off.png" alt="5">
+                {{ else ifCond this.rating '>=' 5}}
+                <img src="/img/star-on.png" alt="5">
+                {{ else ifCond this.rating '>=' 4.5}}
+                <img src="/img/star-half.png" alt="5">
+                {{ else }}
+                <img src="/img/star-off.png" alt="5">
+                {{/ifCond}}
+            </div>
+        </div>
+    </a>
+    {{/each}}
+
+
+    <div class=" pb-3 tour-start-completed-tour">
+        <img class="start-tour-button-completed" src="/img/appyhour-icon.png" alt="AppyHour">
+        <button type="submit" class="btn btn-purple text-white btn-block mt-3 pt-3 pb-3 mb-3" disabled>Completed
+            Tour</button>
+    </div>
+
+    {{!-- Your Rating --}}
+    <h3 class="mt-3">Your Rating</h3>
+
+    <div id="tour-detail-your-rating" class="tour-detail-your-rating">
+        <a href="/tours/start/{{tour._id}}">
+            <div id="beer-rating-cont-01" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-01" src="/img/your-rating-off.png" alt="1">
+            </div>
+        </a>
+        <a href="/tours/start/{{tour._id}}">
+            <div id="beer-rating-cont-02" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-02" src="/img/your-rating-off.png" alt="2">
+            </div>
+        </a>
+        <a href="/tours/start/{{tour._id}}">
+            <div id="beer-rating-cont-03" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-03" src="/img/your-rating-off.png" alt="3">
+            </div>
+        </a>
+        <a href="/tours/start/{{tour._id}}">
+            <div id="beer-rating-cont-04" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-04" src="/img/your-rating-off.png" alt="4">
+            </div>
+        </a>
+        <a href="/tours/start/{{tour._id}}">
+            <div id="beer-rating-cont-05" class="beer-rating-cont">
+                <img class="beer-rating" id="beer-05" src="/img/your-rating-off.png" alt="5">
+            </div>
+        </a>
+    </div>
+
+
+
 
 </article>

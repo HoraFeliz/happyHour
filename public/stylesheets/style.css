@@ -371,13 +371,6 @@ div.place-detail-rating>img {
   margin-top: 70px;
 }
 
-.tour-detail-comments-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  margin-top: 15px;
-}
-
 .tour-detail-comments-photos {
   display: flex;
   justify-content: space-between;
@@ -388,10 +381,6 @@ div.place-detail-rating>img {
   margin-top: 10px;
 }
 
-.tour-comment-current-user {
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
 
 .tour-detail-list-item {
   margin-left: 0;
@@ -612,6 +601,10 @@ input#avatar+label:hover {
 
 /* Tour Start */
 
+button#myBtn {
+  padding-left: 0px;
+}
+
 .card-header {
   border-bottom: 0px;
 }
@@ -627,6 +620,13 @@ input#avatar+label:hover {
 
 .tour-start-completed-tour {
   margin-top: 19px;
+  position: relative;
+}
+
+.start-tour-button-completed {
+  position: absolute;
+  top: 16px;
+  left: 22px;
 }
 
 .tour-start-your-rating {
@@ -650,7 +650,7 @@ input#avatar+label:hover {
 }
 
 .tour-start-more-info {
-  padding-left: 5px;
+  padding-left: 3px;
 }
 
 .btn-link {
@@ -688,7 +688,36 @@ input#avatar+label:hover {
   margin-top: 15px;
 }
 
-/* Places */
+/* Place Detail */
+.place-detail-comments-content {
+  padding: 5px 10px;
+  margin-top: 15px;
+  border-bottom: 1px solid #0000002b
+}
+
+.place-comment-current-user {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.place-detail-review-rating {
+  padding: 0px 0px;
+  position: absolute;
+  right: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: baseline;
+}
+
+div.place-detail-review-rating>img {
+  padding-left: 3px;
+}
+
+.place-detail-autorPhoto {
+  width: 30px;
+  padding-right: 5px;
+}
+
 .place-detail-photo {
   height: 250px;
   width: 100%;

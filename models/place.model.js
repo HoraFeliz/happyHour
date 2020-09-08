@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Comment = require("./comment.model");
 const Like = require("./like.model");
+const Reviews = require('./review.model')
 
 const placeSchema = new mongoose.Schema(
   {
