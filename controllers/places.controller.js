@@ -253,3 +253,11 @@ module.exports.like = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.delete = (req, res, next) => {
+  Place.findByIdAndDelete(req.params.id)
+    .then((place) => {
+      res.redirect(`/tours`);
+    })
+    .catch(next);
+};

@@ -141,6 +141,12 @@ router.get(
   placesController.getList
 );
 
+router.post(
+  "/tours/form-2/delete/:id",
+  session.isAuthenticated,
+  placesController.delete
+);
+
 router.get("/tours/tour/:id", session.isAuthenticated, tourController.getTour);
 
 router.get("/tours/places", (req, res, next) => {

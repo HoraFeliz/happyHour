@@ -481,6 +481,29 @@ input#avatar+label:hover {
 
 
 /* Form Create Tour */
+
+.tour-create-rating {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin-top: -5px;
+
+}
+
+div.tour-create-rating>img {
+  padding-left: 3px;
+}
+
+.tour-create-btn {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
+
+.btn-delete {
+  padding: 0px 6px;
+}
+
 .create-tour-img {
   position: relative;
   margin-left: 5px;
@@ -549,7 +572,7 @@ input#avatar+label:hover {
 }
 
 .tour-line-img {
-  height: 139px;
+  height: 152px;
   width: 3px;
 }
 
