@@ -123,6 +123,11 @@ function beerRating() {
 }
 
 function domFunctions() {
-  beerRating()
+  console.log('DOM Init');
+  // beerRating()
   readMoreText()
+}
+
+function goBack() {
+  window.history.back();
 }

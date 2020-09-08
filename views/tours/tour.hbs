@@ -1,7 +1,7 @@
 <article class="tour-detail">
     <div class="purple-back-secundary">
         <h4 class="tour-detail-title-primary">
-            <strong>TOUR </strong> DETAIL
+            <a class="appyhour-breadcrumb" href="/tours">TOURS</a> <span class="appy-slack">/</span> TOUR
         </h4>
         <div class="tour-detail-img">
             <img src="/img/tourdetail.svg" alt="Tour Detail">
@@ -15,12 +15,61 @@
         </div>
         {{/if}}
         <div class="tour-list-rating detail">
-            <span class="rating-num">4.5</span>
-            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="1">
-            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="2">
-            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="3">
-            <img class="tour-rating-img" src="/img/rating-beer-on.png" alt="4">
-            <img class="tour-rating-img" src="/img/rating-beer-half.png" alt="5">
+            <span class="rating-num">{{tour.rating}}</span>
+            {{!-- Beer 1 --}}
+            {{#ifCond tour.rating '<=' 0}}
+            <img src="/img/rating-beer-off.png" alt="1">
+            {{ else ifCond tour.rating '>=' 1}}
+            <img src="/img/rating-beer-on.png" alt="1">
+            {{ else ifCond tour.rating '>=' 0.5}}
+            <img src="/img/rating-beer-half.png" alt="1">
+            {{ else }}
+            <img src="/img/rating-beer-off.png" alt="1">
+            {{/ifCond}}
+
+            {{!-- Beer 2 --}}
+            {{#ifCond tour.rating '<=' 1}}
+            <img src="/img/rating-beer-off.png" alt="2">
+            {{ else ifCond tour.rating '>=' 2}}
+            <img src="/img/rating-beer-on.png" alt="2">
+            {{ else ifCond tour.rating '>=' 1.5}}
+            <img src="/img/rating-beer-half.png" alt="2">
+            {{ else }}
+            <img src="/img/rating-beer-off.png" alt="2">
+            {{/ifCond}}
+
+            {{!-- Beer 3 --}}
+            {{#ifCond tour.rating '<=' 2}}
+            <img src="/img/rating-beer-off.png" alt="3">
+            {{ else ifCond tour.rating '>=' 3}}
+            <img src="/img/rating-beer-on.png" alt="3">
+            {{ else ifCond tour.rating '>=' 2.5}}
+            <img src="/img/rating-beer-half.png" alt="3">
+            {{ else }}
+            <img src="/img/rating-beer-off.png" alt="3">
+            {{/ifCond}}
+
+            {{!-- Beer 4 --}}
+            {{#ifCond tour.rating '<=' 3}}
+            <img src="/img/rating-beer-off.png" alt="4">
+            {{ else ifCond tour.rating '>=' 4}}
+            <img src="/img/rating-beer-on.png" alt="4">
+            {{ else ifCond tour.rating '>=' 3.5}}
+            <img src="/img/rating-beer-half.png" alt="4">
+            {{ else }}
+            <img src="/img/rating-beer-off.png" alt="4">
+            {{/ifCond}}
+
+            {{!-- Beer 5 --}}
+            {{#ifCond tour.rating '<=' 4}}
+            <img src="/img/rating-beer-off.png" alt="5">
+            {{ else ifCond tour.rating '>=' 5}}
+            <img src="/img/rating-beer-on.png" alt="5">
+            {{ else ifCond tour.rating '>=' 4.5}}
+            <img src="/img/rating-beer-half.png" alt="5">
+            {{ else }}
+            <img src="/img/rating-beer-off.png" alt="5">
+            {{/ifCond}}
         </div>
     </div>
 
@@ -135,7 +184,7 @@
     {{/each}}
 
     {{!-- Your Rating --}}
-    <h3 class="mt-5">Your Rating</h3>
+    {{!-- <h3 class="mt-5">Your Rating</h3>
 
     <div id="tour-detail-your-rating" class="tour-detail-your-rating">
         <a href="/tours/tour/{{tour._id}}">
@@ -163,7 +212,7 @@
                 <img class="beer-rating" id="beer-05" src="/img/your-rating-off.png" alt="5">
             </div>
         </a>
-    </div>
+    </div> --}}
 
     {{!-- Comments --}}
 

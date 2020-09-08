@@ -9,9 +9,8 @@
       <div class="place-detail-photo" style="background-image: url('{{place.image}}');">
         {{!-- Tour Rating --}}
         <div class="place-detail-rating">
-          <span class="rating-num text-white pr-2">{{place.rating}}</span>
-
-          {{!-- Star 1 --}}
+          <span class="rating-num text-white">{{place.rating}}</span>
+          {{!-- Beer 1 --}}
           {{#ifCond place.rating '<=' 0}}
           <img src="/img/star-off.png" alt="1">
           {{ else ifCond place.rating '>=' 1}}
@@ -22,7 +21,7 @@
           <img src="/img/star-off.png" alt="1">
           {{/ifCond}}
 
-          {{!-- Star 2 --}}
+          {{!-- Beer 2 --}}
           {{#ifCond place.rating '<=' 1}}
           <img src="/img/star-off.png" alt="2">
           {{ else ifCond place.rating '>=' 2}}
@@ -33,7 +32,7 @@
           <img src="/img/star-off.png" alt="2">
           {{/ifCond}}
 
-          {{!-- Star 3 --}}
+          {{!-- Beer 3 --}}
           {{#ifCond place.rating '<=' 2}}
           <img src="/img/star-off.png" alt="3">
           {{ else ifCond place.rating '>=' 3}}
@@ -44,7 +43,7 @@
           <img src="/img/star-off.png" alt="3">
           {{/ifCond}}
 
-          {{!-- Star 4 --}}
+          {{!-- Beer 4 --}}
           {{#ifCond place.rating '<=' 3}}
           <img src="/img/star-off.png" alt="4">
           {{ else ifCond place.rating '>=' 4}}
@@ -55,7 +54,7 @@
           <img src="/img/star-off.png" alt="4">
           {{/ifCond}}
 
-          {{!-- Star 5 --}}
+          {{!-- Beer 5 --}}
           {{#ifCond place.rating '<=' 4}}
           <img src="/img/star-off.png" alt="5">
           {{ else ifCond place.rating '>=' 5}}

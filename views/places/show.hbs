@@ -1,10 +1,9 @@
 <div class="purple-back-secundary">
   <h4 class="tour-detail-title-primary">
-    <strong>PLACE </strong> DETAIL
+    <a class="appyhour-breadcrumb" href="/tours">TOURS</a> <span class="appy-slack">/</span> <a
+      class="appyhour-breadcrumb" onclick="goBack()" href="javascript:void(0);">TOUR</a> <span
+      class="appy-slack">/</span> PLACE
   </h4>
-  <div class="tour-detail-img">
-    <img src="/img/placedetail.svg" alt="Tour Detail">
-  </div>
 </div>
 <div class="mb-4 mt-5">
   {{>places/placecard place=place showDescription=true}}
