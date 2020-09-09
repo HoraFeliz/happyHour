@@ -3,54 +3,55 @@ const Tour = require("../models/tour.model");
 const mongoose = require("mongoose");
 
 module.exports.getTour = (req, res, next) => {
-  const places = [];
-  let tourById;
   Tour.findById(req.params.id)
-    .populate("place")
+    .populate("places")
     .then((tour) => {
-      tourById = tour;
-      const placesInTour = tour.places;
-      placesInTour.forEach((placeId) => {
-        Place.findById(placeId).then((place) => {
-          places.push(place);
-        });
+      // return res.status(200).json(tour.places)
+      res.render("tours/tour", {
+        layout: "layout-nofooter",
+        tour
       });
     })
     .catch(next);
-  setTimeout(() => {
-    // console.log(`Tour: ${tourById}, places in tour: ${places}`);
-    res.render("tours/tour", {
-      layout: "layout-nofooter",
-      tour: tourById,
-      places,
-    });
-  }, 100);
 };
 
 module.exports.startTour = (req, res, next) => {
-  const places = [];
-  let tourById;
   Tour.findById(req.params.id)
-    .populate("place")
+    .populate("places")
     .then((tour) => {
-      tourById = tour;
-      const placesInTour = tour.places;
-      placesInTour.forEach((placeId) => {
-        Place.findById(placeId).then((place) => {
-          places.push(place);
-        });
+      // return res.status(200).json(tour.places)
+      res.render("tours/start", {
+        layout: "layout",
+        tour
       });
     })
     .catch(next);
-  setTimeout(() => {
-    // console.log(`Tour: ${tourById}, places in tour: ${places}`);
-    res.render("tours/start", {
-      layout: "layout",
-      tour: tourById,
-      places,
-    });
-  }, 100);
 };
+
+// module.exports.startTour = (req, res, next) => {
+//   const places = [];
+//   let tourById;
+//   Tour.findById(req.params.id)
+//     .populate("place")
+//     .then((tour) => {
+//       tourById = tour;
+//       const placesInTour = tour.places;
+//       placesInTour.forEach((placeId) => {
+//         Place.findById(placeId).then((place) => {
+//           places.push(place);
+//         });
+//       });
+//     })
+//     .catch(next);
+//   setTimeout(() => {
+//     // console.log(`Tour: ${tourById}, places in tour: ${places}`);
+//     res.render("tours/start", {
+//       layout: "layout",
+//       tour: tourById,
+//       places,
+//     });
+//   }, 100);
+// };
 
 module.exports.addTour = (req, res, next) => {
   const name = req.body.tourName;

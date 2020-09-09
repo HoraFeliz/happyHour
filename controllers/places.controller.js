@@ -255,17 +255,25 @@ module.exports.like = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
+  const tourId = req.body.tourId
   Place.findByIdAndDelete(req.params.place)
-    .then((place) => {
-      Tour.findById(req.params.tour)
+    .then((places) => {
+      console.log(tourId);
+      Tour.findByIdAndUpdate(tourId,
+        {
+          $pull: { places: req.params.place },
+        },
+        { runValidators: true, new: true, useFindAndModify: false }
+      )
+        .populate("place")
         .then((tour) => {
-          console.log(tour.places);
-          res.redirect(`/tours/form-2/${req.params.tour}`);
-          // tour.place.findByIdAndDelete(req.params.tour)
-          //   .then(() => {
-          //     res.redirect(`/tours/form-2/${req.params.tour}`);
-          //   })
+          if (tour) {
+            // res.render("tours/form-2", { places, tour });
+            res.redirect(`/tours/form-2/${tour.id}`);
+          } else {
+            console.log("Couldn´t update tour with list of places");
+          }
         })
+        .catch(next);
     })
-    .catch(next);
 };

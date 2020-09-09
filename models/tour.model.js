@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Comment = require("./comment.model");
+const Place = require('./place.model')
 
 const tourSchema = new mongoose.Schema(
   {
@@ -35,8 +36,10 @@ const tourSchema = new mongoose.Schema(
       required: true,
     },
     places: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Place",
+      type: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Place"
+      }]
       // unique: true,
     },
   },
@@ -46,6 +49,7 @@ const tourSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 
 tourSchema.virtual("comments", {
   ref: "Comment",
