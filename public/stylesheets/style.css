@@ -572,7 +572,7 @@ div.tour-create-rating>img {
 }
 
 .tour-line-img {
-  height: 152px;
+  height: 172px;
   width: 3px;
 }
 
@@ -790,6 +790,15 @@ footer {
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+
+#directions-panel {
+  margin-top: 10px;
+  background-color: #ffee77;
+  padding: 10px;
+  overflow: scroll;
+  height: 174px;
+}
+
 #map {
   height: 60vh;
   border: 1px solid #6122ED;

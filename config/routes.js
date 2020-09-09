@@ -142,7 +142,7 @@ router.get(
 );
 
 router.post(
-  "/tours/form-2/delete/:id",
+  "/tours/form-2/delete/:tour/:place",
   session.isAuthenticated,
   placesController.delete
 );

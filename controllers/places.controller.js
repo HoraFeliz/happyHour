@@ -255,9 +255,17 @@ module.exports.like = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Place.findByIdAndDelete(req.params.id)
+  Place.findByIdAndDelete(req.params.place)
     .then((place) => {
-      res.redirect(`/tours`);
+      Tour.findById(req.params.tour)
+        .then((tour) => {
+          console.log(tour.places);
+          res.redirect(`/tours/form-2/${req.params.tour}`);
+          // tour.place.findByIdAndDelete(req.params.tour)
+          //   .then(() => {
+          //     res.redirect(`/tours/form-2/${req.params.tour}`);
+          //   })
+        })
     })
     .catch(next);
 };
