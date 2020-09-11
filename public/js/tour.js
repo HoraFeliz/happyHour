@@ -8,8 +8,28 @@ function initMap() {
     center: {
       lat: 40.416511,
       lng: -3.705247,
-    }
+    },
+
+
   });
+  new google.maps.Marker({
+    position: map.getCenter(),
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 10
+    },
+    draggable: true,
+    map: map
+  });
+  const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+  const beachMarker = new google.maps.Marker({
+    location: "Los Huevos de Lucio, Calle de la Cava Baja, 30, 28005 Madrid",
+    map,
+    icon: image
+  });
+
+
   directionsRenderer.setMap(map);
   calculateAndDisplayRoute(directionsService, directionsRenderer);
 }
@@ -17,7 +37,7 @@ function initMap() {
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const waypts = [{
     location: "Los Huevos de Lucio, Calle de la Cava Baja, 30, 28005 Madrid",
-    stopover: true
+    stopover: true,
   },
   {
     location: "Sidrería Casa Antonio La Latina Madrid | Restaurante Asturiano, Plaza de la Cebada, 12, 28005 Madrid",
@@ -45,7 +65,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     destination: 'La Cabra en el Tejado, Calle de Santa Ana, 29, 28005 Madrid',
     waypoints: waypts,
     optimizeWaypoints: true,
-    travelMode: google.maps.TravelMode.WALKING
+    travelMode: google.maps.TravelMode.WALKING,
+
   },
     (response, status) => {
       if (status === "OK") {

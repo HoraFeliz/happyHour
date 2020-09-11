@@ -8,7 +8,7 @@
         </div>
     </div>
     <h3>{{tour.name}}</h3>
-    <div class="tour-detail-photo" style="background-image: url('{{tour.image}}');">
+    <div class="tour-detail-photo " style="background-image: url('{{tour.image}}');">
         {{#if tour.recommended}}
         <div class="tour-list-recommended">
             <i class="fa fa-star"></i> <span>RECOMMENDED</span>
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <div id="map" class="tour-detail-map"></div>
+    <div id="map" class="tour-detail-map position-sticky sticky-top"></div>
     <div id="infowindow-content">
         <img src="" width="16" height="16" id="place-icon" />
         <span id="place-name" class="title"></span><br />

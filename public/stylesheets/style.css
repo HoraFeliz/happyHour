@@ -339,6 +339,9 @@ div.place-detail-rating>img {
   height: 70vh;
   background-color: #6122ED;
   border-radius: 5px;
+  top: 59px;
+  border-bottom: 35px solid #6122ED !important;
+  border-top: 35px solid #6122ED !important;
 }
 
 .tour-detail-list {

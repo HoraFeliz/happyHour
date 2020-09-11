@@ -42,7 +42,8 @@ hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
 });
 
 hbs.registerHelper("inc", function (value, options) {
-  return parseInt(value) + 1;
+  const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
+  return letters.charAt(value);
 });
 
 hbs.registerHelper('dotdotdot', function (str, charLenght) {
