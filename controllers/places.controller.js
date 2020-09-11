@@ -255,25 +255,24 @@ module.exports.like = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  const tourId = req.body.tourId
-  Place.findByIdAndDelete(req.params.place)
-    .then((places) => {
-      console.log(tourId);
-      Tour.findByIdAndUpdate(tourId,
-        {
-          $pull: { places: req.params.place },
-        },
-        { runValidators: true, new: true, useFindAndModify: false }
-      )
-        .populate("place")
-        .then((tour) => {
-          if (tour) {
-            // res.render("tours/form-2", { places, tour });
-            res.redirect(`/tours/form-2/${tour.id}`);
-          } else {
-            console.log("Couldn´t update tour with list of places");
-          }
-        })
-        .catch(next);
-    })
+  const tourId = req.body.tourId;
+  Place.findByIdAndDelete(req.params.place).then((places) => {
+    console.log(tourId);
+    Tour.findByIdAndUpdate(
+      tourId,
+      {
+        $pull: { places: req.params.place },
+      },
+      { runValidators: true, new: true, useFindAndModify: false }
+    )
+      .populate("places")
+      .then((tour) => {
+        if (tour) {
+          res.redirect(`/tours/form-2/added/${tour.id}`);
+        } else {
+          console.log("Couldn´t update tour with list of places");
+        }
+      })
+      .catch(next);
+  });
 };
