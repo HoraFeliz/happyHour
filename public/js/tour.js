@@ -2,66 +2,69 @@
 
 const tourId = window.location.href.split("tours/tour/")[1];
 
+let placesAndCoordinates;
+
 axios.get(`/tours/tour/map/${tourId}`).then((response) => {
-  console.log("res", response.data.places);
+  placesAndCoordinates = response.data.places;
+  initMap();
 });
 
 function initMap() {
-  const directionsService = new google.maps.DirectionsService();
-  const directionsRenderer = new google.maps.DirectionsRenderer();
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 12,
-    center: {
-      lat: 40.416511,
-      lng: -3.705247,
-    },
-  });
-  new google.maps.Marker({
-    position: map.getCenter(),
-    icon: {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: 10,
-    },
-    draggable: true,
-    map: map,
-  });
-  const image =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-  var myLatLng = { lat: -25.363, lng: 131.044 };
-  const beachMarker = new google.maps.Marker({
-    location: myLatLng,
-    map,
-    icon: image,
-  });
+  const tourId = window.location.href.split("tours/tour/")[1];
 
-  directionsRenderer.setMap(map);
-  calculateAndDisplayRoute(directionsService, directionsRenderer);
+  let placesAndCoordinates;
+
+  axios.get(`/tours/tour/map/${tourId}`).then((response) => {
+    placesAndCoordinates = response.data.places;
+    console.log("response", response.data.places);
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 12,
+      center: {
+        lat: placesAndCoordinates[0].location.coordinates[1],
+        lng: placesAndCoordinates[0].location.coordinates[0],
+      },
+    });
+    new google.maps.Marker({
+      position: map.getCenter(),
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+      },
+      draggable: true,
+      map: map,
+    });
+
+    directionsRenderer.setMap(map);
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  });
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const waypts = [
     {
-      location: "Los Huevos de Lucio, Calle de la Cava Baja, 30, 28005 Madrid",
+      location: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
       stopover: true,
     },
     {
-      location:
-        "Sidrería Casa Antonio La Latina Madrid | Restaurante Asturiano, Plaza de la Cebada, 12, 28005 Madrid",
+      location: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
       stopover: true,
     },
   ];
 
   directionsService.route(
     {
-      origin: "La Lata Cascorro, Calle de Embajadores, 1, 28012 Madrid",
-      destination:
-        "La Cabra en el Tejado, Calle de Santa Ana, 29, 28005 Madrid",
+      origin: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
+      destination: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.WALKING,
     },
     (response, status) => {
       if (status === "OK") {
+        console.log("res", response);
         directionsRenderer.setDirections(response);
         const route = response.routes[0];
         const summaryPanel = document.getElementById("directions-panel");
@@ -81,5 +84,3 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     }
   );
 }
-
-initMap();
