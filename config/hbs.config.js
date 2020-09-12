@@ -9,6 +9,11 @@ hbs.registerHelper('date', (date) => {
   return [format(d.getDate()), format(d.getMonth() + 1), d.getFullYear()].join('/')
 })
 
+// hbs.weekDay('weekDay', (date) => {
+//   var d = new Date(date)
+//   return d.getDate()
+// })
+
 hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
   return arg1 === arg2 ? options.fn(this) : options.inverse(this)
 })
@@ -42,8 +47,7 @@ hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
 });
 
 hbs.registerHelper("inc", function (value, options) {
-  const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'
-  return letters.charAt(value);
+  return value + 1;
 });
 
 hbs.registerHelper('dotdotdot', function (str, charLenght) {
