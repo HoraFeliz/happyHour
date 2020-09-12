@@ -51,18 +51,17 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   placesAndCoordinates.forEach((place) => {
     let waypoint = {
       location: `${place.name}, ${place.address}`,
-      stopover: true,
+      stopover: false,
     };
     waypts.push(waypoint);
   });
-  console.log("wp", waypts);
 
   directionsService.route(
     {
       origin: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
-      destination: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
+      origin: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
       waypoints: waypts,
-      optimizeWaypoints: true,
+      optimizeWaypoints: false,
       travelMode: google.maps.TravelMode.WALKING,
     },
     (response, status) => {
