@@ -43,16 +43,15 @@ function initMap() {
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-  const waypts = [
-    {
-      location: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
+  let waypts = [];
+  placesAndCoordinates.forEach((place) => {
+    let waypoint = {
+      location: `${place.name}, ${place.address}`,
       stopover: true,
-    },
-    {
-      location: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
-      stopover: true,
-    },
-  ];
+    };
+    waypts.push(waypoint);
+  });
+  console.log("wp", waypts);
 
   directionsService.route(
     {
@@ -67,9 +66,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         console.log("res", response);
         directionsRenderer.setDirections(response);
         const route = response.routes[0];
-        const summaryPanel = document.getElementById("directions-panel");
-        summaryPanel.innerHTML = ""; // For each route, display summary information.
-
         for (let i = 0; i < route.legs.length; i++) {
           const routeSegment = i + 1;
           summaryPanel.innerHTML +=
