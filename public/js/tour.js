@@ -48,6 +48,9 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   let waypts = [];
+
+  const origin = placesAndCoordinates.shift();
+  const end = placesAndCoordinates.pop();
   placesAndCoordinates.forEach((place) => {
     let waypoint = {
       location: `${place.name}, ${place.address}`,
@@ -58,8 +61,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   directionsService.route(
     {
-      origin: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
-      destination: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
+      origin: `${origin.name}, ${origin.address}`,
+      destination: `${end.name}, ${end.address}`,
       waypoints: waypts,
       optimizeWaypoints: false,
       travelMode: google.maps.TravelMode.WALKING,
