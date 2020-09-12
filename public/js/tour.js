@@ -11,68 +11,79 @@ axios.get(`/tours/tour/map/${tourId}`).then((response) => {
 });
 
 function initMap() {
-  const tourId = window.location.href.split("tours/tour/")[1];
-
-  let placesAndCoordinates;
-
-  axios.get(`/tours/tour/map/${tourId}`).then((response) => {
-    placesAndCoordinates = response.data.places;
-    console.log("response", response.data.places);
-
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 12,
-      center: {
-        lat: placesAndCoordinates[0].location.coordinates[1],
-        lng: placesAndCoordinates[0].location.coordinates[0],
-      },
-    });
-
-    directionsRenderer.setMap(map);
-    directionsRenderer.setOptions({
-      markerOptions: {
-        icon: "/img/marker-appy.svg",
-      },
-      polylineOptions: {
-        strokeColor: red,
-        strokeWeight: 6,
-      },
-      markerLabel: {
-        text: "Hello",
-      },
-    });
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  // const directionsRendererOptions = new google.maps.DirectionsRendererOptions();
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: {
+      lat: 40.416511,
+      lng: -3.705247,
+    },
   });
+
+  directionsRenderer.setMap(map);
+  directionsRenderer.setOptions({
+    // suppressMarkers: true,
+    markerOptions: {
+      icon: "/img/marker-appy.svg",
+      // title: 'place',
+      // markerLabel: {
+      //   text: 'Hello'
+      // }
+    },
+    polylineOptions: {
+      strokeColor: red,
+      strokeWeight: 6,
+    },
+    markerLabel: {
+      text: "Hello",
+    },
+  });
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   let waypts = [];
-
   const origin = placesAndCoordinates.shift();
-  const end = placesAndCoordinates.pop();
+  const destination = placesAndCoordinates.pop();
+
   placesAndCoordinates.forEach((place) => {
     let waypoint = {
       location: `${place.name}, ${place.address}`,
-      stopover: false,
+      stopover: true,
     };
     waypts.push(waypoint);
   });
 
+  // const checkboxArray = document.getElementById("waypoints");
+
+  // for (let i = 0; i < checkboxArray.length; i++) {
+  //     if (checkboxArray.options[i].selected) {
+  //         console.log(checkboxArray[i].value)
+  //         waypts.push({
+  //             location: checkboxArray[i].value,
+  //             stopover: true
+  //         });
+  //     }
+  // }
+
   directionsService.route(
     {
       origin: `${origin.name}, ${origin.address}`,
-      destination: `${end.name}, ${end.address}`,
+      destination: `${destination.name}, ${destination.address}`,
       waypoints: waypts,
-      optimizeWaypoints: false,
+      // optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.WALKING,
     },
     (response, status) => {
       if (status === "OK") {
-        console.log("res", response);
         directionsRenderer.setDirections(response);
 
         const route = response.routes[0];
+        const summaryPanel = document.getElementById("directions-panel");
+        summaryPanel.innerHTML = ""; // For each route, display summary information.
+
         for (let i = 0; i < route.legs.length; i++) {
           const routeSegment = i + 1;
           summaryPanel.innerHTML +=
