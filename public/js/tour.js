@@ -1,5 +1,6 @@
 "use strict";
 
+const red = "rgb(200,16,46)";
 const tourId = window.location.href.split("tours/tour/")[1];
 
 let placesAndCoordinates;
@@ -27,17 +28,20 @@ function initMap() {
         lng: placesAndCoordinates[0].location.coordinates[0],
       },
     });
-    new google.maps.Marker({
-      position: map.getCenter(),
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-      },
-      draggable: true,
-      map: map,
-    });
 
     directionsRenderer.setMap(map);
+    directionsRenderer.setOptions({
+      markerOptions: {
+        icon: "/img/marker-appy.svg",
+      },
+      polylineOptions: {
+        strokeColor: red,
+        strokeWeight: 6,
+      },
+      markerLabel: {
+        text: "Hello",
+      },
+    });
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   });
 }
@@ -65,6 +69,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       if (status === "OK") {
         console.log("res", response);
         directionsRenderer.setDirections(response);
+
         const route = response.routes[0];
         for (let i = 0; i < route.legs.length; i++) {
           const routeSegment = i + 1;

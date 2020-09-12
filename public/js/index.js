@@ -38,13 +38,13 @@ function readMore() {
 
   if (dots.style.display === "none") {
     dots.style.display = "inline";
-    btnText.innerHTML = '<img src="/img/more-info-button.png" class="mr-2" alt="Read More"> Read More';
+    btnText.innerHTML = '<img src="/img/more-info-button.png" class="mr-2" alt="Read More">';
     btnText.classList.add('read-more')
     btnText.classList.remove("read-less")
     moreText.style.display = "none";
   } else {
     dots.style.display = "none";
-    btnText.innerHTML = '<img src="/img/less-info-button.png" class="mr-2" alt="Read More"> Read Less';
+    btnText.innerHTML = '<img src="/img/less-info-button.png" class="mr-2" alt="Read More"> ';
     btnText.classList.remove("read-more")
     btnText.classList.add('read-less')
     moreText.style.display = "inline";
@@ -123,7 +123,7 @@ function beerRating() {
 }
 
 function domFunctions() {
-  console.log('DOM Init');
+  // console.log('DOM Init');
   // beerRating()
   readMoreText()
 }
