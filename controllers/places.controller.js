@@ -128,10 +128,10 @@ module.exports.addPlace = (req, res, next) => {
           let tourRating;
           if (tour) {
             if (!tour.rating) {
-              tourRating = Math.round(place.rating * 10) / 10;
+              tourRating = place.rating;
             } else {
-              tourRating =
-                Math.round(((tour.rating + place.rating) / 2) * 10) / 10;
+              const average = (tour.rating + place.rating) / 2;
+              tourRating = Math.round(average * 100) / 100;
             }
             Tour.findByIdAndUpdate(tourId, {
               $set: {
