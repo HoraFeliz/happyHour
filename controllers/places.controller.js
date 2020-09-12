@@ -123,11 +123,24 @@ module.exports.addPlace = (req, res, next) => {
         },
         { runValidators: true, new: true, useFindAndModify: false }
       )
-        .populate("place")
+        .populate("places")
         .then((tour) => {
+          let tourRating;
           if (tour) {
-            // res.render("tours/form-2", { places, tour });
-            res.redirect(`/tours/form-2/added/${tour.id}`);
+            if (!tour.rating) {
+              tourRating = place.rating;
+            } else {
+              tourRating = (tour.rating + place.rating) / 2;
+            }
+            Tour.findByIdAndUpdate(tourId, {
+              $set: {
+                rating: tourRating,
+              },
+            })
+              .then(() => {
+                res.redirect(`/tours/form-2/added/${tour.id}`);
+              })
+              .catch(next);
           } else {
             console.log("Couldn´t update tour with list of places");
           }
