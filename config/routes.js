@@ -148,7 +148,7 @@ router.post(
 );
 
 router.get("/tours/tour/:id", session.isAuthenticated, tourController.getTour);
-
+router.get("/tours/tour/map/:id", tourController.getTourForMap);
 router.get("/tours/places", (req, res, next) => {
   res.render("tours/places");
 });
@@ -157,6 +157,10 @@ router.get("/tours/places", (req, res, next) => {
 //   res.render("tours/start");
 // });
 
-router.get("/tours/start/:id", session.isAuthenticated, tourController.startTour);
+router.get(
+  "/tours/start/:id",
+  session.isAuthenticated,
+  tourController.startTour
+);
 
 module.exports = router;

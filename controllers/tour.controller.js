@@ -2,6 +2,16 @@ const Place = require("../models/place.model");
 const Tour = require("../models/tour.model");
 const mongoose = require("mongoose");
 
+module.exports.getTourForMap = (req, res, next) => {
+  console.log("id", req.params.id);
+  Tour.findById(req.params.id)
+    .populate("places")
+    .then((tour) => {
+      return res.status(200).json(tour);
+    })
+    .catch(next);
+};
+
 module.exports.getTour = (req, res, next) => {
   Tour.findById(req.params.id)
     .populate("places")
@@ -9,7 +19,7 @@ module.exports.getTour = (req, res, next) => {
       // return res.status(200).json(tour.places)
       res.render("tours/tour", {
         layout: "layout-nofooter",
-        tour
+        tour,
       });
     })
     .catch(next);
@@ -22,7 +32,7 @@ module.exports.startTour = (req, res, next) => {
       // return res.status(200).json(tour.places)
       res.render("tours/start", {
         layout: "layout",
-        tour
+        tour,
       });
     })
     .catch(next);
