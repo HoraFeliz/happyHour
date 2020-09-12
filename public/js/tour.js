@@ -59,7 +59,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   directionsService.route(
     {
       origin: `${placesAndCoordinates[0].name}, ${placesAndCoordinates[0].address}`,
-      origin: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
+      destination: `${placesAndCoordinates[1].name}, ${placesAndCoordinates[1].address}`,
       waypoints: waypts,
       optimizeWaypoints: false,
       travelMode: google.maps.TravelMode.WALKING,
