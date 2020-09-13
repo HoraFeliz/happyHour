@@ -136,7 +136,7 @@ nav.navbar {
 
 .tour-list-info {
   padding: 5px 10px 3px 0px;
-  padding-left: 0px !important;
+  padding-left: 0px !important-n;
 }
 
 .tour-list-descrip {
@@ -273,11 +273,28 @@ nav.navbar {
 
 /* Tour Detail */
 
+.tour-detail-col-photo {
+  padding-right: 90px;
+}
+
+.tour-detail-place-position {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 0px 10px 0 0px;
+  margin-right: -15px;
+}
+
 .price-info {
   display: flex;
   justify-content: space-between;
   margin: 5px 0px;
-  margin-top: 7px;
+  margin-top: 5px;
+  margin-left: 0px;
+  margin-top: -22px;
+  padding: 20px;
+  align-items: baseline;
+  margin-left: -7px;
 }
 
 .price-icon>img {
@@ -671,11 +688,12 @@ div.tour-create-rating>img {
 
 .tour-line {
   position: absolute;
-  left: 46px;
+  left: 26px;
+  bottom: -14px;
 }
 
 .tour-line-img {
-  height: 172px;
+  height: 72px;
   width: 3px;
 }
 
@@ -698,6 +716,34 @@ div.tour-create-rating>img {
   padding-top: 5px;
   width: 29px;
   text-align: center;
+}
+
+.tour-detail-nametour {
+  position: absolute;
+  z-index: 20;
+  padding: 10px;
+  background-color: #c8102ed1;
+  border-radius: 5px;
+  color: white;
+}
+
+.tour-num-new {
+  position: absolute;
+  padding-left: 2px;
+  font-weight: bold;
+  padding-top: 5px;
+  width: 55px;
+  text-align: center;
+  font-size: 45px;
+  color: red;
+  display: flex;
+  height: 55px;
+  align-items: center;
+  margin-top: 0px;
+  margin-left: -27px;
+  justify-content: center;
+  margin-top: 18px;
+  margin-left: 0px;
 }
 
 .tour-rating {
@@ -877,7 +923,7 @@ div.place-detail-review-rating>img {
   margin-bottom: 0px;
 }
 
-.col-7.schedule-info {
+.schedule-info {
   padding: 0px 10px;
   margin-top: -1px;
   font-size: 14px;

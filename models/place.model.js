@@ -46,6 +46,10 @@ const placeSchema = new mongoose.Schema(
       type: { type: String },
       coordinates: [Number],
     },
+    recommended: {
+      type: Boolean,
+      default: false,
+    },
     tags: [String],
     rating: Number,
     priceLevel: Number,
