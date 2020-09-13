@@ -1,5 +1,5 @@
 :root {
-  --purple-appy: rgb(200, 16, 46);
+  --purple-appy: #c8102e;
 }
 
 html,
@@ -283,6 +283,7 @@ nav.navbar {
   display: flex;
   padding: 0px 10px 0 0px;
   margin-right: -15px;
+  align-items: center;
 }
 
 .price-info {
@@ -772,6 +773,10 @@ div.tour-create-rating>img {
 }
 
 /* Tour Start */
+
+.tour-num-new.tour-start-check {
+  font-size: 25px;
+}
 
 button#myBtn {
   padding-left: 0px;
