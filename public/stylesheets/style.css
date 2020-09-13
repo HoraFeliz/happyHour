@@ -735,7 +735,7 @@ div.tour-create-rating>img {
   width: 55px;
   text-align: center;
   font-size: 45px;
-  color: red;
+  color: var(--purple-appy);
   display: flex;
   height: 55px;
   align-items: center;
