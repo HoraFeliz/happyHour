@@ -20,10 +20,18 @@ document.querySelectorAll("[data-enable]").forEach((el) => {
 
 document.querySelectorAll("#check-tour").forEach((el) => {
   el.addEventListener("click", function () {
-    el.classList.remove("fa");
-    el.classList.remove("fa-times");
-    el.classList.add("fa");
-    el.classList.add("fa-check");
+    if (el.classList.contains("fa-times")) {
+      el.classList.remove("fa");
+      el.classList.remove("fa-times");
+      el.classList.add("fa");
+      el.classList.add("fa-check");
+    } else {
+      el.classList.remove("fa");
+      el.classList.remove("fa-check");
+      el.classList.add("fa");
+      el.classList.add("fa-times");
+    }
+
     console.log("clicked", el);
   });
 });
