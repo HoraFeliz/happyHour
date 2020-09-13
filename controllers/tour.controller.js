@@ -37,7 +37,13 @@ module.exports.startTour = (req, res, next) => {
       })
         .populate("tours")
         .then((user) => {
-          return res.json({ user });
+          // const tours = user.tours;
+          // return res.json({ tour });
+
+          res.render("tours/start", {
+            layout: "layout",
+            tour,
+          });
         })
         .catch(next);
     })
