@@ -147,7 +147,7 @@
 
     {{!-- Tour Places --}}
     {{#each tour.places}}
-    <a href="/places/{{this._id}}">
+    <a>
         <div class="row pb-3 pt-3">
             <div class="col-3">
                 <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
@@ -168,7 +168,7 @@
             </div>
             <div class="col-9">
                 <div class="tour-circle">
-                    <p class="tour-num"><i class="fa fa-check"></i></p>
+                    <p class="tour-num"><i id="check-tour" class="fa fa-times"></i></p>
                     <img src="/img/tour-circle-purple.png" alt="Circle Purple">
                 </div>
                 <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
