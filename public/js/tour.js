@@ -81,7 +81,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     origin: 'La Lata Cascorro, Calle de Embajadores, 1, 28012 Madrid',
     destination: 'La Cabra en el Tejado, Calle de Santa Ana, 29, 28005 Madrid',
     waypoints: waypts,
-    // optimizeWaypoints: true,
+    optimizeWaypoints: false,
     travelMode: google.maps.TravelMode.WALKING,
 
   },
