@@ -73,7 +73,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       origin: `${origin.name}, ${origin.address}`,
       destination: `${destination.name}, ${destination.address}`,
       waypoints: waypts,
-      // optimizeWaypoints: true,
+      optimizeWaypoints: false,
       travelMode: google.maps.TravelMode.WALKING,
     },
     (response, status) => {

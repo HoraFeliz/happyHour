@@ -7,7 +7,7 @@
             <img src="/img/tourdetail.svg" alt="Tour Detail">
         </div> --}}
     </div>
-    <h3>{{tour.name}}</h3>
+    <h3 class="tour-detail-nametour">{{tour.name}}</h3>
 
     <div class="tour-detail-photo " style="background-image: url('{{tour.image}}');">
         {{#if tour.recommended}}
@@ -88,11 +88,13 @@
     {{#each tour.places}}
     <a href="/places/{{this._id}}">
         <div class="row place-ontour">
-            <div class="col-4">
+            <div class="col-4 tour-detail-col-photo">
                 <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
+                    {{#if this.recommended}}
                     <div class="tour-detail-recommended">
                         <i class="fas fa-star"></i>
                     </div>
+                    {{/if}}
                     <div class="tour-detail-rating-new">
                         <span class="rating-num">{{this.rating}}</span>
                         {{!-- Beer 1 --}}
@@ -150,19 +152,7 @@
                         {{/ifCond}}
                     </div>
                 </div>
-                {{#if @last }}
-                <div class="tour-line">
-                    {{!-- <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line"> --}}
-                </div>
-                {{ else if @index }}
-                <div class="tour-line">
-                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-                </div>
-                {{ else if @first }}
-                <div class="tour-line">
-                    <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-                </div>
-                {{/if}}
+
             </div>
             <div class="col-6 tour-list-info">
 
@@ -173,21 +163,17 @@
                         <i class="fas fa-calendar-check"></i>
                         {{!-- <img src="/img/calendar-check-solid.svg" alt="calendar-check-solid"> --}}
                     </div>
-                    <div class="col-5 schedule-info">{{#if this.isOpen }}Open{{/if}}</div>
+                    <div class="col-5 schedule-info">{{#if this.isOpen }}Open{{ else }} Close {{/if}}</div>
                     <div class="col-1 price-icon">
                         <img src="/img/price-icon.svg" alt="Price">
                     </div>
                     <div class="col-5 price-info">
-                        <div class="price-display"></div>
-                        <div class="price-display"></div>
-                        <div class="price-display"></div>
+                        {{#ifCond this.priceLevel '==' 1}}€{{ else ifCond this.priceLevel '==' 2}}€€{{ else ifCond this.priceLevel '==' 3}}€€€{{/ifCond}}
                     </div>
                 </div>
             </div>
-            <div class="col-2">
-                <div class="tour-circle">
-                    <p class="tour-num">{{inc @index}}</p>
-                </div>
+            <div class="col-2 tour-detail-place-position">
+                <p class="tour-num-new">{{inc @index}}</p>
             </div>
 
 
