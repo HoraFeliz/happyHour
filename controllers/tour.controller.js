@@ -28,7 +28,6 @@ module.exports.getTour = (req, res, next) => {
 
 module.exports.startTour = (req, res, next) => {
   const userId = req.currentUser._id;
-  const tourId = req.params.id;
   Tour.findById(req.params.id)
     .populate("places")
     .then((tour) => {
@@ -37,7 +36,11 @@ module.exports.startTour = (req, res, next) => {
       })
         .populate("tours")
         .then((user) => {
-          return res.json({ user });
+          res.json({ tour: user.tours })
+          // res.render("tours/start", {
+          //   layout: "layout",
+          //   tour: user.tours,
+          // });
         })
         .catch(next);
     })
