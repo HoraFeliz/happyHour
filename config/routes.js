@@ -157,8 +157,8 @@ router.get("/tours/places", (req, res, next) => {
 //   res.render("tours/start");
 // });
 
-router.get(
-  "/tours/start/:id",
+router.post(
+  "/tours/start-now/:id",
   session.isAuthenticated,
   tourController.startTour
 );

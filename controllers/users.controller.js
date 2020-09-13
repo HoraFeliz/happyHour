@@ -4,7 +4,7 @@ const mailer = require("../config/mailer.config");
 const passport = require("passport");
 
 module.exports.login = (req, res, next) => {
-  res.render("users/login-purple", { layout: 'layout-purple' });
+  res.render("users/login-purple", { layout: "layout-purple" });
 };
 
 module.exports.doGoogleLogin = (req, res, next) => {
@@ -134,22 +134,16 @@ module.exports.update = (req, res, next) => {
 
 module.exports.show = (req, res, next) => {
   User.findById(req.params.id)
-    .populate({
-      path: "places",
-      populate: "staff",
-    })
-    .populate({
-      path: "staffPlaces",
-      populate: "owner",
-    })
+    .populate("tours")
     .then((user) => {
+      console.log("user", user);
       res.render("users/show", { user });
     })
     .catch(next);
 };
 
 module.exports.create = (req, res, next) => {
-  console.log('req user', req);
+  console.log("req user", req);
   const user = new User({
     ...req.body,
     staff: false,

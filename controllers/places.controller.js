@@ -16,7 +16,6 @@ module.exports.getList = (req, res, next) => {
         const places = [];
 
         placesInTour.forEach((place) => {
-          console.log("loop place", place);
           Place.findById(place)
             .then((place) => {
               places.push(place);
@@ -128,10 +127,11 @@ module.exports.addPlace = (req, res, next) => {
           let tourRating;
           if (tour) {
             if (!tour.rating) {
-              tourRating = place.rating;
+              const fixedRating = place.rating.toFixed(1);
+              tourRating = fixedRating;
             } else {
-              const average = (tour.rating + place.rating) / 2;
-              tourRating = Math.round(average * 100) / 100;
+              const average = ((tour.rating + place.rating) / 2).toFixed(1);
+              tourRating = average;
             }
             Tour.findByIdAndUpdate(tourId, {
               $set: {

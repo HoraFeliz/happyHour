@@ -1,4 +1,5 @@
 const Place = require("./place.model");
+const Tour = require("./tour.model");
 const Comment = require("./comment.model");
 const Like = require("./like.model");
 const bcrypt = require("bcrypt");
@@ -55,6 +56,14 @@ const userSchema = new mongoose.Schema(
         type: String,
         default: generateRandomToken,
       },
+    },
+    tours: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Tour",
+        },
+      ],
     },
     social: {
       slack: String,
