@@ -7,23 +7,11 @@ const mongoose = require("mongoose");
 
 module.exports.getList = (req, res, next) => {
   Tour.findById(req.params.id)
-    .populate("place")
+    .populate("places")
     .then((tour) => {
       if (tour) {
         const placesInTour = tour.places;
-        console.log("get tours list", tour);
-        console.log("get places list", placesInTour);
-        const places = [];
-
-        placesInTour.forEach((place) => {
-          Place.findById(place)
-            .then((place) => {
-              places.push(place);
-            })
-            .catch(next);
-        });
-
-        res.render("tours/form-2", { places: places, tour });
+        res.render("tours/form-2", { places: placesInTour, tour });
       } else {
         console.log("Couldn´t update tour with list of places");
       }
