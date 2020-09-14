@@ -1,12 +1,17 @@
 <article class="tour-detail">
+  {{#each place.location.coordinates}}
+  <input type="hidden" name="placeData" id="placeData{{@index}}" value="{{this}}" />
+  {{/each}}
   <div class="row">
     <div class="col-sm-12">
-      <a href="/places/{{place._id}}">
-        <h3>{{place.name}}</h3>
-      </a>
-    </div>
-    <div class="col-sm-12">
       <div class="place-detail-photo" style="background-image: url('{{place.image}}');">
+
+        <h3 id="place-detail-name" class="tour-detail-nametour">
+          {{#if place.recommended}}
+          <i class="fa fa-star recommended-star"></i>
+          {{/if}}
+          {{dotdotdot place.name 30}}</h3>
+
         {{!-- Tour Rating --}}
         <div class="place-detail-rating">
           <span class="rating-num text-white">{{place.rating}}</span>
@@ -66,11 +71,21 @@
           {{/ifCond}}
         </div>
       </div>
-      {{!-- Google Rating --}}
-      <div class="tour-detail-rating">
 
+
+      <div class="place-detail-map">
+        <div id="map"></div>
+        <div id="infowindow-content">
+          <img src="" width="16" height="16" id="place-icon" />
+          <span id="place-detail-name" class="title"></span><br />
+          <span id="place-detail-address"></span>
+        </div>
       </div>
+
     </div>
+
+
+
 
     {{!-- Food Rating --}}
     {{!-- <div class="col-sm-12 tour-detail-title">
@@ -99,18 +114,38 @@
 
 
     {{!-- Place info --}}
-    <div class="col-sm-12">
-      <p class="place-text-location"><strong>Address: </strong>{{place.address}}</p>
-      <p class="place-text-location"><strong>Schedule: {{#if place.isOpen}}</strong><span
-          class="text-green">Open</span>{{else}}</strong><span class="text-red">Close</span>{{/if}}</p>
-      {{#each place.openingHours}}
-      <p class="schedule">{{this}}</p>
-      {{/each}}
-      {{#if place.priceLevel}}
-      <p class="place-text-location"><strong>Prices:
-        </strong>{{#ifCond place.priceLevel '==' 1}}€{{ else ifCond place.priceLevel '==' 2}}€€{{ else ifCond place.priceLevel '==' 3}}€€€{{/ifCond}}
-      </p>
-      {{/if}}
+    <div class="col-sm-12 mb-3">
+      <div class="row">
+        <div class="col-1 info-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="col-11 info-col">
+          <p id="place-detail-address-text" class="place-text-location">{{place.address}}</p>
+        </div>
+        <div class="col-1 info-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="col-11 info-col">
+          <p class="place-text-location"><strong>{{#if place.isOpen}}</strong><span class="text-green">
+              <strong>Open</strong> </span>{{else}}</strong><span class="text-red">Close</span>{{/if}}</p>
+          {{#each place.openingHours}}
+          <p class="schedule">{{this}}</p>
+          {{/each}}
+        </div>
+        <div class="col-1 info-icon">
+          <img src="/img/price-icon-red.svg" alt="Price" style="height: 17px; fill: red">
+        </div>
+        <div class="col-11 info-col">
+          {{#if place.priceLevel}}
+          <p class="place-text-location place-text-price">
+            {{#ifCond place.priceLevel '==' 1}}€ <span class="price-text-muted">€ €</span>
+            {{ else ifCond place.priceLevel '==' 2}}€ € <span
+              class="price-text-muted">€{{ else ifCond place.priceLevel '==' 3}}€€€{{/ifCond}}
+          </p>
+          {{/if}}
+        </div>
+      </div>
+
     </div>
     {{!-- <div class="col-sm-12 tour-detail-desc">
             <strong>Description:</strong>
@@ -126,12 +161,19 @@
         </div> --}}
 
     {{!-- Tour Location --}}
-    <div class="col-sm-12">
+    {{!-- <div class="col-sm-12">
       <div class="tour-detail-location">
-        <strong><i class="fa fa-map-marker text-purple"></i></strong> Madrid
+        <div class="row">
+          <div class="col-1">
+            <strong><i class="fas fa-city"></i></strong>
+          </div>
+          <h5 class="col-9">
+            Madrid
+          </h5>
+        </div>
       </div>
-      <div class="place-detail-map"></div>
-    </div>
+
+    </div> --}}
 
 
 

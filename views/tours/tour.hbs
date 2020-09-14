@@ -7,14 +7,14 @@
             <img src="/img/tourdetail.svg" alt="Tour Detail">
         </div> --}}
     </div>
-    <h3 class="tour-detail-nametour">{{tour.name}}</h3>
+    <h3 class="tour-detail-nametour">
+        {{#if tour.recommended}}
+        <i class="fa fa-star recommended-star"></i>
+        {{/if}}
+        {{tour.name}}</h3>
 
     <div class="tour-detail-photo " style="background-image: url('{{tour.image}}');">
-        {{#if tour.recommended}}
-        <div class="tour-list-recommended">
-            <i class="fa fa-star"></i> <span>RECOMMENDED</span>
-        </div>
-        {{/if}}
+
         <div class="tour-list-rating detail">
             <span class="rating-num">{{tour.rating}}</span>
             {{!-- Beer 1 --}}
@@ -80,6 +80,7 @@
         <span id="place-name" class="title"></span><br />
         <span id="place-address"></span>
     </div>
+    {{!-- <div id="directions-panel"></div> --}}
 
 
 
@@ -91,12 +92,12 @@
             <div class="col-4 tour-detail-col-photo">
                 <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
                     {{#if this.recommended}}
-                    <div class="tour-detail-recommended">
+                    <div class="place-detail-recommended">
                         <i class="fas fa-star"></i>
                     </div>
                     {{/if}}
                     <div class="tour-detail-rating-new">
-                        <span class="rating-num">{{this.rating}}</span>
+                        <span class="rating-num tour-detail-rating-num">{{this.rating}}</span>
                         {{!-- Beer 1 --}}
                         {{#ifCond this.rating '<=' 0}}
                         <img src="/img/star-off.png" alt="1">
@@ -154,9 +155,9 @@
                 </div>
 
             </div>
-            <div class="col-6 tour-list-info">
+            <div class="col-6 tour-detail-info">
 
-                <h3 class="tour-list-title">{{dotdotdot this.name 35}}</h3>
+                <h3 class="tour-list-title">{{dotdotdot this.name 30}}</h3>
                 <p class="tour-list-descrip">{{dotdotdot this.address 60}}</p>
                 <div class="row tour-list-place-info">
                     <div class="col-1 open-icon">
@@ -168,7 +169,10 @@
                         <img src="/img/price-icon.svg" alt="Price">
                     </div>
                     <div class="col-5 price-info">
-                        {{#ifCond this.priceLevel '==' 1}}€{{ else ifCond this.priceLevel '==' 2}}€€{{ else ifCond this.priceLevel '==' 3}}€€€{{/ifCond}}
+                        {{#ifCond this.priceLevel '==' 1}}<span>€</span><span class="price-text-muted">€</span><span
+                            class="price-text-muted">€</span>
+                        {{ else ifCond this.priceLevel '==' 2}}<span>€€</span><span
+                            class="price-text-muted">€{{ else ifCond this.priceLevel '==' 3}}<span>€€€</span>{{/ifCond}}
                     </div>
                 </div>
             </div>
@@ -181,7 +185,7 @@
     </a>
     {{/each}}
 
-    <div class="tour-detail-desc mt-3 mb-3">
+    <div class="tour-detail-desc mt-4 mb-3">
         <strong>Description:</strong>
         <p class="mt-2" id="dotdotdot-descrip">{{tour.description}}</p>
         <button onclick="readMore()" id="myBtn" class="read-more"> <img class="mr-2" src="/img/more-info-button.png"

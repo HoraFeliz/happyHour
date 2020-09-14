@@ -22,11 +22,17 @@ function initMap() {
     },
   });
 
+
   directionsRenderer.setMap(map);
   directionsRenderer.setOptions({
-    // suppressMarkers: true,
+    suppressMarkers: false,
     markerOptions: {
       icon: "/img/marker-appy.svg",
+      // markerLabel: {
+      //   text: 'Hello',
+      //   color: '#ffffff',
+      //   fontSize: '30px'
+      // }
       // title: 'place',
       // markerLabel: {
       //   text: 'Hello'
@@ -36,9 +42,9 @@ function initMap() {
       strokeColor: red,
       strokeWeight: 6,
     },
-    markerLabel: {
-      text: "Hello",
-    },
+    // infoWindow: {
+    //   setZIndex: 100,
+    // },
   });
   calculateAndDisplayRoute(directionsService, directionsRenderer);
 }

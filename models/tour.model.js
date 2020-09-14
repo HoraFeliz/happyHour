@@ -20,10 +20,11 @@ const tourSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
+      default: 0
     },
     image: {
       type: String,
-      default: "/img/tour-def-icon.png",
+      default: "/img/tour-def-icon.svg",
     },
     recommended: {
       type: Boolean,

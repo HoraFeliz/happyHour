@@ -15,7 +15,8 @@
 
       {{#ifEquals currentUser.email user.email}}
       <div>
-        <a class="btn btn-secondary" href="/users/{{currentUser._id}}/edit">
+        <a  class="btn btn-secondary">
+          {{!-- href="/users/{{currentUser._id}}/edit" --}}
           <i class="fa fa-edit mr-2"></i>
           Edit
         </a>
@@ -47,7 +48,7 @@
     {{/if}}
   </div>
 
-  <div>
+  {{!-- <div>
     <h2 class="my-4">Tours</h2>
     <ul>
     {{#each user.tours as |tour|}}
@@ -60,6 +61,6 @@
         {{>places/placecard place=tour }}
       </div>
       {{/each}}
-    </div>
+    </div> --}}
   </div>
 </article>

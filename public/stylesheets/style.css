@@ -39,6 +39,11 @@ main {
   margin-bottom: 20px;
   min-height: calc(100vh - 82px);
   padding-top: 80px;
+
+  -webkit-transition: background-position 2.5s linear;
+  -moz-transition: background-position 2.5s linear;
+  -o-transition: background-position 2.5s linear;
+  transition: background-position 2.5s linear;
 }
 
 .main-purple {
@@ -61,6 +66,13 @@ a:hover {
 
 button:focus {
   outline: none
+}
+
+hr {
+  height: 1px;
+  border-width: 0px;
+  color: var(--purple-appy);
+  opacity: .2;
 }
 
 .container {
@@ -135,8 +147,11 @@ nav.navbar {
 }
 
 .tour-list-info {
-  padding: 5px 10px 3px 0px;
-  padding-left: 0px !important-n;
+  padding: 10px;
+  background-color: #ffffff8c;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .tour-list-descrip {
@@ -164,9 +179,9 @@ nav.navbar {
   right: 30px;
 }
 
-.tour-list-info {
+.tour-detail-info {
   padding: 10px;
-  background-color: #fff;
+  /* background-color: #ffffff8c; */
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -178,7 +193,7 @@ nav.navbar {
 
 .tour-list-desc {
   font-size: 14px;
-  color: #777;
+  color: #606060;
   margin-bottom: 0px;
 }
 
@@ -190,7 +205,8 @@ nav.navbar {
   position: absolute;
   bottom: 10px;
   right: 24px;
-  background-color: #F4AF00DB;
+  /* background-color: #F4AF00DB; */
+  background-color: #FFFFFFD4;
   border-radius: 3px;
   padding: 2px 10px;
 }
@@ -212,12 +228,19 @@ nav.navbar {
 .tour-list-recommended {
   background-color: var(--purple-appy);
   border-radius: 3px;
-  padding: 2px 10px;
+  padding: 2px 10px 2px 5px;
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
   font-size: 12px;
   color: white;
+  display: flex;
+  align-items: center;
+}
+
+.tour-list-star-rating {
+  color: yellow;
+  margin-right: 5px;
 }
 
 .tour-rating-img {
@@ -273,6 +296,33 @@ nav.navbar {
 
 /* Tour Detail */
 
+.info-col {
+  /* margin-right: -15px; */
+  margin-top: 3px;
+}
+
+.info-icon {
+  font-size: 18px;
+  color: var(--purple-appy);
+}
+
+.place-text-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tour-detail-recommended {
+  background-color: var(--purple-appy);
+  border-radius: 3px;
+  padding: 2px 10px;
+  position: absolute;
+  margin-top: 10px;
+  margin-right: 10px;
+  right: 0px;
+  font-size: 12px;
+  color: white;
+}
+
 .tour-detail-col-photo {
   padding-right: 90px;
 }
@@ -288,7 +338,7 @@ nav.navbar {
 
 .price-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 5px 0px;
   margin-top: 5px;
   margin-left: 0px;
@@ -309,7 +359,7 @@ nav.navbar {
 
 }
 
-.tour-detail-recommended {
+.place-detail-recommended {
   color: white;
   position: absolute;
   display: flex;
@@ -342,7 +392,7 @@ div.place-detail-rating>img {
   padding-left: 5px;
 }
 
-.place-detail-rating {
+/* .place-detail-rating {
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
@@ -350,6 +400,19 @@ div.place-detail-rating>img {
   position: absolute;
   bottom: 25px;
   right: 25px;
+  background-color: rgba(200, 16, 46, 0.81);
+  border-radius: 3px;
+  padding: 2px 10px;
+} */
+
+.place-detail-rating {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-top: -10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   background-color: rgba(200, 16, 46, 0.81);
   border-radius: 3px;
   padding: 2px 10px;
@@ -407,7 +470,7 @@ div.place-detail-rating>img {
 }
 
 .tour-detail-desc {
-  text-align: justify;
+  /* text-align: justify; */
   position: relative;
 }
 
@@ -419,6 +482,14 @@ div.place-detail-rating>img {
 .tour-detail-location {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.tour-detail-location i {
+  color: var(--purple-appy);
+}
+
+.price-text-muted {
+  color: #00000036 !important;
 }
 
 .tour-detail-map {
@@ -465,7 +536,7 @@ div.place-detail-rating>img {
   margin-left: 0px;
   border-radius: 5px;
   position: relative;
-  background-color: #fff;
+  background-color: #ffffffc7;
 }
 
 #more {
@@ -505,7 +576,7 @@ div.place-detail-rating>img {
 }
 
 #map.tour-detail-map {
-  height: 40vh;
+  height: 45vh;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
@@ -603,6 +674,12 @@ input#avatar+label:hover {
 
 /* Form Create Tour */
 
+.purple-back-secundary-form2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .tour-create-rating {
   justify-content: flex-end;
   display: flex;
@@ -628,6 +705,7 @@ div.tour-create-rating>img {
 .create-tour-img {
   position: relative;
   margin-left: 5px;
+  width: 80vw;
 }
 
 .purple-back {
@@ -654,10 +732,10 @@ div.tour-create-rating>img {
 }
 
 .select-place-tour {
-  font-size: 30px;
+  font-size: 24px;
   color: white;
   margin-top: -5px;
-  text-align: center;
+  text-align: right;
 }
 
 .btn-purple {
@@ -726,6 +804,9 @@ div.tour-create-rating>img {
   background-color: #c8102ed1;
   border-radius: 5px;
   color: white;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
 }
 
 .tour-num-new {
@@ -756,8 +837,15 @@ div.tour-create-rating>img {
   padding-right: 5px;
 }
 
+.recommended-star {
+  color: yellow;
+  font-size: 18px;
+  margin-bottom: 2px;
+  padding-right: 5px;
+}
+
 .rating-num {
-  color: white;
+  color: var(--purple-appy);
   font-size: 25px;
   font-weight: bold;
   padding-right: 5px;
@@ -866,10 +954,19 @@ button#myBtn {
 }
 
 /* Place Detail */
+
+
+
+.map-container {
+  border-top: 1px solid var(--purple-appy);
+}
+
 .place-detail-comments-content {
   padding: 5px 10px;
   margin-top: 15px;
-  border-bottom: 1px solid #0000002b
+  border-bottom: 1px solid #0000002b;
+  background-color: #ffffff69;
+  border-radius: 5px;
 }
 
 .place-comment-current-user {
@@ -877,10 +974,14 @@ button#myBtn {
   margin-top: 10px;
 }
 
+.place-comment-text {
+  font-size: 14px;
+}
+
 .place-detail-review-rating {
   padding: 0px 0px;
   position: absolute;
-  right: 15px;
+  right: 25px;
   border-radius: 5px;
   display: flex;
   align-items: baseline;
@@ -896,15 +997,16 @@ div.place-detail-review-rating>img {
 }
 
 .place-detail-photo {
-  height: 250px;
+  height: 150px;
   width: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+  position: relative;
 }
 
-.place-detail-map {
-  height: 30vh;
+div.place-detail-map>#map {
+  height: 40vh;
   background-color: var(--purple-appy);
   border-radius: 5px;
   margin-bottom: 20px;
@@ -947,6 +1049,10 @@ div.place-detail-review-rating>img {
   padding: 5px 10px;
 }
 
+.tour-detail-rating-num {
+  color: white;
+}
+
 div.tour-detail-rating-new>img {
   width: 10px;
   height: 10px;
@@ -972,6 +1078,14 @@ footer {
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+
+.gm-style-pbc {
+  display: none;
+}
+
+.gm-style-pbt {
+  display: none;
+}
 
 #directions-panel {
   margin-top: 10px;

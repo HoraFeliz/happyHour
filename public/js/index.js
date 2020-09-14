@@ -148,9 +148,40 @@ function beerRating() {
 function domFunctions() {
   // console.log('DOM Init');
   // beerRating()
+  burbujas();
   readMoreText();
 }
 
 function goBack() {
   window.history.back();
 }
+
+// function burbujas() {
+//   const burbujas = document.getElementById('main-appy')
+//   for (b = 0; b < 1000; b++) {
+//     // burbujas.style.backgroundPosition += b
+//     setTimeout(() => {
+//       console.log(b);
+//     }, 1000)
+//   }
+// }
+
+var position = 0
+
+function burbujas() {
+
+  const burbujasBack = document.getElementById('main-appy')
+  // add a zero in front of numbers<10
+  position -= 120
+  burbujasBack.style.backgroundPositionY = `${position}px`;
+  setTimeout(function () { burbujas() }, 1000);
+  console.log(position);
+}
+
+// function checkPosition(i) {
+//   if (i < 1000) {
+//     i -= 20
+//     console.log(i);
+//   }
+//   return i;
+// }

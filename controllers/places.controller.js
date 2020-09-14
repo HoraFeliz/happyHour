@@ -48,7 +48,10 @@ module.exports.show = (req, res, next) => {
     })
     .then((place) => {
       console.log(place);
-      res.render("places/show", { place });
+      res.render("places/show", {
+        layout: "layout-detail",
+        place
+      });
     })
     .catch(next);
 };

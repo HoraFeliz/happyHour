@@ -40,7 +40,7 @@ module.exports.startTour = (req, res, next) => {
           // return res.json({ tour });
 
           res.render("tours/start", {
-            layout: "layout",
+            layout: "layout-start",
             tour,
           });
         })

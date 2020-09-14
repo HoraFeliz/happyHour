@@ -1,8 +1,18 @@
-<div class="purple-back purple-back-select">
+{{!-- <div class="purple-back purple-back-select">
     <div class="create-tour-img">
         <h3 class="select-place-tour font-regular"><strong>Select </strong>Place on Tour</h3>
-        <img src="/img/selectplaceontour.png" alt="AppyHour Tour" style="margin-top:-7px; margin-left: -5px;">
+        <img src="/img/appyhourtour2.svg" alt="AppyHour Tour" style="margin-top:-30px; margin-left: -5px; width: 75vw">
     </div>
+</div> --}}
+
+<div class="purple-back-secundary purple-back-secundary-form2">
+    <h4 class="tour-detail-title-primary" style="position: unset;">
+        <strong>Select</strong> Place on Tour
+    </h4>
+    <img src="/img/appyhourtour2.svg" alt="Tour Detail" style="width: 15vw; height: 90px;">
+    {{!-- <div class="tour-detail-img">
+            <img src="/img/tourdetail.svg" alt="Tour Detail">
+        </div> --}}
 </div>
 
 <h3>{{tour.name}}</h3>
@@ -29,106 +39,104 @@
 </form>
 
 
-<div class="row pt-3">
     {{#each places}}
-    <div class="col-3">
-        <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
-        </div>
-        {{#if @index}}
-        <div class="tour-line">
-            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-        </div>
-        {{ else if @first}}
-        <div class="tour-line">
-            <img class="tour-line-img" src="/img/tour-line.png" alt="Tour Line">
-        </div>
-        {{/if}}
-    </div>
-    <div class="col-9">
-        <div class="tour-circle">
-            <p class="tour-num">{{inc @index}}</p>
-            <img src="/img/tour-circle-purple.png" alt="Circle Purple">
-        </div>
-        <a href="/place/{{this._id}}"></a>
-        <h3 class="tour-create-title">{{dotdotdot this.name 35}}</h3>
-        <p class="tour-desc">{{dotdotdot this.address 60}}</p>
+    <a href="/places/{{this._id}}">
+        <div class="row place-ontour">
+            <div class="col-4 tour-detail-col-photo">
+                <div class="tour-detail-list-photo" style="background-image: url('{{this.image}}');">
+                    {{#if this.recommended}}
+                    <div class="place-detail-recommended">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    {{/if}}
+                    <div class="tour-detail-rating-new">
+                        <span class="rating-num tour-detail-rating-num">{{this.rating}}</span>
+                        {{!-- Beer 1 --}}
+                        {{#ifCond this.rating '<=' 0}}
+                        <img src="/img/star-off.png" alt="1">
+                        {{ else ifCond this.rating '>=' 1}}
+                        <img src="/img/star-on.png" alt="1">
+                        {{ else ifCond this.rating '>=' 0.5}}
+                        <img src="/img/star-half.png" alt="1">
+                        {{ else }}
+                        <img src="/img/star-off.png" alt="1">
+                        {{/ifCond}}
+                        {{!-- Beer 2 --}}
+                        {{#ifCond this.rating '<=' 1}}
+                        <img src="/img/star-off.png" alt="2">
+                        {{ else ifCond this.rating '>=' 2}}
+                        <img src="/img/star-on.png" alt="2">
+                        {{ else ifCond this.rating '>=' 1.5}}
+                        <img src="/img/star-half.png" alt="2">
+                        {{ else }}
+                        <img src="/img/star-off.png" alt="2">
+                        {{/ifCond}}
 
-        <div class="row">
-            <div class="col-3">
-                <form action="/tours/form-2/delete/{{this._id}}" method="POST">
-                    <input type="hidden" name="tourId" id="tourId" value="{{../tour.id}}">
-                    <button type="submit" class="btn btn-danger btn-delete">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </form>
+                        {{!-- Beer 3 --}}
+                        {{#ifCond this.rating '<=' 2}}
+                        <img src="/img/star-off.png" alt="3">
+                        {{ else ifCond this.rating '>=' 3}}
+                        <img src="/img/star-on.png" alt="3">
+                        {{ else ifCond this.rating '>=' 2.5}}
+                        <img src="/img/star-half.png" alt="3">
+                        {{ else }}
+                        <img src="/img/star-off.png" alt="3">
+                        {{/ifCond}}
+
+                        {{!-- Beer 4 --}}
+                        {{#ifCond this.rating '<=' 3}}
+                        <img src="/img/star-off.png" alt="4">
+                        {{ else ifCond this.rating '>=' 4}}
+                        <img src="/img/star-on.png" alt="4">
+                        {{ else ifCond this.rating '>=' 3.5}}
+                        <img src="/img/star-half.png" alt="4">
+                        {{ else }}
+                        <img src="/img/star-off.png" alt="4">
+                        {{/ifCond}}
+
+                        {{!-- Beer 5 --}}
+                        {{#ifCond this.rating '<=' 4}}
+                        <img src="/img/star-off.png" alt="5">
+                        {{ else ifCond this.rating '>=' 5}}
+                        <img src="/img/star-on.png" alt="5">
+                        {{ else ifCond this.rating '>=' 4.5}}
+                        <img src="/img/star-half.png" alt="5">
+                        {{ else }}
+                        <img src="/img/star-off.png" alt="5">
+                        {{/ifCond}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6 tour-list-info">
+
+                <h3 class="tour-list-title">{{dotdotdot this.name 30}}</h3>
+                <p class="tour-list-descrip">{{dotdotdot this.address 60}}</p>
+                <div class="row tour-list-place-info">
+                    <div class="col-1 open-icon">
+                        <i class="fas fa-calendar-check"></i>
+                        {{!-- <img src="/img/calendar-check-solid.svg" alt="calendar-check-solid"> --}}
+                    </div>
+                    <div class="col-5 schedule-info">{{#if this.isOpen }}Open{{ else }} Close {{/if}}</div>
+                    <div class="col-1 price-icon">
+                        <img src="/img/price-icon.svg" alt="Price">
+                    </div>
+                    <div class="col-5 price-info">
+                        {{#ifCond this.priceLevel '==' 1}}<span>€</span><span class="price-text-muted">€</span><span
+                            class="price-text-muted">€</span>
+                        {{ else ifCond this.priceLevel '==' 2}}<span>€€</span><span
+                            class="price-text-muted">€{{ else ifCond this.priceLevel '==' 3}}<span>€€€</span>{{/ifCond}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 tour-detail-place-position">
+                <p class="tour-num-new">{{inc @index}}</p>
             </div>
 
-            {{!-- Tour Rating --}}
-            <div class="col-12 pb-3 tour-create-rating">
-                {{!-- <span class="user-rating">(74)</span> --}}
-                <span class="rating-num">{{this.rating}}</span>
-
-                {{!-- Star 1 --}}
-                {{#ifCond this.rating '<=' 0}}
-                <img src="/img/star-off.png" alt="1">
-                {{ else ifCond this.rating '>=' 1}}
-                <img src="/img/star-on.png" alt="1">
-                {{ else ifCond this.rating '>=' 0.5}}
-                <img src="/img/star-half.png" alt="1">
-                {{ else }}
-                <img src="/img/star-off.png" alt="1">
-                {{/ifCond}}
-
-                {{!-- Star 2 --}}
-                {{#ifCond this.rating '<=' 1}}
-                <img src="/img/star-off.png" alt="2">
-                {{ else ifCond this.rating '>=' 2}}
-                <img src="/img/star-on.png" alt="2">
-                {{ else ifCond this.rating '>=' 1.5}}
-                <img src="/img/star-half.png" alt="2">
-                {{ else }}
-                <img src="/img/star-off.png" alt="2">
-                {{/ifCond}}
-
-                {{!-- Star 3 --}}
-                {{#ifCond this.rating '<=' 2}}
-                <img src="/img/star-off.png" alt="3">
-                {{ else ifCond this.rating '>=' 3}}
-                <img src="/img/star-on.png" alt="3">
-                {{ else ifCond this.rating '>=' 2.5}}
-                <img src="/img/star-half.png" alt="3">
-                {{ else }}
-                <img src="/img/star-off.png" alt="3">
-                {{/ifCond}}
-
-                {{!-- Star 4 --}}
-                {{#ifCond this.rating '<=' 3}}
-                <img src="/img/star-off.png" alt="4">
-                {{ else ifCond this.rating '>=' 4}}
-                <img src="/img/star-on.png" alt="4">
-                {{ else ifCond this.rating '>=' 3.5}}
-                <img src="/img/star-half.png" alt="4">
-                {{ else }}
-                <img src="/img/star-off.png" alt="4">
-                {{/ifCond}}
-
-                {{!-- Star 5 --}}
-                {{#ifCond this.rating '<=' 4}}
-                <img src="/img/star-off.png" alt="5">
-                {{ else ifCond this.rating '>=' 5}}
-                <img src="/img/star-on.png" alt="5">
-                {{ else ifCond this.rating '>=' 4.5}}
-                <img src="/img/star-half.png" alt="5">
-                {{ else }}
-                <img src="/img/star-off.png" alt="5">
-                {{/ifCond}}
-            </div>
 
         </div>
-        {{!-- Delete Place on Tour --}}
-    </div>
+    </a>
     {{/each}}
-</div>
 
 
 
