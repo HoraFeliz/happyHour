@@ -62,6 +62,7 @@ function initMap() {
       tags: place.types,
     };
     document.getElementById("placeData").value = JSON.stringify(placeData);
+    document.getElementById("include-btn").disabled = false;
 
     console.log("LOGS place", placeData);
     if (!place.geometry) {
@@ -86,13 +87,13 @@ function initMap() {
       address = [
         (place.address_components[0] &&
           place.address_components[0].short_name) ||
-        "",
+          "",
         (place.address_components[1] &&
           place.address_components[1].short_name) ||
-        "",
+          "",
         (place.address_components[2] &&
           place.address_components[2].short_name) ||
-        "",
+          "",
       ].join(" ");
     }
 

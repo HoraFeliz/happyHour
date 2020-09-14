@@ -34,10 +34,9 @@
 </div>
 
 <form method="POST" action="/tours/form-2/{{tour.id}}">
-    <button class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
+    <button id="include-btn" disabled class="btn btn-purple btn-block text-white include-button mb-2">Include Place on Tour</button>
     <input type="hidden" name="placeData" id="placeData" />
 </form>
-
 
     {{#each places}}
     <a href="/places/{{this._id}}">

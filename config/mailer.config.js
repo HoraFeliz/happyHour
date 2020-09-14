@@ -15,12 +15,12 @@ module.exports.sendValidationEmail = ({ name, email, id, activationToken }) => {
   transport
     .sendMail({
       to: email,
-      from: `Iron Summer Place team <${user}>`,
+      from: `AppyHour team <${user}>`,
       subject: "Activate your account!",
       html: `
 			<h1>Hi ${name}</h1>
 			<p>Click on the button below to activate your account ❤️</p>
-			<a href="${host}/users/${id}/activate/${activationToken}" style="padding: 10px 20px; color: white; background-color: pink; border-radius: 5px;">Click here</a>
+			<a href="${host}/users/${id}/activate/${activationToken}" style="padding: 10px 20px 20px 20px; color: white; background-color: pink; border-radius: 5px;">Click here</a>
 		`,
     })
     .then(console.log)
