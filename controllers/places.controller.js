@@ -10,8 +10,8 @@ module.exports.getList = (req, res, next) => {
     .populate("places")
     .then((tour) => {
       if (tour) {
-        const placesInTour = tour.places;
-        res.render("tours/form-2", { places: placesInTour, tour });
+        //const placesInTour = tour.places;
+        res.render("tours/form-2", { places: tour.places, tour });
       } else {
         console.log("Couldn´t update tour with list of places");
       }

@@ -33,7 +33,7 @@ module.exports.googleCallback = (req, res, next) => {
   const passportGoogleCallback = passport.authenticate(
     "google",
     {
-      successRedirect: "/places",
+      successRedirect: "/tours",
       failureRedirect: "/login",
     },
     (error, user) => {
@@ -66,7 +66,7 @@ module.exports.doLogin = (req, res, next) => {
             if (user.activation.active) {
               req.session.userId = user._id;
 
-              res.redirect("/places");
+              res.redirect("/tours");
             } else {
               res.render("users/login", {
                 error: {
@@ -126,7 +126,7 @@ module.exports.update = (req, res, next) => {
       if (user) {
         res.redirect(`/users/${user._id}`);
       } else {
-        res.redirect("/places");
+        res.redirect("/tours");
       }
     })
     .catch(next);
@@ -227,6 +227,6 @@ module.exports.delete = (req, res, next) => {
       })
       .catch(next);
   } else {
-    res.redirect("/places");
+    res.redirect("/tours");
   }
 };
