@@ -8,7 +8,7 @@ const google = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://iron-appyhour.herokuapp.com/auth/google/callback",
+    callbackURL: `${process.env.ABSOLUTEURI}/auth/google/callback`,
   },
   (accessToken, refreshToken, profile, next) => {
     User.findOne({ "social.googleID": profile.id })
