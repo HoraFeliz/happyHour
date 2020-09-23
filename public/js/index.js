@@ -87,64 +87,6 @@ function readMoreText() {
   }
 }
 
-function beerRating() {
-  // Beer Rating
-  const beerRatingDiv = document.getElementById("tour-detail-your-rating");
-  const beerRatingDiv01 = document.getElementById("beer-rating-cont-01");
-  const beerRatingDiv02 = document.getElementById("beer-rating-cont-02");
-  const beerRatingDiv03 = document.getElementById("beer-rating-cont-03");
-  const beerRatingDiv04 = document.getElementById("beer-rating-cont-04");
-  const beerRatingDiv05 = document.getElementById("beer-rating-cont-05");
-  const beerOne = document.getElementById("beer-01");
-  const beerTwo = document.getElementById("beer-02");
-  const beerThree = document.getElementById("beer-03");
-  const beerFour = document.getElementById("beer-04");
-  const beerFive = document.getElementById("beer-05");
-
-  beerOne.addEventListener("mouseover", function () {
-    beerOne.src = "/img/your-rating-on.png";
-    beerTwo.src = "/img/your-rating-off.png";
-    beerThree.src = "/img/your-rating-off.png";
-    beerFour.src = "/img/your-rating-off.png";
-    beerFive.src = "/img/your-rating-off.png";
-  });
-  beerTwo.addEventListener("mouseover", function () {
-    beerOne.src = "/img/your-rating-on.png";
-    beerTwo.src = "/img/your-rating-on.png";
-    beerThree.src = "/img/your-rating-off.png";
-    beerFour.src = "/img/your-rating-off.png";
-    beerFive.src = "/img/your-rating-off.png";
-  });
-  beerThree.addEventListener("mouseover", function () {
-    beerOne.src = "/img/your-rating-on.png";
-    beerTwo.src = "/img/your-rating-on.png";
-    beerThree.src = "/img/your-rating-on.png";
-    beerFour.src = "/img/your-rating-off.png";
-    beerFive.src = "/img/your-rating-off.png";
-  });
-  beerFour.addEventListener("mouseover", function () {
-    beerOne.src = "/img/your-rating-on.png";
-    beerTwo.src = "/img/your-rating-on.png";
-    beerThree.src = "/img/your-rating-on.png";
-    beerFour.src = "/img/your-rating-on.png";
-    beerFive.src = "/img/your-rating-off.png";
-  });
-  beerFive.addEventListener("mouseover", function () {
-    beerOne.src = "/img/your-rating-on.png";
-    beerTwo.src = "/img/your-rating-on.png";
-    beerThree.src = "/img/your-rating-on.png";
-    beerFour.src = "/img/your-rating-on.png";
-    beerFive.src = "/img/your-rating-on.png";
-  });
-  beerRatingDiv.addEventListener("mouseleave", function () {
-    beerOne.src = "/img/your-rating-off.png";
-    beerTwo.src = "/img/your-rating-off.png";
-    beerThree.src = "/img/your-rating-off.png";
-    beerFour.src = "/img/your-rating-off.png";
-    beerFive.src = "/img/your-rating-off.png";
-  });
-}
-
 function domFunctions() {
   // console.log('DOM Init');
   // beerRating()
@@ -175,7 +117,7 @@ function burbujas() {
   position -= 120
   burbujasBack.style.backgroundPositionY = `${position}px`;
   setTimeout(function () { burbujas() }, 1000);
-  console.log(position);
+  // console.log(position);
 }
 
 // function checkPosition(i) {
