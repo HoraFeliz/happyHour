@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const host = process.env.HOST || "http://localhost:3000";
+const host = process.env.HOST || "https://iron-appyhour.herokuapp.com/";
 const user = process.env.NM_USER;
 
 const transport = nodemailer.createTransport({
